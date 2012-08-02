@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCTargetsPath Condition="'$(VCTargetsPath11)' != '' and '$(VSVersion)' == '' and '$(VisualStudioVersion)' == ''">$(VCTargetsPath11)</VCTargetsPath>
+  </PropertyGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{EA4E86B0-82AE-48C5-A199-2EF21F93B73A}</ProjectGuid>
+    <RootNamespace>sandblaster</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>11.0.50522.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>C:\Program Files\NVIDIA Corporation\Cg\include;C:\Users\Daniel\Documents\Visual Studio 2012\Projects\sandblaster\include;C:\Users\Daniel\Documents\glut-3.7.6-bin;C:\Program Files (x86)\NVIDIA Corporation\Cg\include;C:\Users\Daniel\Documents\Visual Studio 2005\Projects\sandblaster\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisableSpecificWarnings>4996</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>GLee.lib;GLU32.lib;lib3ds-120s.lib;OpenGL32.lib;SDL.lib;SDLmain.lib;cg.lib;cgGL.lib;glut32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Program Files\NVIDIA Corporation\Cg\lib;C:\Users\Daniel\Documents\Visual Studio 2012\Projects\sandblaster\lib;C:\Users\Daniel\Documents\glut-3.7.6-bin;C:\Program Files (x86)\NVIDIA Corporation\Cg\lib;C:\Users\Daniel\Documents\Visual Studio 2005\Projects\sandblaster\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>LIBC.LIB;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <TargetMachine>MachineX86</TargetMachine>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>sdl.lib;sdlmain.lib;lib3ds-120s.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\lib3ds-1.2.0\msvc\Build\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include=".\AI.cpp" />
+    <ClCompile Include=".\Audio.cpp" />
+    <ClCompile Include=".\BMPLoader.cpp" />
+    <ClCompile Include=".\CharacterSelectMode.cpp" />
+    <ClCompile Include=".\DebugEye.cpp" />
+    <ClCompile Include=".\Driver.cpp" />
+    <ClCompile Include=".\DriverParticleSystem.cpp" />
+    <ClCompile Include=".\Entity.cpp" />
+    <ClCompile Include=".\Fireball.cpp" />
+    <ClCompile Include=".\FractalTerrain.cpp" />
+    <ClCompile Include=".\FreezeParticle.cpp" />
+    <ClCompile Include=".\FreezeParticleSystem.cpp" />
+    <ClCompile Include=".\Frustum.cpp" />
+    <ClCompile Include=".\GameModeManager.cpp" />
+    <ClCompile Include=".\GameOverMode.cpp" />
+    <ClCompile Include=".\GameWindow.cpp" />
+    <ClCompile Include=".\Iceshot.cpp" />
+    <ClCompile Include=".\InputManager.cpp" />
+    <ClCompile Include=".\Intersection.cpp" />
+    <ClCompile Include=".\Light.cpp" />
+    <ClCompile Include=".\Main.cpp" />
+    <ClCompile Include=".\MainMenuMode.cpp" />
+    <ClCompile Include=".\Materials.cpp" />
+    <ClCompile Include=".\MeshObject.cpp" />
+    <ClCompile Include=".\MeshStructure.cpp" />
+    <ClCompile Include=".\ObjLoader.c" />
+    <ClCompile Include=".\Particle.cpp" />
+    <ClCompile Include=".\PauseMenuMode.cpp" />
+    <ClCompile Include=".\PowerMissile.cpp" />
+    <ClCompile Include=".\ProjectileWeapon.cpp" />
+    <ClCompile Include=".\Sarge.cpp" />
+    <ClCompile Include=".\SBLib.cpp" />
+    <ClCompile Include=".\Scrappy.cpp" />
+    <ClCompile Include=".\Shader.cpp" />
+    <ClCompile Include=".\Skydome.cpp" />
+    <ClCompile Include=".\SmallHealthPowerUp.cpp" />
+    <ClCompile Include=".\TextureLoader.cpp" />
+    <ClCompile Include=".\tgaLoader.c" />
+    <ClCompile Include=".\ToxicParticle.cpp" />
+    <ClCompile Include=".\ToxicParticleSystem.cpp" />
+    <ClCompile Include=".\Toxicshot.cpp" />
+    <ClCompile Include=".\Vector3.cpp" />
+    <ClCompile Include=".\Vector3D.cpp" />
+    <ClCompile Include=".\WeaponPowerUp.cpp" />
+    <ClCompile Include=".\WorldMode.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include=".\AI.h" />
+    <ClInclude Include=".\Audio.h" />
+    <ClInclude Include=".\BMPLoader.h" />
+    <ClInclude Include=".\CharacterSelectMode.h" />
+    <ClInclude Include=".\DebugEye.h" />
+    <ClInclude Include=".\Driver.h" />
+    <ClInclude Include=".\DriverParticleSystem.h" />
+    <ClInclude Include=".\Entity.h" />
+    <ClInclude Include=".\Fireball.h" />
+    <ClInclude Include=".\FractalTerrain.h" />
+    <ClInclude Include=".\FreezeParticle.h" />
+    <ClInclude Include=".\FreezeParticleSystem.h" />
+    <ClInclude Include=".\Frustum.h" />
+    <ClInclude Include=".\GameMode.h" />
+    <ClInclude Include=".\GameModeManager.h" />
+    <ClInclude Include=".\GameOverMode.h" />
+    <ClInclude Include=".\GameWindow.h" />
+    <ClInclude Include=".\Iceshot.h" />
+    <ClInclude Include=".\InputEvent.h" />
+    <ClInclude Include=".\InputManager.h" />
+    <ClInclude Include=".\Intersection.h" />
+    <ClInclude Include=".\Light.h" />
+    <ClInclude Include=".\MainMenuMode.h" />
+    <ClInclude Include=".\Materials.h" />
+    <ClInclude Include=".\MeshObject.h" />
+    <ClInclude Include=".\MeshStructure.h" />
+    <ClInclude Include=".\ObjLoader.h" />
+    <ClInclude Include=".\Particle.h" />
+    <ClInclude Include=".\PauseMenuMode.h" />
+    <ClInclude Include=".\PowerMissile.h" />
+    <ClInclude Include=".\ProjectileWeapon.h" />
+    <ClInclude Include=".\Sarge.h" />
+    <ClInclude Include=".\SBLib.h" />
+    <ClInclude Include=".\Scrappy.h" />
+    <ClInclude Include=".\Shader.h" />
+    <ClInclude Include=".\Skydome.h" />
+    <ClInclude Include=".\SmallHealthPowerUp.h" />
+    <ClInclude Include=".\TextureLoader.h" />
+    <ClInclude Include=".\tgaLoader.h" />
+    <ClInclude Include=".\ToxicParticle.h" />
+    <ClInclude Include=".\ToxicParticleSystem.h" />
+    <ClInclude Include=".\Toxicshot.h" />
+    <ClInclude Include=".\Vector3.h" />
+    <ClInclude Include=".\Vector3D.h" />
+    <ClInclude Include=".\WeaponPowerUp.h" />
+    <ClInclude Include=".\WorldMode.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

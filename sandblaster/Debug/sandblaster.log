@@ -1,0 +1,54 @@
+﻿Build started 7/31/2012 7:17:01 PM.
+Project "C:\Users\Daniel\Documents\Visual Studio 2012\Projects\sandblaster\sandblaster\sandblaster.vcxproj" on node 2 (ClCompile target(s)).
+  C:\Program Files\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Program Files\NVIDIA Corporation\Cg\include" /I"C:\Users\Daniel\Documents\Visual Studio 2012\Projects\sandblaster\include" /I"C:\Users\Daniel\Documents\glut-3.7.6-bin" /I"C:\Program Files (x86)\NVIDIA Corporation\Cg\include" /I"C:\Users\Daniel\Documents\Visual Studio 2005\Projects\sandblaster\include" /ZI /nologo /W3 /WX /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /wd4996 /analyze- /errorReport:prompt .\CharacterSelectMode.cpp
+  CharacterSelectMode.cpp
+c:\users\daniel\documents\visual studio 2012\projects\sandblaster\sandblaster\characterselectmode.cpp(82): error C2220: warning treated as error - no 'object' file generated
+c:\users\daniel\documents\visual studio 2012\projects\sandblaster\sandblaster\characterselectmode.cpp(82): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+c:\users\daniel\documents\visual studio 2012\projects\sandblaster\sandblaster\characterselectmode.cpp(85): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+c:\users\daniel\documents\visual studio 2012\projects\sandblaster\sandblaster\characterselectmode.cpp(192): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
+c:\users\daniel\documents\visual studio 2012\projects\sandblaster\sandblaster\characterselectmode.cpp(194): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
+c:\users\daniel\documents\visual studio 2012\projects\sandblaster\sandblaster\characterselectmode.cpp(197): warning C4244: 'argument' : conversion from 'int' to 'GLfloat', possible loss of data
+c:\users\daniel\documents\visual studio 2012\projects\sandblaster\sandblaster\characterselectmode.cpp(200): warning C4244: 'argument' : conversion from 'int' to 'GLfloat', possible loss of data
+c:\users\daniel\documents\visual studio 2012\projects\sandblaster\sandblaster\characterselectmode.cpp(203): warning C4244: 'argument' : conversion from 'int' to 'GLfloat', possible loss of data
+c:\users\daniel\documents\visual studio 2012\projects\sandblaster\sandblaster\characterselectmode.cpp(213): warning C4244: 'argument' : conversion from 'int' to 'GLfloat', possible loss of data
+c:\users\daniel\documents\visual studio 2012\projects\sandblaster\sandblaster\characterselectmode.cpp(217): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+c:\users\daniel\documents\visual studio 2012\projects\sandblaster\sandblaster\characterselectmode.cpp(219): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+c:\users\daniel\documents\visual studio 2012\projects\sandblaster\sandblaster\characterselectmode.cpp(222): warning C4244: 'argument' : conversion from 'int' to 'GLfloat', possible loss of data
+c:\users\daniel\documents\visual studio 2012\projects\sandblaster\sandblaster\characterselectmode.cpp(225): warning C4244: 'argument' : conversion from 'int' to 'GLfloat', possible loss of data
+c:\users\daniel\documents\visual studio 2012\projects\sandblaster\sandblaster\characterselectmode.cpp(231): warning C4244: 'argument' : conversion from 'int' to 'GLfloat', possible loss of data
+c:\users\daniel\documents\visual studio 2012\projects\sandblaster\sandblaster\characterselectmode.cpp(239): warning C4244: 'argument' : conversion from 'int' to 'GLfloat', possible loss of data
+c:\users\daniel\documents\visual studio 2012\projects\sandblaster\sandblaster\characterselectmode.cpp(243): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+c:\users\daniel\documents\visual studio 2012\projects\sandblaster\sandblaster\characterselectmode.cpp(245): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+c:\users\daniel\documents\visual studio 2012\projects\sandblaster\sandblaster\characterselectmode.cpp(248): warning C4244: 'argument' : conversion from 'int' to 'GLfloat', possible loss of data
+c:\users\daniel\documents\visual studio 2012\projects\sandblaster\sandblaster\characterselectmode.cpp(251): warning C4244: 'argument' : conversion from 'int' to 'GLfloat', possible loss of data
+c:\users\daniel\documents\visual studio 2012\projects\sandblaster\sandblaster\characterselectmode.cpp(254): warning C4244: 'argument' : conversion from 'int' to 'GLfloat', possible loss of data
+c:\users\daniel\documents\visual studio 2012\projects\sandblaster\sandblaster\characterselectmode.cpp(257): warning C4244: 'argument' : conversion from 'int' to 'GLfloat', possible loss of data
+c:\users\daniel\documents\visual studio 2012\projects\sandblaster\sandblaster\characterselectmode.cpp(265): warning C4244: 'argument' : conversion from 'int' to 'GLfloat', possible loss of data
+c:\users\daniel\documents\visual studio 2012\projects\sandblaster\sandblaster\characterselectmode.cpp(268): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+c:\users\daniel\documents\visual studio 2012\projects\sandblaster\sandblaster\characterselectmode.cpp(270): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+c:\users\daniel\documents\visual studio 2012\projects\sandblaster\sandblaster\characterselectmode.cpp(284): warning C4244: 'argument' : conversion from 'int' to 'GLfloat', possible loss of data
+c:\users\daniel\documents\visual studio 2012\projects\sandblaster\sandblaster\characterselectmode.cpp(287): warning C4244: 'argument' : conversion from 'int' to 'GLfloat', possible loss of data
+c:\users\daniel\documents\visual studio 2012\projects\sandblaster\sandblaster\characterselectmode.cpp(290): warning C4244: 'argument' : conversion from 'int' to 'GLfloat', possible loss of data
+c:\users\daniel\documents\visual studio 2012\projects\sandblaster\sandblaster\characterselectmode.cpp(299): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+c:\users\daniel\documents\visual studio 2012\projects\sandblaster\sandblaster\characterselectmode.cpp(301): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+c:\users\daniel\documents\visual studio 2012\projects\sandblaster\sandblaster\characterselectmode.cpp(304): warning C4244: 'argument' : conversion from 'int' to 'GLfloat', possible loss of data
+c:\users\daniel\documents\visual studio 2012\projects\sandblaster\sandblaster\characterselectmode.cpp(318): warning C4244: 'argument' : conversion from 'int' to 'GLfloat', possible loss of data
+c:\users\daniel\documents\visual studio 2012\projects\sandblaster\sandblaster\characterselectmode.cpp(321): warning C4244: 'argument' : conversion from 'int' to 'GLfloat', possible loss of data
+c:\users\daniel\documents\visual studio 2012\projects\sandblaster\sandblaster\characterselectmode.cpp(324): warning C4244: 'argument' : conversion from 'int' to 'GLfloat', possible loss of data
+c:\users\daniel\documents\visual studio 2012\projects\sandblaster\sandblaster\characterselectmode.cpp(333): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+c:\users\daniel\documents\visual studio 2012\projects\sandblaster\sandblaster\characterselectmode.cpp(335): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+c:\users\daniel\documents\visual studio 2012\projects\sandblaster\sandblaster\characterselectmode.cpp(338): warning C4244: 'argument' : conversion from 'int' to 'GLfloat', possible loss of data
+c:\users\daniel\documents\visual studio 2012\projects\sandblaster\sandblaster\characterselectmode.cpp(352): warning C4244: 'argument' : conversion from 'int' to 'GLfloat', possible loss of data
+c:\users\daniel\documents\visual studio 2012\projects\sandblaster\sandblaster\characterselectmode.cpp(355): warning C4244: 'argument' : conversion from 'int' to 'GLfloat', possible loss of data
+c:\users\daniel\documents\visual studio 2012\projects\sandblaster\sandblaster\characterselectmode.cpp(358): warning C4244: 'argument' : conversion from 'int' to 'GLfloat', possible loss of data
+c:\users\daniel\documents\visual studio 2012\projects\sandblaster\sandblaster\characterselectmode.cpp(367): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+c:\users\daniel\documents\visual studio 2012\projects\sandblaster\sandblaster\characterselectmode.cpp(369): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+c:\users\daniel\documents\visual studio 2012\projects\sandblaster\sandblaster\characterselectmode.cpp(372): warning C4244: 'argument' : conversion from 'int' to 'GLfloat', possible loss of data
+c:\users\daniel\documents\visual studio 2012\projects\sandblaster\sandblaster\characterselectmode.cpp(386): warning C4244: 'argument' : conversion from 'int' to 'GLfloat', possible loss of data
+c:\users\daniel\documents\visual studio 2012\projects\sandblaster\sandblaster\characterselectmode.cpp(389): warning C4244: 'argument' : conversion from 'int' to 'GLfloat', possible loss of data
+c:\users\daniel\documents\visual studio 2012\projects\sandblaster\sandblaster\characterselectmode.cpp(392): warning C4244: 'argument' : conversion from 'int' to 'GLfloat', possible loss of data
+Done Building Project "C:\Users\Daniel\Documents\Visual Studio 2012\Projects\sandblaster\sandblaster\sandblaster.vcxproj" (ClCompile target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:02.00

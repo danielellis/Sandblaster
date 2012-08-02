@@ -1,0 +1,11 @@
+void vertMain(float4 posIN : POSITION,
+				 float2 texCoordIN : TEXCOORD0,
+				uniform float4x4 ModelViewProj,
+				
+				out float2 texCoordOUT : TEXCOORD0,
+				out float4 posOUT : POSITION)
+{
+	
+	posOUT = mul(ModelViewProj, posIN);
+	texCoordOUT = texCoordIN;
+}

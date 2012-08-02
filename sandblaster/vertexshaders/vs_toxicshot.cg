@@ -1,0 +1,20 @@
+void vertMain(
+				float4 posIN : POSITION,
+                        float4 colorIN : COLOR,
+                        float4 texCoordIN : TEXCOORD1,
+                
+                out float4 posOUT : POSITION,
+                out float2 texCoordOUT   : TEXCOORD1,
+                out float4 colorOUT : COLOR,
+				
+				uniform float deform,
+                uniform float4x4 modelViewProj)
+{
+  posIN.x = 1.1*posIN.x + (posIN.x/5)*cos(deform);
+  posIN.y = 1.1*posIN.y + (posIN.y/5)*sin(deform);
+  posIN.z = 1.1*posIN.z + (posIN.z/5)*cos(deform);
+  posOUT = mul(modelViewProj,posIN);
+  
+  texCoordOUT = texCoordIN;
+  colorOUT = colorIN;
+}

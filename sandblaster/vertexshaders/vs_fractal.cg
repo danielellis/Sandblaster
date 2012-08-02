@@ -1,0 +1,25 @@
+void vertMain(float4 posIN : POSITION,
+		  float2 texCoordIN : TEXCOORD0,
+		  uniform float4x4 modelViewProj,
+		  uniform float1 maxHeight,
+		  out float2 texCoordOUT : TEXCOORD0,	  
+		  out float4 posOUT : POSITION)
+{
+	
+	posOUT = mul(modelViewProj, posIN);
+	float newHeight = saturate(posIN.y/maxHeight.x);
+	
+	if(texCoordIN.x ==0)
+	{
+		texCoordOUT =float2(.5,.6+newHeight.x*.4);
+	}
+	else if(texCoordIN.x ==1)
+	{
+		texCoordOUT =float2(.4-newHeight.x*.4,.4-newHeight.x*.4);
+
+	}
+	else
+	{
+		texCoordOUT =float2(.6+newHeight.x*.4,.4-newHeight.x*.4);
+	}
+}

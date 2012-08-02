@@ -1,0 +1,70 @@
+// light mapping pixel shader
+
+struct fragout {
+	float4 color : COLOR;
+};
+
+struct fragin {
+	float4 position    : POSITION;
+	float2 texCoord    : TEXCOORD0;
+	float3 texCoord2   : TEXCOORD1;
+	float3 lightVector : TEXCOORD2;
+	float3 testthing   : TEXCOORD3;
+	float4 color       : COLOR0;
+
+};
+
+
+fragout sargeLightMap(  fragin IN,
+		uniform float3 eyevector,
+		uniform sampler2D normalmap,
+		uniform sampler2D decalmap
+		)
+{
+
+	fragout OUT;
+
+
+	//float3 normal = tex2D(normalmap, IN.texCoord).xyz;
+
+	float3 normal = 2.0f * (tex2D(normalmap, IN.texCoord).rgb - 0.5f);
+
+	//normal = (0, 0, 1);
+
+	float3 nLightVector = normalize(IN.lightVector);
+
+	float3 decal = tex2D(decalmap, IN.texCoord).rgb;
+	
+	//float3 decal = tex2D(normalmap, IN.texCoord).rgb;
+
+	//calculate diffuse component
+	//float3 diffuse = dot(nLightVector, normalize(IN.normal)) * IN.color.rgb;
+	//float3 diffuse = dot(nLightVector, normalize(normal)) * IN.color.rgb;
+
+	float3 ambiant;
+	//ambient.xyz = 1.0;
+	float3 diffuse = IN.color.rgb * (saturate(dot(nLightVector, normal))+.5);
+
+
+	//OUT.color.rgb = IN.color;
+	//OUT.color.rgb = IN.normal;
+	//OUT.color.rgb = normal;
+	//OUT.color.rgb = diffuse + ambient;
+	//OUT.color.rgb = diffuse;
+	OUT.color.rgb = decal * diffuse;
+	//OUT.color.rgb = decal;
+	
+	//OUT.color.rgb = normal;
+
+	//OUT.color.rg = IN.texCoord;
+	//OUT.color.b = 0.0;
+	//OUT.color.rgb = IN.texCoord2;
+
+	//OUT.color.rgb = nLightVector;
+	
+	//OUT.color.rgb = IN.testthing;
+	OUT.color.a = 1.0;
+
+	return OUT;
+}
+

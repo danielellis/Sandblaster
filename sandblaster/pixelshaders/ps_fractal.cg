@@ -1,0 +1,6 @@
+void pixelMain(float2 height : TEXCOORD0,
+		  uniform sampler2D text1 : TEX0,	
+		  out float4 colorOUT : COLOR)
+{
+	colorOUT = tex2D(text1, height);
+}

@@ -1,0 +1,12 @@
+void pixelMain( float2 texcoord0 : TEXCOORD0,
+				 uniform sampler2D text1 : TEX0,
+				 uniform sampler2D text2 : TEX1,
+				 
+				 //in float4 colorIN : COLOR,
+				 out float4 colorOUT : COLOR)
+{
+	float4 sun  = tex2D(text1, texcoord0);
+	float4 mask  = tex2D(text2, texcoord0);
+	colorOUT = sun;
+	colorOUT.a = mask[0];
+}

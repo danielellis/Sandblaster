@@ -1,0 +1,14 @@
+void vertMain(float4 posIN : POSITION,
+				 float2 texCoordIN : TEXCOORD1,
+				uniform float1 move,
+				uniform float4x4 ModelViewProj,		
+				out float3 normalOUT   : TEXCOORD1,
+				out float2 texCoordOUT : TEXCOORD0,
+				out float4 colorOUT : COLOR,
+				out float4 posOUT : POSITION)
+{
+	
+	posOUT = mul(ModelViewProj, posIN);
+	posOUT[1] += cos(posIN[2]*move);
+    texCoordOUT = texCoordIN;
+}

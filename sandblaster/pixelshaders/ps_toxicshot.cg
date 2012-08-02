@@ -1,0 +1,22 @@
+void pixelMain(
+				float4 colorIN : COLOR,
+				float2 texCoord : TEXCOORD1,	
+				uniform float useColor,
+				out float4 colorOUT : COLOR,
+				uniform float moveTex,
+				uniform float alpha,
+				uniform sampler2D text1 : TEXUNIT0
+)
+{
+	if(useColor == 1)
+	{
+		colorOUT = colorIN;
+	}
+	else
+	{
+		float2 newCoord = float2(texCoord.x+ cos(moveTex),texCoord.y + sin(moveTex));
+		colorOUT = tex2D(text1 , newCoord);
+	}
+		
+	colorOUT.a = alpha; 
+}

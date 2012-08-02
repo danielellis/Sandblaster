@@ -1,0 +1,68 @@
+void pixelMain( float3 texcoord0 : TEXCOORD0,
+		    float3 texcoord1 : TEXCOORD1,
+		    float4 color : COLOR,		
+
+		    float3 lightVector : TEXCOORD2,
+	
+
+		    uniform float1 textShift,
+		    uniform sampler2D text1 : TEX0,
+		    uniform sampler2D text2 : TEX1,
+		    uniform sampler2D text3 : TEX2,
+		    uniform sampler2D text4 : TEX3,
+		    uniform sampler2D text5 : TEX4,
+		    uniform sampler2D text6 : TEX5,
+  		    uniform sampler2D normalmap : TEX6,
+
+		    out float4 colorOUT : COLOR)
+{
+
+	float3 normal = 2.0f * (tex2D(normalmap, texcoord0).rgb - 0.5f);
+	float3 nLightVector = normalize(lightVector);
+	float3 diffuse = color.rgb * (saturate(dot(nLightVector, normal)));
+
+
+	
+	float4 body  = tex2D(text2, float2(texcoord0[0],texcoord0[1]));
+	float4 sail  = tex2D(text5, float2(texcoord0[0],texcoord0[1]));
+	if(body[0] > 0)
+	{
+		float2 newText;
+		newText[0] = texcoord1[0] + textShift[0];
+		newText[1] = texcoord1[1] + textShift[0];
+		
+		if(newText[0]>1)
+		{
+			newText[0]-=1;
+		}
+
+		if(newText[1]>1)
+		{
+			newText[1]-=1;
+		}
+
+		float4 decal = tex2D(text3, newText)*tex2D(text4, float2(texcoord0[0],texcoord0[1]))+.1;
+		colorOUT.rgb = decal.rgb * diffuse;
+		colorOUT.a = 1.0;
+	}
+	else if(sail[0]>0)
+	{
+		float4 sailColor = tex2D(text6, float2(texcoord0[0],texcoord0[1]));
+		colorOUT = sailColor;
+		colorOUT.a = sailColor.r;
+	}
+	else
+	{	
+		float4 decal = tex2D(text1, texcoord0);
+            colorOUT.rgb = decal.rgb * diffuse;
+		colorOUT.a = 1.0;
+		//colorOUT.rgb = normal;
+		//colorOUT.a = 1.0;
+	}
+/*
+	if(sail[0]>0)
+	{
+		colorOUT.rgb =float3(1,0,0); 
+		colorOUT.a=1;
+	}*/
+}

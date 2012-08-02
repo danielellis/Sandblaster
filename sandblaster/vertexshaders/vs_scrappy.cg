@@ -1,0 +1,42 @@
+// vertex shader for light mapping
+
+struct vertout {
+	float4 position : POSITION;
+	float2 texCoord    : TEXCOORD0;
+	float3 texCoord2   : TEXCOORD1;
+	float3 lightVector : TEXCOORD2;
+	float4 color       : COLOR0;
+};
+
+struct vertin {
+	float4 position  : POSITION;
+	float2 texCoord  : TEXCOORD0;
+	float3 texCoord2 : TEXCOORD1;
+	float3 normal    : TEXCOORD2;
+	float3 binormal  : TEXCOORD3;
+	float3 tangent   : TEXCOORD4;
+	float4 color     : COLOR0;
+
+};
+
+
+vertout scrappyVertexShader(	vertin IN,
+		uniform float4x4 modelViewProj,
+		uniform float4x4 lightViewProj,
+		uniform float4 lightPosition) 
+{
+	vertout OUT;
+	
+	OUT.position = mul(modelViewProj, IN.position);
+	float4 vLightPosition = mul(lightViewProj, lightPosition);
+
+	float3x3 TBNMatrix = float3x3(IN.tangent, IN.binormal, IN.normal);
+
+	OUT.lightVector = -(mul(TBNMatrix, (vLightPosition.xyz - OUT.position.xyz)));
+
+	OUT.texCoord = IN.texCoord;
+	OUT.color = IN.color;
+	OUT.texCoord2 = IN.texCoord2;
+
+	return OUT;
+}

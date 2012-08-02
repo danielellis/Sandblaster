@@ -1,0 +1,15 @@
+void pixelMain( float2 texcoord0 : TEXCOORD0,
+				 uniform float2 textShift,
+				 uniform sampler2D text1 : TEX0,
+				 uniform sampler2D text2 : TEX1,
+				 uniform sampler2D text3 : TEX2,
+				 out float4 colorOUT : COLOR)
+{
+	float4 ice  = tex2D(text1, texcoord0);
+	float4 shine  = tex2D(text2, texcoord0);
+	float4 glitter = tex2D(text3, texcoord0);
+  
+	shine = shine*(textShift[0]+.25);
+	glitter = glitter*(textShift[1]/2);
+	colorOUT= ice+shine+glitter;
+}

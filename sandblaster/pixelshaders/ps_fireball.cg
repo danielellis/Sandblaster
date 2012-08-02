@@ -1,0 +1,11 @@
+void pixelMain( float2 texcoord0 : TEXCOORD0,
+				 uniform float1 lightdist,
+				 uniform sampler2D text1 : TEX0,
+				 uniform sampler2D text2 : TEX1,
+				 
+				 out float4 colorOUT : COLOR)
+{
+	float4 fire1  = tex2D(text1, texcoord0);
+	float4 fire2  = tex2D(text2, texcoord0);
+    colorOUT=lerp(fire1, fire2, lightdist);//
+}

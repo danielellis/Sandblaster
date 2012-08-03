@@ -22,7 +22,7 @@ protected:
     int mParticlesPerSecond;
     float mResidue;
     bool mDontCreate;
-    int mMaxParticles;
+    unsigned int mMaxParticles;
 };
 
 #endif

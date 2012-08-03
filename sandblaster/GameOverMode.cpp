@@ -107,15 +107,15 @@ void GameOverMode::Render() {
    glBegin(GL_QUADS);
       glMultiTexCoord2f(GL_TEXTURE0_ARB, 0.0, 0.0);
       glMultiTexCoord2f(GL_TEXTURE1_ARB, 0.0, 0.0);
-      glVertex2f(0, mGameWindow->GetHeight());
+      glVertex2i(0, mGameWindow->GetHeight());
 
       glMultiTexCoord2f(GL_TEXTURE0_ARB, 1.0, 0.0);
       glMultiTexCoord2f(GL_TEXTURE1_ARB, 1.0, 0.0);
-      glVertex2f(mGameWindow->GetWidth(), mGameWindow->GetHeight());
+      glVertex2i(mGameWindow->GetWidth(), mGameWindow->GetHeight());
 
       glMultiTexCoord2f(GL_TEXTURE0_ARB, 1.0, 1.0);
       glMultiTexCoord2f(GL_TEXTURE1_ARB, 1.0, 1.0);
-      glVertex2f(mGameWindow->GetWidth(), 0);
+      glVertex2i(mGameWindow->GetWidth(), 0);
 
       glMultiTexCoord2f(GL_TEXTURE0_ARB, 0.0, 1.0);
       glMultiTexCoord2f(GL_TEXTURE1_ARB, 0.0, 1.0);
@@ -131,10 +131,10 @@ void GameOverMode::Render() {
    // draw win/lose
    glPushMatrix();
    glLoadIdentity();
-   glTranslatef(mGameWindow->GetWidth()/2, mGameWindow->GetHeight()/2, 0);
+   glTranslatef(mGameWindow->GetWidth()/2.0f, mGameWindow->GetHeight()/2.0f, 0);
 
-   int texW = mWinTexture.Width * (mGameWindow->GetWidth() / 1600.0);
-   int texH = mWinTexture.Height * (mGameWindow->GetHeight() / 1200.0);
+   int texW = (int)floor(mWinTexture.Width * (mGameWindow->GetWidth() / 1600.0f));
+   int texH = (int)floor(mWinTexture.Height * (mGameWindow->GetHeight() / 1200.0f));
 
    if (mWin)
       glBindTexture(GL_TEXTURE_2D, mWinTexture.TextureID);
@@ -142,16 +142,16 @@ void GameOverMode::Render() {
       glBindTexture(GL_TEXTURE_2D, mLoseTexture.TextureID);
    glBegin(GL_QUADS);
       glTexCoord2f(0.0, 0.0);
-      glVertex2f(-texW/2, texH/2);
+      glVertex2f(-texW/2.0f, texH/2.0f);
 
       glTexCoord2f(1.0, 0.0);
-      glVertex2f(texW/2, texH/2);
+      glVertex2f(texW/2.0f, texH/2.0f);
       
       glTexCoord2f(1.0, 1.0);
-      glVertex2f(texW/2, -texH/2);
+      glVertex2f(texW/2.0f, -texH/2.0f);
 
       glTexCoord2f(0.0, 1.0);
-      glVertex2f(-texW/2, -texH/2);
+      glVertex2f(-texW/2.0f, -texH/2.0f);
    glEnd();
    glPopMatrix();
 

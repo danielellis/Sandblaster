@@ -24,7 +24,7 @@ public:
 protected:
 	float shineVal;
 	float glitterVal;
-	int rotate;
+	float rotate;
 	bool shineDir;
 	bool glitterDir;
 

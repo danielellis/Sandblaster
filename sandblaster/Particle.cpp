@@ -11,7 +11,7 @@ void Particle::Initialize(float dispersion, float speed) {
 
     mPos = Vector3(0,0,0);
 
-    dispersion = (1-(2.0f*((float)rand())/RAND_MAX)) * (180 *.0174);
+    dispersion = (1-(2.0f*((float)rand())/RAND_MAX)) * (180 * .0174f);
 
     float angle = PI/2.0f + dispersion*mDispersion;
 

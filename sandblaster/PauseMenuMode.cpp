@@ -55,15 +55,15 @@ bool PauseMenuMode::LoadResources() {
       int windowWidth = mGameWindow->GetWidth();
       int windowHeight = mGameWindow->GetHeight();
 
-      mButtons[i].xMin = (windowWidth / 2) - 
-       ((mButtons[i].mTexture.Width * (windowWidth / 1600.0)) / 2);
-      mButtons[i].xMax = (windowWidth / 2) + 
-       ((mButtons[i].mTexture.Width * (windowWidth / 1600.0)) / 2);
+      mButtons[i].xMin = (int)floor((windowWidth / 2) - 
+       ((mButtons[i].mTexture.Width * (windowWidth / 1600.0f)) / 2.0f));
+      mButtons[i].xMax = (int)floor((windowWidth / 2) + 
+       ((mButtons[i].mTexture.Width * (windowWidth / 1600.0f)) / 2.0f));
 
-      mButtons[i].yMin = ((i + 2) * windowHeight / 6) - 
-       ((mButtons[i].mTexture.Height * (windowHeight / 1200.0)) / 2);
-      mButtons[i].yMax = ((i + 2) * windowHeight / 6) + 
-       ((mButtons[i].mTexture.Height * (windowHeight / 1200.0)) / 2);
+      mButtons[i].yMin = (int)floor(((i + 2) * windowHeight / 6) - 
+       ((mButtons[i].mTexture.Height * (windowHeight / 1200.0f)) / 2.0f));
+      mButtons[i].yMax = (int)floor(((i + 2) * windowHeight / 6) + 
+       ((mButtons[i].mTexture.Height * (windowHeight / 1200.0f)) / 2.0f));
    }
 
    return true;
@@ -169,15 +169,15 @@ void PauseMenuMode::Render() {
    glBegin(GL_QUADS);
       glMultiTexCoord2f(GL_TEXTURE0_ARB, 0.0, 0.0);
       glMultiTexCoord2f(GL_TEXTURE1_ARB, 0.0, 0.0);
-      glVertex2f(0, mGameWindow->GetHeight());
+      glVertex2i(0, mGameWindow->GetHeight());
 
       glMultiTexCoord2f(GL_TEXTURE0_ARB, 1.0, 0.0);
       glMultiTexCoord2f(GL_TEXTURE1_ARB, 1.0, 0.0);
-      glVertex2f(mGameWindow->GetWidth(), mGameWindow->GetHeight());
+      glVertex2i(mGameWindow->GetWidth(), mGameWindow->GetHeight());
 
       glMultiTexCoord2f(GL_TEXTURE0_ARB, 1.0, 1.0);
       glMultiTexCoord2f(GL_TEXTURE1_ARB, 1.0, 1.0);
-      glVertex2f(mGameWindow->GetWidth(), 0);
+      glVertex2i(mGameWindow->GetWidth(), 0);
 
       glMultiTexCoord2f(GL_TEXTURE0_ARB, 0.0, 1.0);
       glMultiTexCoord2f(GL_TEXTURE1_ARB, 0.0, 1.0);
@@ -194,23 +194,23 @@ void PauseMenuMode::Render() {
    glPushMatrix();
    glLoadIdentity();
 
-   int texW = mMenuTexture.Width * (mGameWindow->GetWidth() / 1600.0);
-   int texH = mMenuTexture.Height * (mGameWindow->GetHeight() / 1200.0);
+   int texW = (int)floor(mMenuTexture.Width * (mGameWindow->GetWidth() / 1600.0f));
+   int texH = (int)floor(mMenuTexture.Height * (mGameWindow->GetHeight() / 1200.0f));
 
-   glTranslatef(mGameWindow->GetWidth()/2, mGameWindow->GetHeight()/2, 0);
+   glTranslatef(mGameWindow->GetWidth() / 2.0f, mGameWindow->GetHeight() / 2.0f, 0);
    glBindTexture(GL_TEXTURE_2D, mMenuTexture.TextureID);
    glBegin(GL_QUADS);
-      glTexCoord2f(0.0, 0.0);
-      glVertex2f(-texW/2, texH/2);
+      glTexCoord2i(0, 0);
+      glVertex2f(-texW / 2.0f, texH / 2.0f);
 
-      glTexCoord2f(1.0, 0.0);
-      glVertex2f(texW/2, texH/2);
+      glTexCoord2i(1, 0);
+      glVertex2f(texW / 2.0f, texH / 2.0f);
 
-      glTexCoord2f(1.0, 1.0);
-      glVertex2f(texW/2, -texH/2);
+      glTexCoord2i(1, 1);
+      glVertex2f(texW / 2.0f, -texH / 2.0f);
 
-      glTexCoord2f(0.0, 1.0);
-      glVertex2f(-texW/2, -texH/2);
+      glTexCoord2i(0, 1);
+      glVertex2f(-texW / 2.0f, -texH / 2.0f);
    glEnd();
    glPopMatrix();
 
@@ -218,12 +218,12 @@ void PauseMenuMode::Render() {
    glPushMatrix();
    glLoadIdentity();
 
-   texW = mButtons[BTN_RESUME].mTexture.Width * 
-    (mGameWindow->GetWidth() / 1600.0);
-   texH = mButtons[BTN_RESUME].mTexture.Height *
-    (mGameWindow->GetHeight() / 1200.0);
+   texW = (int)floor(mButtons[BTN_RESUME].mTexture.Width * 
+    (mGameWindow->GetWidth() / 1600.0f));
+   texH = (int)floor(mButtons[BTN_RESUME].mTexture.Height *
+    (mGameWindow->GetHeight() / 1200.0f));
 
-   glTranslatef(mGameWindow->GetWidth() / 2, 2 * mGameWindow->GetHeight() / 6, 0);
+   glTranslatef(mGameWindow->GetWidth() / 2.0f, 2 * mGameWindow->GetHeight() / 6.0f, 0);
    if (mButtonPressed == BTN_RESUME)
       glBindTexture(GL_TEXTURE_2D, 
        mButtons[BTN_RESUME].mPressedTexture.TextureID);
@@ -231,17 +231,17 @@ void PauseMenuMode::Render() {
       glBindTexture(GL_TEXTURE_2D, 
        mButtons[BTN_RESUME].mTexture.TextureID);
    glBegin(GL_QUADS);
-      glTexCoord2f(0.0, 0.0);
-      glVertex2f(-texW/2, texH/2);
+      glTexCoord2i(0, 0);
+      glVertex2f(-texW / 2.0f, texH / 2.0f);
 
-      glTexCoord2f(1.0, 0.0);
-      glVertex2f(texW/2, texH/2);
+      glTexCoord2i(1, 0);
+      glVertex2f(texW / 2.0f, texH / 2.0f);
 
-      glTexCoord2f(1.0, 1.0);
-      glVertex2f(texW/2, -texH/2);
+      glTexCoord2i(1, 1);
+      glVertex2f(texW / 2.0f, -texH / 2.0f);
 
-      glTexCoord2f(0.0, 1.0);
-      glVertex2f(-texW/2, -texH/2);
+      glTexCoord2i(0, 1);
+      glVertex2f(-texW / 2.0f, -texH / 2.0f);
    glEnd();
    glPopMatrix();
 
@@ -249,12 +249,12 @@ void PauseMenuMode::Render() {
    glPushMatrix();
    glLoadIdentity();
 
-   texW = mButtons[BTN_OPTIONS].mTexture.Width * 
-    (mGameWindow->GetWidth() / 1600.0);
-   texH = mButtons[BTN_OPTIONS].mTexture.Height *
-    (mGameWindow->GetHeight() / 1200.0);
+   texW = (int)floor(mButtons[BTN_OPTIONS].mTexture.Width * 
+    (mGameWindow->GetWidth() / 1600.0));
+   texH = (int)floor(mButtons[BTN_OPTIONS].mTexture.Height *
+    (mGameWindow->GetHeight() / 1200.0));
 
-   glTranslatef(mGameWindow->GetWidth() / 2, 3 * mGameWindow->GetHeight() / 6, 0);
+   glTranslatef(mGameWindow->GetWidth() / 2.0f, 3 * mGameWindow->GetHeight() / 6.0f, 0);
    if (mButtonPressed == BTN_OPTIONS)
       glBindTexture(GL_TEXTURE_2D, 
        mButtons[BTN_OPTIONS].mPressedTexture.TextureID);
@@ -262,17 +262,17 @@ void PauseMenuMode::Render() {
       glBindTexture(GL_TEXTURE_2D, 
        mButtons[BTN_OPTIONS].mTexture.TextureID);
    glBegin(GL_QUADS);
-      glTexCoord2f(0.0, 0.0);
-      glVertex2f(-texW/2, texH/2);
+      glTexCoord2i(0, 0);
+      glVertex2f(-texW / 2.0f, texH / 2.0f);
 
-      glTexCoord2f(1.0, 0.0);
-      glVertex2f(texW/2, texH/2);
+      glTexCoord2i(1, 0);
+      glVertex2f(texW / 2.0f, texH / 2.0f);
 
-      glTexCoord2f(1.0, 1.0);
-      glVertex2f(texW/2, -texH/2);
+      glTexCoord2i(1, 1);
+      glVertex2f(texW / 2.0f, -texH / 2.0f);
 
-      glTexCoord2f(0.0, 1.0);
-      glVertex2f(-texW/2, -texH/2);
+      glTexCoord2i(0, 1);
+      glVertex2f(-texW / 2.0f, -texH / 2.0f);
    glEnd();
    glPopMatrix();
 
@@ -280,12 +280,12 @@ void PauseMenuMode::Render() {
    glPushMatrix();
    glLoadIdentity();
 
-   texW = mButtons[BTN_QUIT].mTexture.Width * 
-    (mGameWindow->GetWidth() / 1600.0);
-   texH = mButtons[BTN_QUIT].mTexture.Height *
-    (mGameWindow->GetHeight() / 1200.0);
+   texW = (int)floor(mButtons[BTN_QUIT].mTexture.Width * 
+    (mGameWindow->GetWidth() / 1600.0f));
+   texH = (int)floor(mButtons[BTN_QUIT].mTexture.Height *
+    (mGameWindow->GetHeight() / 1200.0f));
 
-   glTranslatef(mGameWindow->GetWidth() / 2, 4 * mGameWindow->GetHeight() / 6, 0);
+   glTranslatef(mGameWindow->GetWidth() / 2.0f, 4 * mGameWindow->GetHeight() / 6.0f, 0);
    if (mButtonPressed == BTN_QUIT)
       glBindTexture(GL_TEXTURE_2D, 
        mButtons[BTN_QUIT].mPressedTexture.TextureID);
@@ -293,17 +293,17 @@ void PauseMenuMode::Render() {
       glBindTexture(GL_TEXTURE_2D, 
        mButtons[BTN_QUIT].mTexture.TextureID);
    glBegin(GL_QUADS);
-      glTexCoord2f(0.0, 0.0);
-      glVertex2f(-texW/2, texH/2);
+      glTexCoord2i(0, 0);
+      glVertex2f(-texW / 2.0f, texH / 2.0f);
 
-      glTexCoord2f(1.0, 0.0);
-      glVertex2f(texW/2, texH/2);
+      glTexCoord2i(1, 0);
+      glVertex2f(texW / 2.0f, texH / 2.0f);
 
-      glTexCoord2f(1.0, 1.0);
-      glVertex2f(texW/2, -texH/2);
+      glTexCoord2i(1, 1);
+      glVertex2f(texW / 2.0f, -texH / 2.0f);
 
-      glTexCoord2f(0.0, 1.0);
-      glVertex2f(-texW/2, -texH/2);
+      glTexCoord2i(0, 1);
+      glVertex2f(-texW / 2.0f, -texH / 2.0f);
    glEnd();
    glPopMatrix();
 

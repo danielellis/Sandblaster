@@ -259,7 +259,7 @@ int Skydome::Render()
     cgGLBindProgram(psSkydomeProgram);
 
     cgSetParameter1f(dayTime, mDayTime);
-	cgSetParameter1f(transition, stage);
+	cgSetParameter1i(transition, stage);
 
     cgGLEnableTextureParameter(text1);
     cgGLEnableTextureParameter(text2);
@@ -311,7 +311,7 @@ int Skydome::Render()
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glTranslatef(mSunPos.GetX(), mSunPos.GetY(), 0.0);
 	//glTranslatef(0.0, 1.0, 0.0);
-	glRotatef(60*mSunPhi+90.0, 0.0, 0.0, 1.0);
+	glRotatef(60 * mSunPhi + 90.0f, 0, 0, 1.0f);
 	glScalef(10.0, 10.0, 10.0);
 	glBegin(GL_QUADS);
 		glTexCoord2f(0.0, 0.0);
@@ -350,9 +350,9 @@ void Skydome::Update(float t)
     rotTheta += t;
 
     if (mTimeDir)
-        mDayTime += t*.01;
+        mDayTime += t*.01f;
     else
-        mDayTime -= t*.01;
+        mDayTime -= t*.01f;
 
     if ((mDayTime > 1.0f) && (stage == 1)) {
         mDayTime = 1.0f;
@@ -372,9 +372,9 @@ void Skydome::Update(float t)
 	}
 
 	//mSunPhi += t/5.0;
-	mSunPhi += t/50.0;
-	mSunPos.SetX(cos(mSunPhi)*120.0);
-	mSunPos.SetY(sin(mSunPhi)*120.0);
+	mSunPhi += t/50.0f;
+	mSunPos.SetX(cos(mSunPhi)*120.0f);
+	mSunPos.SetY(sin(mSunPhi)*120.0f);
 }
 
 Vector3 Skydome::getSunPos()

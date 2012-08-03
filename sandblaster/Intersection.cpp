@@ -56,7 +56,7 @@ intersect_triangle(Vector3 orig, Vector3 dir,
 #else                    /* the non-culling branch */
    if (det > -EPSILON && det < EPSILON)
      return 0;
-   inv_det = 1.0 / det;
+   inv_det = 1 / det;
 
    /* calculate distance from vert0 to ray origin */
    tvec = orig - vert0;

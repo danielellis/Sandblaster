@@ -26,15 +26,15 @@ void FreezeParticleSystem::Render(float x, float y, float z,
 }
 
 void FreezeParticleSystem::Reset() {
-	unsigned i;   
+	unsigned int i;   
 	for (i = 0; i < mParticles.size(); i++) {
 		mParticles[i].Reset();
     }
 
-	if(i<mMaxParticles)
+	if(i < mMaxParticles)
 	{
 		FreezeParticle p;
-		p.Initialize(.7+.3*(float)rand()/RAND_MAX);
+		p.Initialize(0.7f + 0.3f * (float)rand()/RAND_MAX);
 		mParticles.push_back(p);
 	}
 }

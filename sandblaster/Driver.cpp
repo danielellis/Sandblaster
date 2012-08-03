@@ -37,12 +37,12 @@ void Driver::Initialize(WorldMode *worldMode, int health, int maxHealth,
    mDriverParticleSystem.Initialize(this);
    mTimeSinceWeaponFire = ProjectileWeaponDelays[mCurrentWeapon];//PRIMARY_WEAPON_DELAY;
    mRayDir = Vector3(0,-1,0);
-   xmin = mPos.GetX() - 1.0;
-   xmax = mPos.GetX() + 1.0;
-   ymin = mPos.GetY() - 0.5;
-   ymax = mPos.GetY() + 0.5;
-   zmin = mPos.GetZ() + 2.0;
-   zmax = mPos.GetZ() - 2.0;
+   xmin = mPos.GetX() - 1.0f;
+   xmax = mPos.GetX() + 1.0f;
+   ymin = mPos.GetY() - 0.5f;
+   ymax = mPos.GetY() + 0.5f;
+   zmin = mPos.GetZ() + 2.0f;
+   zmax = mPos.GetZ() - 2.0f;
    frozen = false;
    burned = false;
    freezeCounter = 0;
@@ -82,9 +82,9 @@ void Driver::Update(float dt) {
 
 
 	if ((mTheta - mCamTheta) > 0)
-		RotateCamYaw(1.0 - fabs(mDir.DotProduct(camDir)));
+		RotateCamYaw(1.0f - fabs(mDir.DotProduct(camDir)));
 	else if ((mTheta - mCamTheta) < 0)
-		RotateCamYaw(-(1.0 - fabs(mDir.DotProduct(camDir))));
+		RotateCamYaw(-(1.0f - fabs(mDir.DotProduct(camDir))));
 
     vVelDir = mVel.Normalized();
     mPrevPos = mPos;
@@ -115,12 +115,12 @@ void Driver::Update(float dt) {
 
 	mRayPos = mPos;
 
-	xmin = mPos.GetX() - 1.0;
-	xmax = mPos.GetX() + 1.0;
-	ymin = mPos.GetY() - 0.5;
-	ymax = mPos.GetY() + 0.5;
-	zmin = mPos.GetZ() + 2.0;
-	zmax = mPos.GetZ() - 2.0;
+	xmin = mPos.GetX() - 1.0f;
+	xmax = mPos.GetX() + 1.0f;
+	ymin = mPos.GetY() - 0.5f;
+	ymax = mPos.GetY() + 0.5f;
+	zmin = mPos.GetZ() + 2.0f;
+	zmax = mPos.GetZ() - 2.0f;
 
     mForce.Zero();
 

@@ -78,11 +78,11 @@ bool CharacterSelectMode::LoadResources() {
 
 	for (int i = 0; i < NUM_SELECT_BUTTONS; ++i) {
 		mButtons[i].yMax = windowHeight - 20;
-		mButtons[i].yMin = mButtons[i].yMax - 
-			BTN_HEIGHT * (windowHeight / 1200.0);
+		mButtons[i].yMin = (int)floor(mButtons[i].yMax - 
+			(BTN_HEIGHT * (windowHeight / 1200.0f)));
 
-		mButtons[i].xMax = mButtons[i].xMin + 
-			BTN_WIDTH * (windowWidth / 1600.0);
+		mButtons[i].xMax = (int)floor(mButtons[i].xMin + 
+			floor(BTN_WIDTH * (windowWidth / 1600.0f)));
 	}   
 
 	return true;
@@ -158,8 +158,10 @@ void CharacterSelectMode::Update(float timeElapsed) {
 	mRotation += 90.0f * timeElapsed;
 }
 
-
+// TODO: refactor
 void CharacterSelectMode::Render() {
+	int texW, texH;
+
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glMatrixMode(GL_MODELVIEW);
 
@@ -188,86 +190,86 @@ void CharacterSelectMode::Render() {
 	glTranslatef(15, 15, 0);
 
 	glBindTexture(GL_TEXTURE_2D, mPortraitTextures[mCharacterNdx].TextureID);
-	int texW = mPortraitTextures[mCharacterNdx].Width * 
-		(mGameWindow->GetWidth() / 1600.0);
-	int texH = mPortraitTextures[mCharacterNdx].Height * 
-		(mGameWindow->GetHeight() / 1200.0);
+	texW = (int)floor(mPortraitTextures[mCharacterNdx].Width * 
+		(mGameWindow->GetWidth() / 1600.0f));
+	texH = (int)floor(mPortraitTextures[mCharacterNdx].Height * 
+		(mGameWindow->GetHeight() / 1200.0f));
 	glBegin(GL_QUADS);
 	glTexCoord2f(0.0, 0.0);
-	glVertex2f(0, texH);
+	glVertex2i(0, texH);
 
 	glTexCoord2f(1.0, 0.0);
-	glVertex2f(texW, texH);
+	glVertex2i(texW, texH);
 
 	glTexCoord2f(1.0, 1.0);
-	glVertex2f(texW, 0);
+	glVertex2i(texW, 0);
 
 	glTexCoord2f(0.0, 1.0);
-	glVertex2f(0, 0);
+	glVertex2i(0, 0);
 	glEnd();
 	glPopMatrix();
 
 	// draw character stats
 	glPushMatrix();
 	glLoadIdentity();
-	glTranslatef(mGameWindow->GetWidth() - 15, 15, 0);
+	glTranslatef(mGameWindow->GetWidth() - 15.0f, 15, 0);
 
 	glBindTexture(GL_TEXTURE_2D, mStatTextures[mCharacterNdx].TextureID);
-	texW = mStatTextures[mCharacterNdx].Width * 
-		(mGameWindow->GetWidth() / 1600.0);
-	texH = mStatTextures[mCharacterNdx].Height * 
-		(mGameWindow->GetHeight() / 1200.0);
+	texW = (int)floor(mStatTextures[mCharacterNdx].Width * 
+		(mGameWindow->GetWidth() / 1600.0f));
+	texH = (int)floor(mStatTextures[mCharacterNdx].Height * 
+		(mGameWindow->GetHeight() / 1200.0f));
 	glBegin(GL_QUADS);
 	glTexCoord2f(0.0, 0.0);
-	glVertex2f(-texW, texH);
+	glVertex2i(-texW, texH);
 
 	glTexCoord2f(1.0, 0.0);
-	glVertex2f(0, texH);
+	glVertex2i(0, texH);
 
 	glTexCoord2f(1.0, 1.0);
-	glVertex2f(0, 0);
+	glVertex2i(0, 0);
 
 	glTexCoord2f(0.0, 1.0);
-	glVertex2f(-texW, 0);
+	glVertex2i(-texW, 0);
 	glEnd();
 	glPopMatrix();
 
 	// draw character description
 	glPushMatrix();
 	glLoadIdentity();
-	glTranslatef(mGameWindow->GetWidth() / 2, 
-		mGameWindow->GetHeight() / 2 - 80, 0);
+	glTranslatef(mGameWindow->GetWidth() / 2.0f, 
+		mGameWindow->GetHeight() / 2 - 80.0f, 0.0f);
 
 	glBindTexture(GL_TEXTURE_2D, mDescripTextures[mCharacterNdx].TextureID);
-	texW = mDescripTextures[mCharacterNdx].Width * 
-		(mGameWindow->GetWidth() / 1600.0);
-	texH = mDescripTextures[mCharacterNdx].Height * 
-		(mGameWindow->GetHeight() / 1200.0);
+	texW = (int)floor(mDescripTextures[mCharacterNdx].Width * 
+		(mGameWindow->GetWidth() / 1600.0f));
+	texH = (int)floor(mDescripTextures[mCharacterNdx].Height * 
+		(mGameWindow->GetHeight() / 1200.0f));
 	glBegin(GL_QUADS);
 	glTexCoord2f(0.0, 0.0);
-	glVertex2f(-texW/2, texH);
+	glVertex2f(-texW/2.0f, (float)texH);
 
 	glTexCoord2f(1.0, 0.0);
-	glVertex2f(texW/2, texH);
+	glVertex2f(texW/2.0f, (float)texH);
 
 	glTexCoord2f(1.0, 1.0);
-	glVertex2f(texW/2, 0);
+	glVertex2f(texW/2.0f, 0);
 
 	glTexCoord2f(0.0, 1.0);
-	glVertex2f(-texW/2, 0);
+	glVertex2f(-texW/2.0f, 0);
 	glEnd();
 	glPopMatrix();
 
 	// draw previous button
 	glPushMatrix();
 	glLoadIdentity();
-	glTranslatef(mGameWindow->GetWidth() / 85, 
-		mGameWindow->GetHeight() - 20, 0);
+	glTranslatef(mGameWindow->GetWidth() / 85.0f, 
+		mGameWindow->GetHeight() - 20.0f, 0.0f);
 
-	texW = mButtons[BTN_PREVIOUS].mTexture.Width * 
-		(mGameWindow->GetWidth() / 1600.0);
-	texH = mButtons[BTN_PREVIOUS].mTexture.Height *
-		(mGameWindow->GetHeight() / 1200.0);
+	texW = (int)floor(mButtons[BTN_PREVIOUS].mTexture.Width * 
+		(mGameWindow->GetWidth() / 1600.0f));
+	texH = (int)floor(mButtons[BTN_PREVIOUS].mTexture.Height *
+		(mGameWindow->GetHeight() / 1200.0f));
 
 	if (mButtonPressed == BTN_PREVIOUS)
 		glBindTexture(GL_TEXTURE_2D, 
@@ -278,16 +280,16 @@ void CharacterSelectMode::Render() {
 
 	glBegin(GL_QUADS);
 	glTexCoord2f(0.0, 0.0);
-	glVertex2f(0, 0);
+	glVertex2i(0, 0);
 
 	glTexCoord2f(1.0, 0.0);
-	glVertex2f(texW, 0);
+	glVertex2i(texW, 0);
 
 	glTexCoord2f(1.0, 1.0);
-	glVertex2f(texW, -texH);
+	glVertex2i(texW, -texH);
 
 	glTexCoord2f(0.0, 1.0);
-	glVertex2f(0, -texH);
+	glVertex2i(0, -texH);
 	glEnd();
 	glPopMatrix();
 
@@ -295,13 +297,13 @@ void CharacterSelectMode::Render() {
 	glPushMatrix();
 	glLoadIdentity();
 
-	texW = mButtons[BTN_BACK].mTexture.Width * 
-		(mGameWindow->GetWidth() / 1600.0);
-	texH = mButtons[BTN_BACK].mTexture.Height *
-		(mGameWindow->GetHeight() / 1200.0);
+	texW = (int)floor(mButtons[BTN_BACK].mTexture.Width * 
+		(mGameWindow->GetWidth() / 1600.0f));
+	texH = (int)floor(mButtons[BTN_BACK].mTexture.Height *
+		(mGameWindow->GetHeight() / 1200.0f));
 
-	glTranslatef(23 * mGameWindow->GetWidth() / 85, 
-		mGameWindow->GetHeight() - 20, 0);
+	glTranslatef(23 * mGameWindow->GetWidth() / 85.0f, 
+		mGameWindow->GetHeight() - 20.0f, 0.0f);
 
 	if (mButtonPressed == BTN_BACK)
 		glBindTexture(GL_TEXTURE_2D, 
@@ -312,16 +314,16 @@ void CharacterSelectMode::Render() {
 
 	glBegin(GL_QUADS);
 	glTexCoord2f(0.0, 0.0);
-	glVertex2f(0, 0);
+	glVertex2i(0, 0);
 
 	glTexCoord2f(1.0, 0.0);
-	glVertex2f(texW, 0);
+	glVertex2i(texW, 0);
 
 	glTexCoord2f(1.0, 1.0);
-	glVertex2f(texW, -texH);
+	glVertex2i(texW, -texH);
 
 	glTexCoord2f(0.0, 1.0);
-	glVertex2f(0, -texH);
+	glVertex2i(0, -texH);
 	glEnd();
 	glPopMatrix();
 
@@ -329,13 +331,13 @@ void CharacterSelectMode::Render() {
 	glPushMatrix();
 	glLoadIdentity();
 
-	texW = mButtons[BTN_OK].mTexture.Width * 
-		(mGameWindow->GetWidth() / 1600.0);
-	texH = mButtons[BTN_OK].mTexture.Height *
-		(mGameWindow->GetHeight() / 1200.0);
+	texW = (int)floor(mButtons[BTN_OK].mTexture.Width * 
+		(mGameWindow->GetWidth() / 1600.0f));
+	texH = (int)floor(mButtons[BTN_OK].mTexture.Height *
+		(mGameWindow->GetHeight() / 1200.0f));
 
-	glTranslatef(46 * mGameWindow->GetWidth() / 85, 
-		mGameWindow->GetHeight() - 20, 0);
+	glTranslatef(46 * mGameWindow->GetWidth() / 85.0f, 
+		mGameWindow->GetHeight() - 20.0f, 0.0f);
 
 	if (mButtonPressed == BTN_OK)
 		glBindTexture(GL_TEXTURE_2D, 
@@ -346,16 +348,16 @@ void CharacterSelectMode::Render() {
 
 	glBegin(GL_QUADS);
 	glTexCoord2f(0.0, 0.0);
-	glVertex2f(0, 0);
+	glVertex2i(0, 0);
 
 	glTexCoord2f(1.0, 0.0);
-	glVertex2f(texW, 0);
+	glVertex2i(texW, 0);
 
 	glTexCoord2f(1.0, 1.0);
-	glVertex2f(texW, -texH);
+	glVertex2i(texW, -texH);
 
 	glTexCoord2f(0.0, 1.0);
-	glVertex2f(0, -texH);
+	glVertex2i(0, -texH);
 	glEnd();
 	glPopMatrix();
 
@@ -363,13 +365,13 @@ void CharacterSelectMode::Render() {
 	glPushMatrix();
 	glLoadIdentity();
 
-	texW = mButtons[BTN_NEXT].mTexture.Width * 
-		(mGameWindow->GetWidth() / 1600.0);
-	texH = mButtons[BTN_NEXT].mTexture.Height *
-		(mGameWindow->GetHeight() / 1200.0);
+	texW = (int)floor(mButtons[BTN_NEXT].mTexture.Width * 
+		(mGameWindow->GetWidth() / 1600.0f));
+	texH = (int)floor(mButtons[BTN_NEXT].mTexture.Height *
+		(mGameWindow->GetHeight() / 1200.0f));
 
-	glTranslatef(68 * mGameWindow->GetWidth() / 85, 
-		mGameWindow->GetHeight() - 20, 0);
+	glTranslatef(68 * mGameWindow->GetWidth() / 85.0f, 
+		mGameWindow->GetHeight() - 20.0f, 0.0f);
 
 	if (mButtonPressed == BTN_NEXT)
 		glBindTexture(GL_TEXTURE_2D, 
@@ -380,16 +382,16 @@ void CharacterSelectMode::Render() {
 
 	glBegin(GL_QUADS);
 	glTexCoord2f(0.0, 0.0);
-	glVertex2f(0, 0);
+	glVertex2i(0, 0);
 
 	glTexCoord2f(1.0, 0.0);
-	glVertex2f(texW, 0);
+	glVertex2i(texW, 0);
 
 	glTexCoord2f(1.0, 1.0);
-	glVertex2f(texW, -texH);
+	glVertex2i(texW, -texH);
 
 	glTexCoord2f(0.0, 1.0);
-	glVertex2f(0, -texH);
+	glVertex2i(0, -texH);
 	glEnd();
 	glPopMatrix();
 

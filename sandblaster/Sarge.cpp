@@ -78,7 +78,7 @@ void Sarge::InitializeSargeShaders() {
 	
 	*/
 
-    mMeshObject.Scale(1.6);
+    mMeshObject.Scale(1.6f);
 }
 
 void Sarge::Initialize(WorldMode *worldMode, int health, int maxHealth, 

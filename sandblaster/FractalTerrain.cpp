@@ -186,7 +186,7 @@ void FractalTerrain::DiamondSquare(float **Map, int arg) {
 
       //decrease range
       boxlen /= 2;
-      range *= pow(2, h);
+      range *= pow(2.0f, h);
    }
 }
 
@@ -348,12 +348,12 @@ bool FractalTerrain::NodeVFIntersect(int lX, int lZ, int rX, int rZ, int aX, int
     
 	int vfndx[4] = {0,1,4,5};
 
-    lX -= 0.5*MAP_SIZE;
-    lZ -= 0.5*MAP_SIZE;
-    rX -= 0.5*MAP_SIZE;
-    rZ -= 0.5*MAP_SIZE;
-    aX -= 0.5*MAP_SIZE;
-    aZ -= 0.5*MAP_SIZE;
+    lX -= (int)floor(0.5f * MAP_SIZE);
+    lZ -= (int)floor(0.5f * MAP_SIZE);
+    rX -= (int)floor(0.5f * MAP_SIZE);
+    rZ -= (int)floor(0.5f * MAP_SIZE);
+    aX -= (int)floor(0.5f * MAP_SIZE);
+    aZ -= (int)floor(0.5f * MAP_SIZE);
 
 	for (int i = 0; i < 4; i++) {
 		//outside = true;
@@ -601,16 +601,16 @@ void FractalTerrain::Render(BTTNode *node, int lX, int lZ, int rX, int rZ, int a
         float rY = mGameTerrain[rX][rZ];
         float aY = mGameTerrain[aX][aZ];
 
-        Vector3 norm = Vector3(lX-aX,lY-aY,lZ-aZ).CrossProduct(Vector3(rX-aX,rY-aY,rZ-aZ));
+        Vector3 norm = Vector3((float)lX-aX, (float)lY-aY, (float)lZ-aZ).CrossProduct(Vector3((float)rX-aX, (float)rY-aY, (float)rZ-aZ));
 
         glNormal3f(norm.GetX(), norm.GetY(), norm.GetZ());
         //glBegin(GL_LINE_LOOP);
         glTexCoord2f(0,0);
-	    glVertex3f(lX, lY, lZ);
+	    glVertex3f((float)lX, lY, (float)lZ);
         glTexCoord2f(.5,1);
-        glVertex3f(rX, rY, rZ);
+        glVertex3f((float)rX, rY, (float)rZ);
         glTexCoord2f(1,0);
-        glVertex3f(aX, aY, aZ);
+        glVertex3f((float)aX, aY, (float)aZ);
         //glEnd();
 
 		

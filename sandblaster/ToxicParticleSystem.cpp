@@ -76,7 +76,7 @@ void ToxicParticleSystem::InitializeToxicParticleSystemShader() {
 
     CheckForCgError("toxic particle system", "setting decal 2D texture");
 
-    mToxicParticleMesh.Scale(0.2);
+    mToxicParticleMesh.Scale(0.2f);
 
    delete toxicTexture1->data;
    delete toxicTexture1;
@@ -97,13 +97,14 @@ void ToxicParticleSystem::Initialize(const Vector3 &pos, const Vector3 &vel) {
     ToxicParticle tp;
 
     axis.Normalize();
-    srand(time(0));
+    srand((unsigned int)time(NULL));
 
     mParticles.clear();
     for (float i = 0; i < PI; i += PI/mParticleCount) {
         tp.mLife = 0;
         tp.mPosition = pos;
-        tp.mVelocity = 2.5*vel + (rand()%6)*axis*cos(i) + (rand()%6)*up*sin(i);
+        tp.mVelocity = 2.5f * vel + (float)(rand() % 6) * axis * cos(i)
+			+ (float)(rand() % 6) * up * sin(i);
 
         mParticles.push_back(tp);
     }
@@ -114,34 +115,34 @@ void ToxicParticleSystem::Update(float dt) {
 
     if(glowDir)
 	{
-		glow += 0.003;
-		if(glow >= .6)
+		glow += 0.003f;
+		if(glow >= 0.6f)
 		{
 			glowDir = false;
-			glow = 0.6;
+			glow = 0.6f;
 		}
 	}
 	else
 	{
-		glow -=0.003;
-		if(glow<= .2)
+		glow -= 0.003f;
+		if(glow <= 0.2f)
 		{
 			glowDir = true;
-			glow = .2;
+			glow = 0.2f;
 		}
 	}
 
-	if(deformVal >= 360)
+	if(deformVal >= 360.0f)
 	{
 		deformVal = 0;
 	}
-	deformVal += .1;
+	deformVal += 0.1f;
 
-	if(moveGlowVal >= 360)
+	if(moveGlowVal >= 360.0f)
 	{
 		moveGlowVal = 0;
 	}
-	moveGlowVal += .05;
+	moveGlowVal += .05f;
 
     for (itr = mParticles.begin(); itr != mParticles.end(); itr++) {
         if ((*itr).IsAlive()) {
@@ -205,7 +206,7 @@ void ToxicParticleSystem::Render() {
             if ((*itr).IsAlive()) {
                 glPushMatrix();
                     glTranslatef((*itr).mPosition.GetX(), (*itr).mPosition.GetY(), (*itr).mPosition.GetZ());
-                    glScalef(0.7,0.7,0.7);
+                    glScalef(0.7f, 0.7f, 0.7f);
                     //Model view transforms must go before passing hte modelview matrix into hte shader
                     cgGLSetStateMatrixParameter(mvMatrix, CG_GL_MODELVIEW_PROJECTION_MATRIX, CG_GL_MATRIX_IDENTITY);
 
@@ -246,7 +247,7 @@ void ToxicParticleSystem::Render() {
 		
         //glRotatef(-mTheta * 180/PI - 90, 0, 1, 0);
 		//glScalef(0.9,0.9,0.9);
-		glColor3f(.5,1,.7);
+		glColor3f(0.5f, 1.0f, 0.7f);
 
 	    glPushMatrix();
 
@@ -254,7 +255,7 @@ void ToxicParticleSystem::Render() {
                 if ((*itr).IsAlive()) {
                     glPushMatrix();
                         glTranslatef((*itr).mPosition.GetX(), (*itr).mPosition.GetY(), (*itr).mPosition.GetZ());
-                        glScalef(0.9,0.9,0.9);
+                        glScalef(0.9f, 0.9f, 0.9f);
                         //Model view transforms must go before passing hte modelview matrix into hte shader
 	                    cgGLSetStateMatrixParameter(mvMatrix, CG_GL_MODELVIEW_PROJECTION_MATRIX, CG_GL_MATRIX_IDENTITY);
                         mToxicParticleMesh.GLDraw();

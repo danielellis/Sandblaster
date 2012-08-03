@@ -87,20 +87,20 @@ void Toxicshot::Update(float dt) {
 
 	if(glowDir)
 	{
-		glow += 0.003;
-		if(glow >= .6)
+		glow += 0.003f;
+		if(glow >= 0.6f)
 		{
 			glowDir = false;
-			glow = 0.6;
+			glow = 0.6f;
 		}
 	}
 	else
 	{
-		glow -=0.003;
+		glow -= 0.003f;
 		if(glow<= .2)
 		{
 			glowDir = true;
-			glow = .2;
+			glow = 0.2f;
 		}
 	}
 
@@ -108,13 +108,13 @@ void Toxicshot::Update(float dt) {
 	{
 		deformVal = 0;
 	}
-	deformVal += .1;
+	deformVal += 0.1f;
 
 	if(moveGlowVal >= 360)
 	{
 		moveGlowVal = 0;
 	}
-	moveGlowVal += .05;
+	moveGlowVal += .05f;
 
 }
 
@@ -142,8 +142,8 @@ void Toxicshot::Render() {
     glPushMatrix();
 		
 		glTranslatef(mPos.GetX(), mPos.GetY(), mPos.GetZ());
-        glRotatef(-mTheta * 180/PI - 90, 0, 1, 0);
-		glScalef(0.7,0.7,0.7);
+        glRotatef(-mTheta * 180 / PI - 90, 0, 1.0f, 0);
+		glScalef(0.7f, 0.7f, 0.7f);
 
 	    //Model view transforms must go before passing hte modelview matrix into hte shader
 	    cgGLSetStateMatrixParameter(mvMatrix, CG_GL_MODELVIEW_PROJECTION_MATRIX, CG_GL_MATRIX_IDENTITY);
@@ -202,9 +202,9 @@ void Toxicshot::Render() {
 	  cgSetParameter1f(useColor, 1);
     glPushMatrix();
 		glTranslatef(mPos.GetX(), mPos.GetY(), mPos.GetZ());
-        glRotatef(-mTheta * 180/PI - 90, 0, 1, 0);
-		glScalef(0.9,0.9,0.9);
-		glColor3f(.5,1,.7);
+        glRotatef(-mTheta * 180 / PI - 90, 0, 1.0, 0);
+		glScalef(0.9f, 0.9f, 0.9f);
+		glColor3f(0.5f, 1, 0.7f);
 
 	    //Model view transforms must go before passing hte modelview matrix into hte shader
 	    cgGLSetStateMatrixParameter(mvMatrix, CG_GL_MODELVIEW_PROJECTION_MATRIX, CG_GL_MATRIX_IDENTITY);

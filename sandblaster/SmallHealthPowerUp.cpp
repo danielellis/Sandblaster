@@ -18,7 +18,7 @@ void SmallHealthPowerUp::Initialize(Vector3 p, float s)
 
 void SmallHealthPowerUp::Update(float t)
 {
-	mTheta += t*5.0;
+	mTheta += t*5.0f;
 
 	if (!active)
 		resetCounter+=t;
@@ -40,7 +40,7 @@ void SmallHealthPowerUp::Render(void)
 	glPushMatrix();
 
 	glTranslatef(position.GetX(), position.GetY(), position.GetZ());
-	glRotatef(mTheta*5.0, 0.0, 1.0, 0.0);
+	glRotatef(mTheta*5.0f, 0, 1.0f, 0);
 	glTranslatef(-position.GetX(), -position.GetY(), -position.GetZ());
 
 	glPushMatrix();
@@ -145,7 +145,7 @@ Vector3 SmallHealthPowerUp::GetPos(void)
 float SmallHealthPowerUp::GetBoundsRadius(void)
 {
 	float diagonal = scale*scale+scale*scale;
-	return sqrt(diagonal*diagonal+diagonal*diagonal)/2.0;
+	return sqrt(diagonal*diagonal+diagonal*diagonal)/2.0f;
 }
 
 bool SmallHealthPowerUp::IsCollided(Vector3 pos, float radius) 

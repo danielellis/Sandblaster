@@ -109,8 +109,14 @@ void Iceshot::Update(float dt) {
 	}
 
 
-	if(glitterDir) {glitterVal += 0.01;}
-	else{ glitterVal -= 0.01;}
+	if (glitterDir)
+	{
+		glitterVal += 0.01f;
+	}
+	else
+	{
+		glitterVal -= 0.01f;
+	}
 
 	if(glitterVal >= 1)
 	{
@@ -155,8 +161,8 @@ void Iceshot::Render() {
     glPushMatrix();
 		
 		glTranslatef(mPos.GetX(), mPos.GetY(), mPos.GetZ());
-        glRotatef(-mTheta * 180/PI - 90, 0, 1, 0);
-		glRotatef(90+rotate,.7,1,.5);
+        glRotatef(-mTheta * 180 / PI - 90, 0, 1, 0);
+		glRotatef(90.0f + rotate, 0.7f, 1.0f, 0.5f);
 	    glScalef(2,2,2);
 	    //Model view transforms must go before passing hte modelview matrix into hte shader
 		cgSetParameter2f(shift,shineVal,glitterVal);

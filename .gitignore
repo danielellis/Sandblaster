@@ -1,3 +1,35 @@
+#Visual Studio Files
+*.[Oo]bj
+*.user
+*.aps
+*.pch
+*.vspscc
+*.vssscc
+*_i.c
+*_p.c
+*.ncb
+*.suo
+*.tlb
+*.tlh
+*.bak
+*.[Cc]ache
+*.ilk
+*.log
+*.tlog
+*.lib
+*.sbr
+*.sdf
+*.suo
+*.opensdf
+*.unsuccessfulbuild
+
+sandblaster/[Dd]ebug*/
+sandblaster/[Rr]elease*/
+
+Debug/sandblaster.exe
+Debug/sandblaster.pdb
+Release/sandblaster.exe
+
 # Compiled Object files
 *.slo
 *.lo

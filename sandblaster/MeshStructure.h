@@ -14,8 +14,6 @@
 #include <iostream>
 #include <string>
 
-#include "Vector3D.h"
-
 class MeshStructure
 {
 public:
@@ -43,14 +41,14 @@ public:
 		Vertex *vertex[3];
 		Edge *edge[3];
 		float normal[3];
-		
+
 		int refCount;
 	};
 
 	class Edge
 	{
 		friend class MeshStructure;
-	
+
 	public:
 		Edge();
 		Edge(Vertex *vtx0, Vertex *vtx1);
@@ -68,7 +66,7 @@ public:
 	class Vertex
 	{
 		friend class MeshStructure;
-	
+
 	public:
 		Vertex(int id);
 		Vertex(float x, float y, float z, int id);
@@ -84,8 +82,8 @@ public:
 		std::list<Edge *>::iterator EdgeIterEnd();
 		std::list<Triangle *>::iterator TriangleIterBegin();
 		std::list<Triangle *>::iterator TriangleIterEnd();
-    //ZJW added for smoothing
-    void SetVertexPosition(float new_pos[3]);    
+		//ZJW added for smoothing
+		void SetVertexPosition(float new_pos[3]);    
 
 	protected:
 		float pos[3];
@@ -117,24 +115,24 @@ public:
 	MeshStructure();
 	~MeshStructure();
 
-    //SD - added to scale meshes to desired size
-    void Scale(float scale);
+	//SD - added to scale meshes to desired size
+	void Scale(float scale);
 
 
 	void AddVertex(float x, float y, float z, int vtxID);
 	void MeshStructure::AddVertex(float x, float y, float z, int vtxID, float n1, float n2, float n3, float t1, float t2, 
-							  float tg1, float tg2, float tg3, float bn1, float bn2, float bn3);
+		float tg1, float tg2, float tg3, float bn1, float bn2, float bn3);
 	void AddTriangle(int vtxID0, int vtxID1, int vtxID2);
 	void AddTriangle(int vtxID0, int vtxID1, int vtxID2,
-	 float normX, float normY, float normZ);
+		float normX, float normY, float normZ);
 	void AddTriangle(int vtxID0, int vtxID1, int vtxID2,
-					 int nmlID0, int nmlID1, int nmlID2,
-					 int texID0, int texID1, int texID2);
+		int nmlID0, int nmlID1, int nmlID2,
+		int texID0, int texID1, int texID2);
 
 	void ComputeVertexNormals();
 	void CenterMesh();
 	void NormalizeMeshScale(float scale);
-    
+
 	//COLLAPSE-EDGE FUNCTION ADDED 4/12/04 
 	//this checks for manifold property
 	//returns true if it was able to collapse the edge, false if failed (and nothing is done)
@@ -146,7 +144,7 @@ public:
 	//checks a single edges local topology (data structure point to the right place)
 	//called in ReferenceOutput();
 	bool CheckEdge(Edge *edge);
-	
+
 	Edge *GetEdge(Vertex *vtx0, Vertex *vtx1) const;
 
 	void GetAABB(float min[3], float max[3]) const;
@@ -154,7 +152,7 @@ public:
 	int GetVertexCount() const;
 	int GetEdgeCount() const;
 	int GetTriangleCount() const;
-	
+
 	std::list<Triangle *>::iterator TriangleIterBegin();
 	std::list<Triangle *>::iterator TriangleIterEnd();
 	std::list<Vertex *>::iterator VertexIterBegin();

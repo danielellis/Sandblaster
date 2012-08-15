@@ -137,13 +137,13 @@
     <ClCompile Include=".\Vector3.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include=".\Vector3D.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include=".\WeaponPowerUp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include=".\WorldMode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector3D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -277,13 +277,13 @@
     <ClInclude Include=".\Vector3.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include=".\Vector3D.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include=".\WeaponPowerUp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include=".\WorldMode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector3D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

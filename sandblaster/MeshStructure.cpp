@@ -2,7 +2,7 @@
 //
 //Created/Programmed by Jonathan DeKlotz
 
-#include  "MeshStructure.h"
+#include "MeshStructure.h"
 #include <stdlib.h>
 #include <iostream>
 #include <fstream>

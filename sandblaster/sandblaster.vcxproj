@@ -146,9 +146,9 @@
     <ClCompile Include=".\ToxicParticleSystem.cpp" />
     <ClCompile Include=".\Toxicshot.cpp" />
     <ClCompile Include=".\Vector3.cpp" />
-    <ClCompile Include=".\Vector3D.cpp" />
     <ClCompile Include=".\WeaponPowerUp.cpp" />
     <ClCompile Include=".\WorldMode.cpp" />
+    <ClCompile Include="Vector3D.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include=".\AI.h" />
@@ -194,9 +194,9 @@
     <ClInclude Include=".\ToxicParticleSystem.h" />
     <ClInclude Include=".\Toxicshot.h" />
     <ClInclude Include=".\Vector3.h" />
-    <ClInclude Include=".\Vector3D.h" />
     <ClInclude Include=".\WeaponPowerUp.h" />
     <ClInclude Include=".\WorldMode.h" />
+    <ClInclude Include="Vector3D.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

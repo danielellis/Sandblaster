@@ -14,6 +14,8 @@
 #include <iostream>
 #include <string>
 
+#include "Vector3D.h"
+
 class MeshStructure
 {
 public:

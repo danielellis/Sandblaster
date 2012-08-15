@@ -15,45 +15,43 @@ const int MAX_WINDOW_NAME = 34;
 
 class GameWindow {
 public:
-   GameWindow(char *title, int width = 1024, int height = 768, int fps = 30)
-	 : mScreen(NULL), mFrameDelay(1000/fps), mInitWidth(width), 
-    mInitHeight(height), mDone(false)
-   {strncpy_s(mWindowTitle, MAX_WINDOW_NAME, title, MAX_WINDOW_NAME);}
+	// Constructor
+	GameWindow(char *title, int width = 1024, int height = 768, int fps = 30);
 
-   bool Initialize();
-   bool ShutDown();
+	bool Initialize();
+	bool ShutDown();
 
-   void Run();
-   void QuitGame() {mDone = true;}
+	void Run();
+	void QuitGame() {mDone = true;}
 
-   int GetWidth() {return mScreen->w;}
-   int GetHeight() {return mScreen->h;}
-   long GetFrameDelay() {return mFrameDelay;}
-   InputManager *GetInputManager() {return &mInputManager;}
+	int GetWidth() {return mScreen->w;}
+	int GetHeight() {return mScreen->h;}
+	long GetFrameDelay() {return mFrameDelay;}
+	InputManager *GetInputManager() {return &mInputManager;}
 
-   void SetOrthographicProjection();
-   void ResetPerspectiveProjection();
+	void SetOrthographicProjection();
+	void ResetPerspectiveProjection();
 
-   SDL_Surface *mScreen;
+	SDL_Surface *mScreen;
 
 protected:
-   void HandleEvents();
-   void HandleResize(const SDL_ResizeEvent &event);
+	void HandleEvents();
+	void HandleResize(const SDL_ResizeEvent &event);
 
-   void InitializeGL();
+	void InitializeGL();
 
-   // window variables
-   //SDL_Surface *mScreen;
-   long mFrameDelay;           //in milliseconds
-   char mWindowTitle[MAX_WINDOW_NAME];
-   int mInitWidth, mInitHeight;
-   //char mIcon;
-   //bool mFullScreen;
-   //bool mIsActive;
-   bool mDone;
+	// window variables
+	//SDL_Surface *mScreen;
+	long mFrameDelay;           //in milliseconds
+	char mWindowTitle[MAX_WINDOW_NAME];
+	int mInitWidth, mInitHeight;
+	//char mIcon;
+	//bool mFullScreen;
+	//bool mIsActive;
+	bool mDone;
 
-   GameModeManager mGameModeManager;
-   InputManager mInputManager;
+	GameModeManager mGameModeManager;
+	InputManager mInputManager;
 };
 
 #endif

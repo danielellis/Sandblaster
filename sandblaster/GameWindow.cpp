@@ -8,6 +8,10 @@
 #include "Audio.h"
 #include "Shader.h"
 
+GameWindow::GameWindow(char *title, int width, int height, int fps) : mScreen(NULL), mFrameDelay(1000/fps), mInitWidth(width), mInitHeight(height), mDone(false) {
+	strncpy_s(mWindowTitle, MAX_WINDOW_NAME, title, MAX_WINDOW_NAME);
+}
+
 void GameWindow::Run() {
 	long baseTime, currTime;
 	float deltaSeconds;

@@ -25,9 +25,8 @@
 sandblaster/[Dd]ebug*/
 sandblaster/[Rr]elease*/
 
-Debug/sandblaster.exe
-Debug/sandblaster.pdb
-Release/sandblaster.exe
+[Dd]ebug/
+[Rr]elease/
 
 # Compiled Object files
 *.slo

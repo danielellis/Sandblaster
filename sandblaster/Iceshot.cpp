@@ -35,7 +35,7 @@ void Iceshot::InitializeIceshotShaders() {
     CheckForCgError("ice shot", "selecting vertex profile");
 
     //Load vertex shader
-    vsIceshotProgram = cgCreateProgramFromFile(ShaderContext, CG_SOURCE, "vertexshaders/vs_iceshot.cg", vsIceshotProfile, "vertMain", 0);
+    vsIceshotProgram = cgCreateProgramFromFile(ShaderContext, CG_SOURCE, "assets/vertexshaders/vs_iceshot.cg", vsIceshotProfile, "vertMain", 0);
 
     CheckForCgError("ice shot", "creating vertex program from file");
     cgGLLoadProgram(vsIceshotProgram);
@@ -54,7 +54,7 @@ void Iceshot::InitializeIceshotShaders() {
     cgGLSetOptimalOptions(psIceshotProfile);
     CheckForCgError("ice shot", "selecting fragment profile");
 
-    psIceshotProgram = cgCreateProgramFromFile(ShaderContext, CG_SOURCE, "pixelshaders/ps_iceshot.cg", psIceshotProfile, "pixelMain", 0);
+    psIceshotProgram = cgCreateProgramFromFile(ShaderContext, CG_SOURCE, "assets/pixelshaders/ps_iceshot.cg", psIceshotProfile, "pixelMain", 0);
     CheckForCgError("ice shot", "creating fragment program from file");
     cgGLLoadProgram(psIceshotProgram);
     CheckForCgError("ice shot", "loading fragment program");

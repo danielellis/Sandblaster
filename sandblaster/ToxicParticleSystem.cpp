@@ -37,7 +37,7 @@ void ToxicParticleSystem::InitializeToxicParticleSystemShader() {
     CheckForCgError("toxic particle system", "selecting vertex profile");
 
     //Load vertex shader
-    vsToxicshotProgram = cgCreateProgramFromFile(ShaderContext, CG_SOURCE, "vertexshaders/vs_toxicshot.cg", vsToxicshotProfile, "vertMain", 0);
+    vsToxicshotProgram = cgCreateProgramFromFile(ShaderContext, CG_SOURCE, "assets/vertexshaders/vs_toxicshot.cg", vsToxicshotProfile, "vertMain", 0);
 
     CheckForCgError("toxic particle system", "creating vertex program from file");
     cgGLLoadProgram(vsToxicshotProgram);
@@ -56,7 +56,7 @@ void ToxicParticleSystem::InitializeToxicParticleSystemShader() {
     cgGLSetOptimalOptions(psToxicshotProfile);
     CheckForCgError("toxic particle system", "selecting fragment profile");
 
-    psToxicshotProgram = cgCreateProgramFromFile(ShaderContext, CG_SOURCE, "pixelshaders/ps_toxicshot.cg", psToxicshotProfile, "pixelMain", 0);
+    psToxicshotProgram = cgCreateProgramFromFile(ShaderContext, CG_SOURCE, "assets/pixelshaders/ps_toxicshot.cg", psToxicshotProfile, "pixelMain", 0);
     CheckForCgError("toxic particle system", "creating fragment program from file");
     cgGLLoadProgram(psToxicshotProgram);
     CheckForCgError("toxic particle system", "loading fragment program");

@@ -25,7 +25,7 @@ void Scrappy::InitializeScrappyShaders() {
 	cgGLSetOptimalOptions(vsScrappyProfile);
 	CheckForCgError("scrappy", "selecting vertex profile");
 
-	vsScrappyProgram = cgCreateProgramFromFile(ShaderContext, CG_SOURCE, "vertexshaders/vs_scrappy.cg", vsScrappyProfile, "scrappyVertexShader", 0);
+	vsScrappyProgram = cgCreateProgramFromFile(ShaderContext, CG_SOURCE, "assets/vertexshaders/vs_scrappy.cg", vsScrappyProfile, "scrappyVertexShader", 0);
 	CheckForCgError("scrappy", "creating vertex program from file");
 	cgGLLoadProgram(vsScrappyProgram);
 	CheckForCgError("scrappy", "loading vertex program");
@@ -42,7 +42,7 @@ void Scrappy::InitializeScrappyShaders() {
 	cgGLSetOptimalOptions(psScrappyProfile);
 	CheckForCgError("scrappy", "selecting fragment profile");
 
-	psScrappyProgram = cgCreateProgramFromFile(ShaderContext, CG_SOURCE, "pixelshaders/ps_scrappy.cg", psScrappyProfile, "pixelMain", 0);
+	psScrappyProgram = cgCreateProgramFromFile(ShaderContext, CG_SOURCE, "assets/pixelshaders/ps_scrappy.cg", psScrappyProfile, "pixelMain", 0);
 	CheckForCgError("scrappy", "creating fragment program from file");
 	cgGLLoadProgram(psScrappyProgram);
 	CheckForCgError("scrappy", "loading fragment program");

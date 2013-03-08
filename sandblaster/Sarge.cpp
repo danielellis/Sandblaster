@@ -29,7 +29,7 @@ void Sarge::InitializeSargeShaders() {
 	cgGLSetOptimalOptions(vsSargeProfile);
 	CheckForCgError("sarge", "selecting vertex profile");
 
-	vsSargeProgram = cgCreateProgramFromFile(ShaderContext, CG_SOURCE, "vertexshaders/vs_sarge.cg", vsSargeProfile, "sargeVertexShader", 0);
+	vsSargeProgram = cgCreateProgramFromFile(ShaderContext, CG_SOURCE, "assets/vertexshaders/vs_sarge.cg", vsSargeProfile, "sargeVertexShader", 0);
 	CheckForCgError("sarge", "creating vertex program from file");
 	cgGLLoadProgram(vsSargeProgram);
 	CheckForCgError("sarge", "loading vertex program");
@@ -42,7 +42,7 @@ void Sarge::InitializeSargeShaders() {
 	cgGLSetOptimalOptions(psSargeProfile);
 	CheckForCgError("sarge", "selecting pixel profile");
 
-	psSargeProgram = cgCreateProgramFromFile(ShaderContext, CG_SOURCE, "pixelshaders/ps_sarge.cg", psSargeProfile, "sargeLightMap", 0);
+	psSargeProgram = cgCreateProgramFromFile(ShaderContext, CG_SOURCE, "assets/pixelshaders/ps_sarge.cg", psSargeProfile, "sargeLightMap", 0);
 	CheckForCgError("sarge", "creating fragment program from file");
 	cgGLLoadProgram(psSargeProgram);
 	CheckForCgError("sarge", "loading fragment program");

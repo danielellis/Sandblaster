@@ -18,7 +18,7 @@ void FreezeParticle::InitializeFreezeParticleShader()
 	cgGLSetOptimalOptions(FreezeParticleProfile);
 	CheckForCgError("FreezeParticle", "selecting fragment profile");
 
-	FreezeParticleProgram = cgCreateProgramFromFile(ShaderContext, CG_SOURCE, "pixelshaders/ps_freezeparticle.cg", FreezeParticleProfile, "pixelMain", 0);
+	FreezeParticleProgram = cgCreateProgramFromFile(ShaderContext, CG_SOURCE, "assets/pixelshaders/ps_freezeparticle.cg", FreezeParticleProfile, "pixelMain", 0);
 	CheckForCgError("FreezeParticle", "creating fragment program from file");
 	cgGLLoadProgram(FreezeParticleProgram);
 	CheckForCgError("FreezeParticle", "loading fragment program");

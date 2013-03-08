@@ -36,7 +36,7 @@ void Fireball::InitializeFireBallShaders() {
     CheckForCgError("fireball", "selecting vertex profile");
 
     //Load vertex shader
-    vsFireballProgram = cgCreateProgramFromFile(ShaderContext, CG_SOURCE, "vertexshaders/vs_fireball.cg", vsFireballProfile, "vertMain", 0);
+    vsFireballProgram = cgCreateProgramFromFile(ShaderContext, CG_SOURCE, "assets/vertexshaders/vs_fireball.cg", vsFireballProfile, "vertMain", 0);
 
     CheckForCgError("fireball", "creating vertex program from file");
     cgGLLoadProgram(vsFireballProgram);
@@ -55,7 +55,7 @@ void Fireball::InitializeFireBallShaders() {
     cgGLSetOptimalOptions(psFireballProfile);
     CheckForCgError("fireball", "selecting fragment profile");
 
-    psFireballProgram = cgCreateProgramFromFile(ShaderContext, CG_SOURCE, "pixelshaders/ps_fireball.cg", psFireballProfile, "pixelMain", 0);
+    psFireballProgram = cgCreateProgramFromFile(ShaderContext, CG_SOURCE, "assets/pixelshaders/ps_fireball.cg", psFireballProfile, "pixelMain", 0);
     CheckForCgError("fireball", "creating fragment program from file");
     cgGLLoadProgram(psFireballProgram);
     CheckForCgError("fireball", "loading fragment program");

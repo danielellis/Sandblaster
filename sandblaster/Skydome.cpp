@@ -32,7 +32,7 @@ void Skydome::InitializeSkydomeShaders() {
     CheckForCgError("skydome", "selecting vertex profile");
 
     //Load vertex shader
-    vsFireballProgram = cgCreateProgramFromFile(ShaderContext, CG_SOURCE, "vertexshaders/vs_fireball.cg", vsFireballProfile, "vertMain", 0);
+    vsFireballProgram = cgCreateProgramFromFile(ShaderContext, CG_SOURCE, "assets/vertexshaders/vs_fireball.cg", vsFireballProfile, "vertMain", 0);
 
     CheckForCgError("skydome", "creating vertex program from file");
     cgGLLoadProgram(vsFireballProgram);
@@ -52,7 +52,7 @@ void Skydome::InitializeSkydomeShaders() {
     cgGLSetOptimalOptions(psSkydomeProfile);
     CheckForCgError("skydome", "selecting Skydome fragment profile");
 
-    psSkydomeProgram = cgCreateProgramFromFile(ShaderContext, CG_SOURCE, "pixelshaders/ps_skydome.cg", psSkydomeProfile, "pixelMain", 0);
+    psSkydomeProgram = cgCreateProgramFromFile(ShaderContext, CG_SOURCE, "assets/pixelshaders/ps_skydome.cg", psSkydomeProfile, "pixelMain", 0);
     CheckForCgError("skydome", "creating fragment program from file");
     cgGLLoadProgram(psSkydomeProgram);
     CheckForCgError("skydome", "loading fragment program");
@@ -76,7 +76,7 @@ void Skydome::InitializeSkydomeShaders() {
     cgGLSetOptimalOptions(psSkydomeSunProfile);
     CheckForCgError("skydome", "selecting Skydome sun fragment profile");
 
-	psSkydomeSunProgram = cgCreateProgramFromFile(ShaderContext, CG_SOURCE, "pixelshaders/ps_skydomeSun.cg", psSkydomeSunProfile, "pixelMain", 0);
+	psSkydomeSunProgram = cgCreateProgramFromFile(ShaderContext, CG_SOURCE, "assets/pixelshaders/ps_skydomeSun.cg", psSkydomeSunProfile, "pixelMain", 0);
     CheckForCgError("skydome", "creating fragment program from file");
     cgGLLoadProgram(psSkydomeSunProgram);
     CheckForCgError("skydome", "loading fragment program");

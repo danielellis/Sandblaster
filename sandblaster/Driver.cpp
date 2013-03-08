@@ -264,7 +264,7 @@ void Driver::InitializeWeaponEffects()
     CheckForCgError("ice shot", "selecting vertex profile");
 
     //Load vertex shader
-    vsFreezeEffectProgram = cgCreateProgramFromFile(ShaderContext, CG_SOURCE, "vertexshaders/vs_freezeeffect.cg", vsFreezeEffectProfile, "vertMain", 0);
+    vsFreezeEffectProgram = cgCreateProgramFromFile(ShaderContext, CG_SOURCE, "assets/vertexshaders/vs_freezeeffect.cg", vsFreezeEffectProfile, "vertMain", 0);
 
     CheckForCgError("ice shot", "creating vertex program from file");
     cgGLLoadProgram(vsFreezeEffectProgram);
@@ -283,7 +283,7 @@ void Driver::InitializeWeaponEffects()
     cgGLSetOptimalOptions(psFreezeEffectProfile);
     CheckForCgError("ice shot", "selecting fragment profile");
 
-    psFreezeEffectProgram = cgCreateProgramFromFile(ShaderContext, CG_SOURCE, "pixelshaders/ps_freezeeffect.cg", psFreezeEffectProfile, "pixelMain", 0);
+    psFreezeEffectProgram = cgCreateProgramFromFile(ShaderContext, CG_SOURCE, "assets/pixelshaders/ps_freezeeffect.cg", psFreezeEffectProfile, "pixelMain", 0);
     CheckForCgError("ice shot", "creating fragment program from file");
     cgGLLoadProgram(psFreezeEffectProgram);
     CheckForCgError("ice shot", "loading fragment program");

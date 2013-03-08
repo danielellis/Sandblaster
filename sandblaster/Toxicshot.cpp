@@ -38,7 +38,7 @@ void Toxicshot::InitializeToxicshotShaders() {
     CheckForCgError("toxic shot", "selecting vertex profile");
 
     //Load vertex shader
-    vsToxicshotProgram = cgCreateProgramFromFile(ShaderContext, CG_SOURCE, "vertexshaders/vs_toxicshot.cg", vsToxicshotProfile, "vertMain", 0);
+    vsToxicshotProgram = cgCreateProgramFromFile(ShaderContext, CG_SOURCE, "assets/vertexshaders/vs_toxicshot.cg", vsToxicshotProfile, "vertMain", 0);
 
     CheckForCgError("toxic shot", "creating vertex program from file");
     cgGLLoadProgram(vsToxicshotProgram);
@@ -57,7 +57,7 @@ void Toxicshot::InitializeToxicshotShaders() {
     cgGLSetOptimalOptions(psToxicshotProfile);
     CheckForCgError("toxic shot", "selecting fragment profile");
 
-    psToxicshotProgram = cgCreateProgramFromFile(ShaderContext, CG_SOURCE, "pixelshaders/ps_toxicshot.cg", psToxicshotProfile, "pixelMain", 0);
+    psToxicshotProgram = cgCreateProgramFromFile(ShaderContext, CG_SOURCE, "assets/pixelshaders/ps_toxicshot.cg", psToxicshotProfile, "pixelMain", 0);
     CheckForCgError("toxic shot", "creating fragment program from file");
     cgGLLoadProgram(psToxicshotProgram);
     CheckForCgError("toxic shot", "loading fragment program");

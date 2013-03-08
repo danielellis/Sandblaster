@@ -6,7 +6,7 @@ glTexture SmallHealthPowerUp::health;
 
 void SmallHealthPowerUp::Initialize(Vector3 p, float s)
 {
-	textureLoader.LoadTextureFromDisk("poweruptextures/health2.tga", &health);
+	textureLoader.LoadTextureFromDisk("assets/textures/powerup/health.tga", &health);
 	
 	standingAngle = 45.0;
 	mTheta = 0.0;

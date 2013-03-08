@@ -25,11 +25,11 @@ bool GameOverMode::LoadResources() {
    mTextureLoader.SetMipMapping(true);
    mTextureLoader.SetTextureFilter(txBilinear);
 
-   assert(mTextureLoader.LoadTextureFromDisk("menu/game_over_win.tga", 
+   assert(mTextureLoader.LoadTextureFromDisk("assets/textures/menu/game_over_win.tga", 
     &mWinTexture) == TRUE);
-   assert(mTextureLoader.LoadTextureFromDisk("menu/game_over_lose.tga", 
+   assert(mTextureLoader.LoadTextureFromDisk("assets/textures/menu/game_over_lose.tga", 
     &mLoseTexture) == TRUE);
-   assert(mTextureLoader.LoadTextureFromDisk("menu/pause_lightmap.jpg", 
+   assert(mTextureLoader.LoadTextureFromDisk("assets/textures/menu/pause_lightmap.jpg", 
     &mBackgroundLightmap) == TRUE);
 
    return true;

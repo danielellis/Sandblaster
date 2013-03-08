@@ -32,23 +32,23 @@ bool PauseMenuMode::LoadResources() {
    mTextureLoader.SetMipMapping(TRUE);
    mTextureLoader.SetTextureFilter(txBilinear);
 
-   assert(mTextureLoader.LoadTextureFromDisk("menu/pausemenu.tga", 
+   assert(mTextureLoader.LoadTextureFromDisk("assets/textures/menu/pausemenu.tga", 
     &mMenuTexture) == TRUE);
-   assert(mTextureLoader.LoadTextureFromDisk("menu/pause_lightmap.jpg",
+   assert(mTextureLoader.LoadTextureFromDisk("assets/textures/menu/pause_lightmap.jpg",
     &mBackgroundLightmap) == TRUE);
 
-   assert(mTextureLoader.LoadTextureFromDisk("menu/pause_resume.tga", 
+   assert(mTextureLoader.LoadTextureFromDisk("assets/textures/menu/pause_resume.tga", 
     &mButtons[BTN_RESUME].mTexture) == TRUE);
-   assert(mTextureLoader.LoadTextureFromDisk("menu/pause_options.tga", 
+   assert(mTextureLoader.LoadTextureFromDisk("assets/textures/menu/pause_options.tga", 
     &mButtons[BTN_OPTIONS].mTexture) == TRUE);
-   assert(mTextureLoader.LoadTextureFromDisk("menu/pause_quit.tga", 
+   assert(mTextureLoader.LoadTextureFromDisk("assets/textures/menu/pause_quit.tga", 
     &mButtons[BTN_QUIT].mTexture) == TRUE);
 
-   assert(mTextureLoader.LoadTextureFromDisk("menu/pause_resume_pressed.tga", 
+   assert(mTextureLoader.LoadTextureFromDisk("assets/textures/menu/pause_resume_pressed.tga", 
     &mButtons[BTN_RESUME].mPressedTexture) == TRUE);
-   assert(mTextureLoader.LoadTextureFromDisk("menu/pause_options_pressed.tga", 
+   assert(mTextureLoader.LoadTextureFromDisk("assets/textures/menu/pause_options_pressed.tga", 
     &mButtons[BTN_OPTIONS].mPressedTexture) == TRUE);
-   assert(mTextureLoader.LoadTextureFromDisk("menu/pause_quit_pressed.tga", 
+   assert(mTextureLoader.LoadTextureFromDisk("assets/textures/menu/pause_quit_pressed.tga", 
     &mButtons[BTN_QUIT].mPressedTexture) == TRUE);
 
    for (int i = 0; i < NUM_PAUSE_BUTTONS; ++i) {

@@ -26,23 +26,23 @@ bool MainMenuMode::LoadResources() {
    mTextureLoader.SetMipMapping(true);
    mTextureLoader.SetTextureFilter(txBilinear);
 
-   assert(mTextureLoader.LoadTextureFromDisk("menu/background.tga", 
+   assert(mTextureLoader.LoadTextureFromDisk("assets/textures/menu/background.tga", 
     &mBackgroundTexture) == TRUE);
-   assert(mTextureLoader.LoadTextureFromDisk("menu/title.tga", &mTitleTexture) 
+   assert(mTextureLoader.LoadTextureFromDisk("assets/textures/menu/title.tga", &mTitleTexture) 
     == TRUE);
 
-   assert(mTextureLoader.LoadTextureFromDisk("menu/play.tga", 
+   assert(mTextureLoader.LoadTextureFromDisk("assets/textures/menu/play.tga", 
     &mButtons[BTN_PLAY].mTexture) == TRUE);
-   assert(mTextureLoader.LoadTextureFromDisk("menu/options.tga", 
+   assert(mTextureLoader.LoadTextureFromDisk("assets/textures/menu/options.tga", 
     &mButtons[BTN_OPTIONS].mTexture) == TRUE);
-   assert(mTextureLoader.LoadTextureFromDisk("menu/quit.tga", 
+   assert(mTextureLoader.LoadTextureFromDisk("assets/textures/menu/quit.tga", 
     &mButtons[BTN_QUIT].mTexture) == TRUE);
 
-   assert(mTextureLoader.LoadTextureFromDisk("menu/play_pressed.tga", 
+   assert(mTextureLoader.LoadTextureFromDisk("assets/textures/menu/play_pressed.tga", 
     &mButtons[BTN_PLAY].mPressedTexture) == TRUE);
-   assert(mTextureLoader.LoadTextureFromDisk("menu/options_pressed.tga", 
+   assert(mTextureLoader.LoadTextureFromDisk("assets/textures/menu/options_pressed.tga", 
     &mButtons[BTN_OPTIONS].mPressedTexture) == TRUE);
-   assert(mTextureLoader.LoadTextureFromDisk("menu/quit_pressed.tga", 
+   assert(mTextureLoader.LoadTextureFromDisk("assets/textures/menu/quit_pressed.tga", 
     &mButtons[BTN_QUIT].mPressedTexture) == TRUE);
 
    for (int i = 0; i < NUM_BUTTONS; ++i) {

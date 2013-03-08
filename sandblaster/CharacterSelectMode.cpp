@@ -32,40 +32,40 @@ bool CharacterSelectMode::LoadResources() {
 	mTextureLoader.SetMipMapping(TRUE);
 	mTextureLoader.SetTextureFilter(txBilinear);
 
-	assert(mTextureLoader.LoadTextureFromDisk("menu/background.tga", 
+	assert(mTextureLoader.LoadTextureFromDisk("assets/textures/menu/background.tga", 
 		&mBackgroundTexture) == TRUE);
 
 	for (int i = 0; i < NUM_CHARACTERS; ++i) {
 		char path[30];
-		sprintf_s(path, "menu/select_portrait%d.tga", i);
+		sprintf_s(path, "assets/textures/menu/select_portrait%d.tga", i);
 		assert(mTextureLoader.LoadTextureFromDisk(path, &mPortraitTextures[i]) 
 			== TRUE);
 
-		sprintf_s(path, "menu/select_stats%d.tga", i);
+		sprintf_s(path, "assets/textures/menu/select_stats%d.tga", i);
 		assert(mTextureLoader.LoadTextureFromDisk(path, &mStatTextures[i]) 
 			== TRUE);
 
-		sprintf_s(path, "menu/select_descrip%d.tga", i);
+		sprintf_s(path, "assets/textures/menu/select_descrip%d.tga", i);
 		assert(mTextureLoader.LoadTextureFromDisk(path, &mDescripTextures[i]) 
 			== TRUE);
 	}
 
-	assert(mTextureLoader.LoadTextureFromDisk("menu/select_previous.tga", 
+	assert(mTextureLoader.LoadTextureFromDisk("assets/textures/menu/select_previous.tga", 
 		&mButtons[BTN_PREVIOUS].mTexture) == TRUE);
-	assert(mTextureLoader.LoadTextureFromDisk("menu/select_back.tga", 
+	assert(mTextureLoader.LoadTextureFromDisk("assets/textures/menu/select_back.tga", 
 		&mButtons[BTN_BACK].mTexture) == TRUE);
-	assert(mTextureLoader.LoadTextureFromDisk("menu/select_ok.tga", 
+	assert(mTextureLoader.LoadTextureFromDisk("assets/textures/menu/select_ok.tga", 
 		&mButtons[BTN_OK].mTexture) == TRUE);
-	assert(mTextureLoader.LoadTextureFromDisk("menu/select_next.tga", 
+	assert(mTextureLoader.LoadTextureFromDisk("assets/textures/menu/select_next.tga", 
 		&mButtons[BTN_NEXT].mTexture) == TRUE);
 
-	assert(mTextureLoader.LoadTextureFromDisk("menu/select_previous_pressed.tga", 
+	assert(mTextureLoader.LoadTextureFromDisk("assets/textures/menu/select_previous_pressed.tga", 
 		&mButtons[BTN_PREVIOUS].mPressedTexture) == TRUE);
-	assert(mTextureLoader.LoadTextureFromDisk("menu/select_back_pressed.tga", 
+	assert(mTextureLoader.LoadTextureFromDisk("assets/textures/menu/select_back_pressed.tga", 
 		&mButtons[BTN_BACK].mPressedTexture) == TRUE);
-	assert(mTextureLoader.LoadTextureFromDisk("menu/select_ok_pressed.tga", 
+	assert(mTextureLoader.LoadTextureFromDisk("assets/textures/menu/select_ok_pressed.tga", 
 		&mButtons[BTN_OK].mPressedTexture) == TRUE);
-	assert(mTextureLoader.LoadTextureFromDisk("menu/select_next_pressed.tga", 
+	assert(mTextureLoader.LoadTextureFromDisk("assets/textures/menu/select_next_pressed.tga", 
 		&mButtons[BTN_NEXT].mPressedTexture) == TRUE);
 
 	int windowWidth = mGameWindow->GetWidth();

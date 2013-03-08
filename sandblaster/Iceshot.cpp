@@ -63,9 +63,9 @@ void Iceshot::InitializeIceshotShaders() {
  
 	shift		   = cgGetNamedParameter(psIceshotProgram, "textShift");
     
-    iceTexture1 = BMPLoader::LoadTexture("weapontextures/ice1.bmp", IceshotTexIDs[0]);
-    iceTexture2 = BMPLoader::LoadTexture("weapontextures/ice2.bmp", IceshotTexIDs[1]);
-	iceTexture3 = BMPLoader::LoadTexture("weapontextures/ice3.bmp", IceshotTexIDs[2]);
+    iceTexture1 = BMPLoader::LoadTexture("assets/textures/weapon/ice1.bmp", IceshotTexIDs[0]);
+    iceTexture2 = BMPLoader::LoadTexture("assets/textures/weapon/ice2.bmp", IceshotTexIDs[1]);
+	iceTexture3 = BMPLoader::LoadTexture("assets/textures/weapon/ice3.bmp", IceshotTexIDs[2]);
 
     text1 = cgGetNamedParameter(psIceshotProgram, "text1");
     cgGLSetTextureParameter(text1, IceshotTexIDs[0]);

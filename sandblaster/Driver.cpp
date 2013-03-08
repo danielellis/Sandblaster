@@ -292,8 +292,8 @@ void Driver::InitializeWeaponEffects()
  
 	psFreezeEffectTextcoord			= cgGetNamedParameter(vsFreezeEffectProgram, "texCoordIN");
     
-    FreezeEffectTexture1 = BMPLoader::LoadTexture("weapontextures/freeze1.bmp", FreezeEffectTexIDs[0]);
-    FreezeEffectTexture2 = BMPLoader::LoadTexture("weapontextures/freeze2.bmp", FreezeEffectTexIDs[1]);
+    FreezeEffectTexture1 = BMPLoader::LoadTexture("assets/textures/weapon/freeze1.bmp", FreezeEffectTexIDs[0]);
+    FreezeEffectTexture2 = BMPLoader::LoadTexture("assets/textures/weapon/freeze2.bmp", FreezeEffectTexIDs[1]);
 
     FreezeEffectText1 = cgGetNamedParameter(psFreezeEffectProgram, "text1");
     cgGLSetTextureParameter(FreezeEffectText1, FreezeEffectTexIDs[0]);

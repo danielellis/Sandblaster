@@ -25,7 +25,7 @@ void FreezeParticle::InitializeFreezeParticleShader()
 
 	FreezeParticleCoord0 = cgGetNamedParameter(FreezeParticleProgram, "texcoord0");
 
-	textureLoader.LoadTextureFromDisk("weapontextures/freezeparticle.tga", &FreezeParticleTexture);
+	textureLoader.LoadTextureFromDisk("assets/textures/weapon/freezeparticle.tga", &FreezeParticleTexture);
 	FreezeParticleText1 = cgGetNamedParameter(FreezeParticleProgram, "text1");
 	cgGLSetTextureParameter(FreezeParticleText1, FreezeParticleTexture.TextureID);
 	CheckForCgError("FreezeParticle", "setting decal 2D texture");

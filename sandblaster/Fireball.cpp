@@ -65,8 +65,8 @@ void Fireball::InitializeFireBallShaders() {
 	
     glGenTextures(2, fireballTexIDs);
     
-    fireTexture1 = BMPLoader::LoadTexture("weapontextures/fire1.bmp", fireballTexIDs[0]);
-    fireTexture2 = BMPLoader::LoadTexture("weapontextures/fire2.bmp", fireballTexIDs[1]);
+    fireTexture1 = BMPLoader::LoadTexture("assets/textures/weapon/fire1.bmp", fireballTexIDs[0]);
+    fireTexture2 = BMPLoader::LoadTexture("assets/textures/weapon/fire2.bmp", fireballTexIDs[1]);
 
     text1 = cgGetNamedParameter(psFireballProgram, "text1");
     cgGLSetTextureParameter(text1, fireballTexIDs[0]);

@@ -69,7 +69,7 @@ void ToxicParticleSystem::InitializeToxicParticleSystemShader() {
 	move				    = cgGetNamedParameter(psToxicshotProgram, "moveTex");
 	alpha     				= cgGetNamedParameter(psToxicshotProgram, "alpha");
     
-    toxicTexture1 = BMPLoader::LoadTexture("weapontextures/toxic1.bmp", ToxicshotTexIDs[0]);
+    toxicTexture1 = BMPLoader::LoadTexture("assets/textures/weapon/toxic1.bmp", ToxicshotTexIDs[0]);
 
     text1 = cgGetNamedParameter(psToxicshotProgram, "text1");
     cgGLSetTextureParameter(text1, ToxicshotTexIDs[0]);

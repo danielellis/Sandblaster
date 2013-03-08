@@ -54,37 +54,37 @@ void Scrappy::InitializeScrappyShaders() {
 	colorIN	        = cgGetNamedParameter(psScrappyProgram, "color");
 
 
-	textureLoader.LoadTextureFromDisk("shadermaps/scrappy_colormap.tga", &ScrappyColorTexture);
+	textureLoader.LoadTextureFromDisk("assets/textures/shadermaps/scrappy_colormap.tga", &ScrappyColorTexture);
 	text1 = cgGetNamedParameter(psScrappyProgram, "text1");
 	cgGLSetTextureParameter(text1, ScrappyColorTexture.TextureID);
 	CheckForCgError("scrappy", "setting decal 2D texture");
 
-	textureLoader.LoadTextureFromDisk("shadermaps/scrappy_bodymap.tga", &ScrappyBodyTexture);
+	textureLoader.LoadTextureFromDisk("assets/textures/shadermaps/scrappy_bodymap.tga", &ScrappyBodyTexture);
 	text2 = cgGetNamedParameter(psScrappyProgram, "text2");
 	cgGLSetTextureParameter(text2, ScrappyBodyTexture.TextureID);
 	CheckForCgError("scrappy", "setting decal 2D texture");
 
-	textureLoader.LoadTextureFromDisk("shadermaps/scrappy_hullmap.tga", &ScrappyHullTexture);
+	textureLoader.LoadTextureFromDisk("assets/textures/shadermaps/scrappy_hullmap.tga", &ScrappyHullTexture);
 	text3 = cgGetNamedParameter(psScrappyProgram, "text3");
 	cgGLSetTextureParameter(text3, ScrappyHullTexture.TextureID);
 	CheckForCgError("scrappy", "setting decal 2D texture");
 
-	textureLoader.LoadTextureFromDisk("shadermaps/scrappy_deckmap.tga", &ScrappyDeckTexture);
+	textureLoader.LoadTextureFromDisk("assets/textures/shadermaps/scrappy_deckmap.tga", &ScrappyDeckTexture);
 	text4 = cgGetNamedParameter(psScrappyProgram, "text4");
 	cgGLSetTextureParameter(text4, ScrappyDeckTexture.TextureID);
 	CheckForCgError("scrappy", "setting decal 2D texture");
 
-	textureLoader.LoadTextureFromDisk("shadermaps/scrappy_sailmap.tga", &ScrappySailTexture);
+	textureLoader.LoadTextureFromDisk("assets/textures/shadermaps/scrappy_sailmap.tga", &ScrappySailTexture);
 	text5 = cgGetNamedParameter(psScrappyProgram, "text5");
 	cgGLSetTextureParameter(text5, ScrappySailTexture.TextureID);
 	CheckForCgError("scrappy", "setting decal 2D texture");
 
-	textureLoader.LoadTextureFromDisk("shadermaps/scrappy_sailcolormap.tga", &ScrappySailColorTexture);
+	textureLoader.LoadTextureFromDisk("assets/textures/shadermaps/scrappy_sailcolormap.tga", &ScrappySailColorTexture);
 	text6 = cgGetNamedParameter(psScrappyProgram, "text6");
 	cgGLSetTextureParameter(text6, ScrappySailColorTexture.TextureID);
 	CheckForCgError("scrappy", "setting decal 2D texture");
 
-	textureLoader.LoadTextureFromDisk("shadermaps/scrappy_normalmap.tga", &ScrappyNormalMap);
+	textureLoader.LoadTextureFromDisk("assets/textures/shadermaps/scrappy_normalmap.tga", &ScrappyNormalMap);
 	psNormalMap = cgGetNamedParameter(psScrappyProgram, "normalmap");
 	cgGLSetTextureParameter(psNormalMap, ScrappyNormalMap.TextureID);
 	CheckForCgError("scrappy", "setting decal 2D texture");

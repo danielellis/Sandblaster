@@ -59,8 +59,8 @@ void Sarge::InitializeSargeShaders() {
 	CheckForCgError("sarge", "getting parameters");
 
 	
-	textureLoader.LoadTextureFromDisk("shadermaps/sarge_normalmap.tga", &sargeNormalTexture);
-	textureLoader.LoadTextureFromDisk("shadermaps/sarge_colormap.tga", &sargeColorTexture);
+	textureLoader.LoadTextureFromDisk("assets/textures/shadermaps/sarge_normalmap.tga", &sargeNormalTexture);
+	textureLoader.LoadTextureFromDisk("assets/textures/shadermaps/sarge_colormap.tga", &sargeColorTexture);
 
 	//textureLoader.LoadTextureFromDisk("assets/textures/weapon/fire1.tga", &sargeColorTexture);
 

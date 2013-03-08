@@ -8,7 +8,7 @@
 
 using namespace std;
 
-MeshObject Fireball::mFireballMesh("models/fireball.obj");
+MeshObject Fireball::mFireballMesh("assets/models/fireball.obj");
 
 //Profiles
 CGprofile Fireball::vsFireballProfile;

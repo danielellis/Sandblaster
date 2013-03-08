@@ -24,7 +24,7 @@ CGparameter ToxicParticleSystem::move, ToxicParticleSystem::alpha;
 //Texture parameters 
 CGparameter ToxicParticleSystem::text1;
 
-MeshObject ToxicParticleSystem::mToxicParticleMesh("models/toxicparticle.obj");
+MeshObject ToxicParticleSystem::mToxicParticleMesh("assets/models/toxicparticle.obj");
 
 void ToxicParticleSystem::InitializeToxicParticleSystemShader() {
     GLuint ToxicshotTexIDs[1];

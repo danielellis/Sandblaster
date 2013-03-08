@@ -15,7 +15,7 @@ CGparameter Driver::vsFreezeEffectTextcoord, Driver::vsFreezeEffectPosition,
 		Driver::vsFreezeEffectMVMatrix, Driver::vsFreezeEffectGrow;
 CGparameter Driver::FreezeEffectText1, Driver::FreezeEffectText2, Driver::psFreezeEffectTextcoord;
 
-MeshObject Driver::FreezeEffectMesh("models/iceshot.obj");
+MeshObject Driver::FreezeEffectMesh("assets/models/iceshot.obj");
 
 void Driver::Initialize(WorldMode *worldMode, int health, int maxHealth, 
     float phi, float theta,

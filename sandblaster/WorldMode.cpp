@@ -61,7 +61,7 @@ bool WorldMode::LoadResources() {
 
 
 	//load temple obj
-	objmesh = LoadOBJ("models/temple.obj");
+	objmesh = LoadOBJ("assets/models/temple.obj");
 
 	for (unsigned int i = 0; i < objmesh->m_iNumberOfFaces; i++)
 	{

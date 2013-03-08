@@ -8,7 +8,7 @@
 
 using namespace std;
 
-MeshObject Iceshot::mIceMesh("models/iceshot.obj");
+MeshObject Iceshot::mIceMesh("assets/models/iceshot.obj");
 //Profiles
 CGprofile Iceshot::vsIceshotProfile;
 CGprofile Iceshot::psIceshotProfile;

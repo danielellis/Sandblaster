@@ -17,7 +17,7 @@ glTexture Sarge::sargeColorTexture, Sarge::sargeNormalTexture;
 
 //WorldMode *Sarge::mWorldMode;
 
-MeshObject Sarge::mMeshObject("models/sarge.obj");
+MeshObject Sarge::mMeshObject("assets/models/sarge.obj");
 
 void Sarge::InitializeSargeShaders() {
 	TextureLoader textureLoader;

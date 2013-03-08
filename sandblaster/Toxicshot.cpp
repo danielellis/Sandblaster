@@ -8,7 +8,7 @@
 
 using namespace std;
 
-MeshObject Toxicshot::mToxicShotMesh("models/toxicshot.obj");
+MeshObject Toxicshot::mToxicShotMesh("assets/models/toxicshot.obj");
 
 //Profiles
 CGprofile Toxicshot::vsToxicshotProfile;

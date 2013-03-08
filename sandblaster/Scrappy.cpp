@@ -12,7 +12,7 @@ CGprogram Scrappy::psScrappyProgram, Scrappy::vsScrappyProgram;
 CGparameter Scrappy::texcoord0,  Scrappy::texcoord1, Scrappy::textShift, Scrappy::text1, Scrappy::text2, Scrappy::text3, Scrappy::text4, Scrappy::text5, Scrappy::text6;
 CGparameter Scrappy::vsModelViewProj, Scrappy::vsLightViewProj, Scrappy::lightPosition;
 CGparameter Scrappy::psNormalMap, Scrappy::vertin, Scrappy::psLightVector, Scrappy::colorIN;
-MeshObject Scrappy::mMeshObject("models/scrappy.obj");
+MeshObject Scrappy::mMeshObject("assets/models/scrappy.obj");
 
 void Scrappy::InitializeScrappyShaders() {
 	TextureLoader textureLoader;

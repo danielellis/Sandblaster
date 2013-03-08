@@ -580,24 +580,24 @@ void WorldMode::LoadHUDAssets() {
 
 	for (unsigned int i = 0; i < NUM_WEAPONS; ++i) {
 		char path[20];
-		sprintf_s(path, "HUD/weapon%d.tga", i);
+		sprintf_s(path, "assets/textures/hud/weapon%d.tga", i);
 		assert(mTextureLoader.LoadTextureFromDisk(path, &mWeaponTextures[i]) 
 			== TRUE);
 	}
 
-	assert(mTextureLoader.LoadTextureFromDisk("HUD/lifebar_good.tga",
+	assert(mTextureLoader.LoadTextureFromDisk("assets/textures/hud/lifebar_good.tga",
 		&mLifebarTextures[LIFE_GOOD]) == TRUE);
-	assert(mTextureLoader.LoadTextureFromDisk("HUD/lifebar_half.tga",
+	assert(mTextureLoader.LoadTextureFromDisk("assets/textures/hud/lifebar_half.tga",
 		&mLifebarTextures[LIFE_HALF]) == TRUE);
-	assert(mTextureLoader.LoadTextureFromDisk("HUD/lifebar_crit.tga",
+	assert(mTextureLoader.LoadTextureFromDisk("assets/textures/hud/lifebar_crit.tga",
 		&mLifebarTextures[LIFE_CRIT]) == TRUE);
 
-	assert(mTextureLoader.LoadTextureFromDisk("HUD/lifebar_case.tga",
+	assert(mTextureLoader.LoadTextureFromDisk("assets/textures/hud/lifebar_case.tga",
 		&mLifebarCaseTexture) == TRUE);
 
 	for (int i = 0; i < 10; ++i) {
 		char path[15];
-		sprintf(path, "HUD/%d.tga", i);
+		sprintf(path, "assets/textures/hud/%d.tga", i);
 		assert(mTextureLoader.LoadTextureFromDisk(path, &mNumberTextures[i]) 
 			== TRUE);
 	}

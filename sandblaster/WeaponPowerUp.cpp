@@ -6,7 +6,7 @@ glTexture WeaponPowerUp::weapon;
 
 void WeaponPowerUp::Initialize(Vector3 p, float s)
 {
-	textureLoader.LoadTextureFromDisk("HUD/weapon_generic.tga", &weapon);
+	textureLoader.LoadTextureFromDisk("assets/textures/hud/weapon_generic.tga", &weapon);
 	
 	standingAngle = 45.0;
 	mTheta = 0.0;

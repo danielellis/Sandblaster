@@ -473,13 +473,13 @@ void WorldMode::Render() {
 }
 
 void WorldMode::LoadLensFlareAssets() {
-	assert(mTextureLoader.LoadTextureFromDisk("LensFlare/glow.tga",
+	assert(mTextureLoader.LoadTextureFromDisk("assets/textures/lensflare/glow.tga",
 		&mLensFlareTextures[LF_GLOW]) == TRUE);
-	assert(mTextureLoader.LoadTextureFromDisk("LensFlare/halo1.tga",
+	assert(mTextureLoader.LoadTextureFromDisk("assets/textures/lensflare/halo1.tga",
 		&mLensFlareTextures[LF_HALO1]) == TRUE);
-	assert(mTextureLoader.LoadTextureFromDisk("LensFlare/halo2.tga",
+	assert(mTextureLoader.LoadTextureFromDisk("assets/textures/lensflare/halo2.tga",
 		&mLensFlareTextures[LF_HALO2]) == TRUE);
-	assert(mTextureLoader.LoadTextureFromDisk("LensFlare/halo3.tga",
+	assert(mTextureLoader.LoadTextureFromDisk("assets/textures/lensflare/halo3.tga",
 		&mLensFlareTextures[LF_HALO3]) == TRUE);
 	return;
 }

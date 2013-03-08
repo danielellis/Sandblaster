@@ -37,7 +37,7 @@ FractalTerrain::FractalTerrain(Frustum *vf) : mVF(vf), mPlains(0), mMountains(0)
     }
     */
 
-	textureLoader.LoadTextureFromDisk("terraintextures/sand.tga", &mTexture);
+	textureLoader.LoadTextureFromDisk("assets/textures/terrain/sand.tga", &mTexture);
     GenerateMap();
 
     mLeftRoot = &mNodePool[0];

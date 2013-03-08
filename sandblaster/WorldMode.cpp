@@ -579,7 +579,7 @@ void WorldMode::LoadHUDAssets() {
 	mTextureLoader.SetTextureFilter(txBilinear);
 
 	for (unsigned int i = 0; i < NUM_WEAPONS; ++i) {
-		char path[20];
+		char path[40];
 		sprintf_s(path, "assets/textures/hud/weapon%d.tga", i);
 		assert(mTextureLoader.LoadTextureFromDisk(path, &mWeaponTextures[i]) 
 			== TRUE);
@@ -596,7 +596,7 @@ void WorldMode::LoadHUDAssets() {
 		&mLifebarCaseTexture) == TRUE);
 
 	for (int i = 0; i < 10; ++i) {
-		char path[15];
+		char path[40];
 		sprintf(path, "assets/textures/hud/%d.tga", i);
 		assert(mTextureLoader.LoadTextureFromDisk(path, &mNumberTextures[i]) 
 			== TRUE);

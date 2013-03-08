@@ -116,7 +116,7 @@ BMPImage *BMPLoader::LoadTexture(char* image_file, unsigned int texID) {
   if (!ImageLoad(image_file, TextureImage)) {
     cout << "couldn't find " << image_file << endl;
     exit(1);
-  }  
+  }
   /*  2d texture, level of detail 0 (normal), 3 components (red, green, blue),            */
   /*  x size from image, y size from image,                                              */    
   /*  border 0 (normal), rgb color data, unsigned byte data, data  */ 

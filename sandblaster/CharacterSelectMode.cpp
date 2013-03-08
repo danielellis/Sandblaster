@@ -36,7 +36,7 @@ bool CharacterSelectMode::LoadResources() {
 		&mBackgroundTexture) == TRUE);
 
 	for (int i = 0; i < NUM_CHARACTERS; ++i) {
-		char path[30];
+		char path[50];
 		sprintf_s(path, "assets/textures/menu/select_portrait%d.tga", i);
 		assert(mTextureLoader.LoadTextureFromDisk(path, &mPortraitTextures[i]) 
 			== TRUE);

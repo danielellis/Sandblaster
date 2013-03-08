@@ -20,9 +20,9 @@ void Skydome::InitializeSkydomeShaders() {
     TextureLoader textureLoader;
     glTexture daySky, nightSky, redSky, sun, sunMask;
 
-    textureLoader.LoadTextureFromDisk("skytextures/clouds2.tga", &daySky);
-    textureLoader.LoadTextureFromDisk("skytextures/night.tga", &nightSky);
-	textureLoader.LoadTextureFromDisk("skytextures/red.tga", &redSky);
+    textureLoader.LoadTextureFromDisk("assets/textures/sky/clouds2.tga", &daySky);
+    textureLoader.LoadTextureFromDisk("assets/textures/sky/night.tga", &nightSky);
+	textureLoader.LoadTextureFromDisk("assets/textures/sky/red.tga", &redSky);
 
     /*
     //Vertext Shader profile
@@ -69,8 +69,8 @@ void Skydome::InitializeSkydomeShaders() {
     cgGLSetTextureParameter(text3, redSky.TextureID);
     CheckForCgError("skydome", "setting decal 2D texture");
 
-	textureLoader.LoadTextureFromDisk("skytextures/sun.tga", &sun);
-	textureLoader.LoadTextureFromDisk("skytextures/sunmask.tga", &sunMask);
+	textureLoader.LoadTextureFromDisk("assets/textures/sky/sun.tga", &sun);
+	textureLoader.LoadTextureFromDisk("assets/textures/sky/sunmask.tga", &sunMask);
 
 	psSkydomeSunProfile = cgGLGetLatestProfile(CG_GL_FRAGMENT);
     cgGLSetOptimalOptions(psSkydomeSunProfile);

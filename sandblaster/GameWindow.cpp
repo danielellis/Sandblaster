@@ -1,15 +1,64 @@
-#include <windows.h>
-#include <stdlib.h>
-#include <gl/Glee.h>
-#include <SDL/SDL_OpenGL.h>
 #include "GameWindow.h"
 #include "InputManager.h"
 #include "InputEvent.h"
 #include "Audio.h"
 #include "Shader.h"
 
-GameWindow::GameWindow(char *title, int width, int height, int fps) : mScreen(NULL), mFrameDelay(1000/fps), mInitWidth(width), mInitHeight(height), mDone(false) {
-	strncpy_s(mWindowTitle, MAX_WINDOW_NAME, title, MAX_WINDOW_NAME);
+GameWindow::GameWindow(string title, int width, int height, int fps)
+	: mScreen(NULL)
+	, mWindowTitle(title)
+	, mInitWidth(width)
+	, mInitHeight(height)
+	, mFrameDelay(1000/fps)
+	, mDone(false)
+{ }
+
+bool GameWindow::Initialize() {
+	// initialize sdl
+	if (SDL_Init(SDL_INIT_AUDIO | SDL_INIT_VIDEO | SDL_INIT_TIMER | SDL_INIT_NOPARACHUTE) < 0) {
+		fprintf(stderr, "Unable to init SDL: %s\n", SDL_GetError());
+		exit(-1);
+	}
+
+	// get video info
+	const SDL_VideoInfo* info = SDL_GetVideoInfo();
+	if(info == NULL) {
+		/* This should probably never happen. */
+		fprintf(stderr, "Video query failed: %s\n",
+			SDL_GetError());
+		exit(-3);
+	}
+
+	// specify gl attributes
+	SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 8);
+	SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 8);
+	SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 8);
+	SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16);
+	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+
+	// initialize the window
+	mScreen = SDL_SetVideoMode(mInitWidth, mInitHeight, 
+		info->vfmt->BitsPerPixel, SDL_OPENGL /*| SDL_FULLSCREEN*/);
+	if (mScreen == NULL) {
+		fprintf(stderr, "Unable to set video mode: %s\n", SDL_GetError());
+		exit(-2);
+	}
+	SDL_WM_SetCaption(mWindowTitle.c_str(), 0);
+
+	//SDL_ShowCursor(false);
+	//SDL_WM_GrabInput(SDL_GRAB_ON);
+
+	InitializeGL();
+	InitializeShaderContext();
+
+	// Set up audio
+	setupaudio();
+
+	mGameModeManager.Initialize(this);
+
+	//playSound("music/grinch.wav", AUDIO_LOCAL);
+
+	return true;
 }
 
 void GameWindow::Run() {
@@ -31,6 +80,17 @@ void GameWindow::Run() {
 			baseTime = currTime;
 		}
 	}
+}
+
+bool GameWindow::ShutDown() {
+	//mGameModeManager.Shutdown();
+
+	// Close audio engine
+	closeaudio();
+
+	SDL_Quit();
+
+	return true;
 }
 
 void GameWindow::HandleEvents() {
@@ -70,7 +130,6 @@ void GameWindow::HandleEvents() {
 	}
 }
 
-
 void GameWindow::HandleResize(const SDL_ResizeEvent &event) {
 	int width = event.w;
 	int height = event.h;
@@ -87,54 +146,6 @@ void GameWindow::HandleResize(const SDL_ResizeEvent &event) {
 	gluPerspective(45, width / (float)height, 0.1f, 100.0f);
 }
 
-bool GameWindow::Initialize() {
-	// initialize sdl
-	if (SDL_Init(SDL_INIT_AUDIO | SDL_INIT_VIDEO | SDL_INIT_TIMER | SDL_INIT_NOPARACHUTE) < 0) {
-		fprintf(stderr, "Unable to init SDL: %s\n", SDL_GetError());
-		exit(-1);
-	}
-
-	// get video info
-	const SDL_VideoInfo* info = SDL_GetVideoInfo();
-	if(info == NULL) {
-		/* This should probably never happen. */
-		fprintf(stderr, "Video query failed: %s\n",
-			SDL_GetError());
-		exit(-3);
-	}
-
-	// specify gl attributes
-	SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 8);
-	SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 8);
-	SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 8);
-	SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16);
-	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
-
-	// initialize the window
-	mScreen = SDL_SetVideoMode(mInitWidth, mInitHeight, 
-		info->vfmt->BitsPerPixel, SDL_OPENGL /*| SDL_FULLSCREEN*/);
-	if (mScreen == NULL) {
-		fprintf(stderr, "Unable to set video mode: %s\n", SDL_GetError());
-		exit(-2);
-	}
-	SDL_WM_SetCaption(mWindowTitle, 0);
-
-	//SDL_ShowCursor(false);
-	//SDL_WM_GrabInput(SDL_GRAB_ON);
-
-	InitializeGL();
-	InitializeShaderContext();
-
-	// Set up audio
-	setupaudio();
-
-	mGameModeManager.Initialize(this);
-
-	//playSound("music/grinch.wav", AUDIO_LOCAL);
-
-	return true;
-}
-
 void GameWindow::InitializeGL() {
 	glEnable(GL_NORMALIZE);
 	glShadeModel(GL_SMOOTH);
@@ -149,18 +160,6 @@ void GameWindow::InitializeGL() {
 	gluPerspective(45, mScreen->w / (float)mScreen->h, 0.1f, 100);
 }
 
-bool GameWindow::ShutDown() {
-	//mGameModeManager.Shutdown();
-
-	// Close audio engine
-	closeaudio();
-
-	SDL_Quit();
-
-	return true;
-}
-
-
 void GameWindow::SetOrthographicProjection() {
 	glMatrixMode(GL_PROJECTION);
 	glPushMatrix();
@@ -174,7 +173,6 @@ void GameWindow::SetOrthographicProjection() {
 	glTranslatef(0.0, (float)-mScreen->h, 0.0);
 	glMatrixMode(GL_MODELVIEW);
 }
-
 
 void GameWindow::ResetPerspectiveProjection() {
 	glMatrixMode(GL_PROJECTION);

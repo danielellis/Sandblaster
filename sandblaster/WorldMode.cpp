@@ -255,10 +255,10 @@ void WorldMode::Start() {
 	SDL_ShowCursor(false);
 	SDL_WM_GrabInput(SDL_GRAB_ON);
 
-	glViewport(0, 0, mGameWindow->mScreen->w, mGameWindow->mScreen->h);
+	glViewport(0, 0, mGameWindow->GetWidth(), mGameWindow->GetHeight());
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	gluPerspective(60, mGameWindow->mScreen->w / (float)mGameWindow->mScreen->h, 0.1f, 500.0f);
+	gluPerspective(60, mGameWindow->GetWidth() / (float)mGameWindow->GetHeight(), 0.1f, 500.0f);
 }
 
 void WorldMode::Stop() {

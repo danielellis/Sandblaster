@@ -89,7 +89,7 @@ bool WorldMode::LoadResources() {
 		}
 	}
 
-	mTextureLoader.LoadTextureFromDisk("buildingtextures/templetex.tga", &templeTex);
+	mTextureLoader.LoadTextureFromDisk("assets/textures/building/templetex.tga", &templeTex);
 
 	// Load the graphics for 2D top layer effects (Lens flare and HUD)
 	LoadLensFlareAssets();

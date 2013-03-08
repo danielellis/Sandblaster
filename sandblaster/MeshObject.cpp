@@ -50,7 +50,7 @@ void MeshObject::LoadMeshFromFile(std::string meshFileName)
 
 	if (!meshStream)
 	{
-		std::cout << "Error opening file" << meshFileName;
+		std::cout << "Error opening file " << meshFileName << endl;
 		meshStream.close();
 		return;
 	}

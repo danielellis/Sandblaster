@@ -799,7 +799,7 @@ void WorldMode::HandleCollisions() {
 			if ((*driverItr)->IsCollided(*driverItr2, collisionNormal)) {
 				relVel = (*driverItr)->GetVel() - (*driverItr2)->GetVel();
 
-				playSound("sfx/collide_driver_driver.wav", 0.5);
+				playSound("assets/sfx/collide_driver_driver.wav", 0.5);
 
 				impulse = -1.5f*relVel.DotProduct(collisionNormal)/(1/(*driverItr)->GetMass() + 1/(*driverItr2)->GetMass());
 				(*driverItr)->SetVel((*driverItr)->GetVel() + (impulse/(*driverItr)->GetMass())*collisionNormal);
@@ -827,7 +827,7 @@ void WorldMode::HandleCollisions() {
 					(*driverItr)->DecrementHealth(3*(*pwItr)->GetDamage());
 				}
 
-				playSound("sfx/collide_weapon_driver.wav", 1.0);
+				playSound("assets/sfx/collide_weapon_driver.wav", 1.0);
 
 				delete *pwItr;
 				pwItr = mProjectileWeapons.erase(pwItr);
@@ -845,7 +845,7 @@ void WorldMode::HandleCollisions() {
 			if ((*terrainItr)->IsCollided(*pwItr)) {
 				(*pwItr)->MadeImpact();
 
-				playSound("sfx/collide_weapon_terrain.wav", 0.5); 
+				playSound("assets/sfx/collide_weapon_terrain.wav", 0.5); 
 
 				delete *pwItr;
 				pwItr = mProjectileWeapons.erase(pwItr);
@@ -966,7 +966,7 @@ void WorldMode::HandleCollisions() {
 				normalVel = vel.DotProduct(collisionNormal) * collisionNormal;
 				(*driverItr)->SetVel(vel - 2*normalVel);
 
-				playSound("sfx/collide_driver_terrain.wav", 1.0);
+				playSound("assets/sfx/collide_driver_terrain.wav", 1.0);
 			}
 		}
 	}
@@ -978,7 +978,7 @@ void WorldMode::HandleCollisions() {
 			if ((*hbItr)->isActive() && (*hbItr)->IsCollided((*driverItr)->GetPos(), (*driverItr)->GetBoundsRadius())) {
 				(*driverItr)->IncrementHealth(25);
 
-				//playSound("sfx/collide_weapon_driver.wav", 1.0);
+				//playSound("assets/sfx/collide_weapon_driver.wav", 1.0);
 
 				//delete *hbItr;
 				//hbItr = mHealthBoxes.erase(hbItr);
@@ -997,7 +997,7 @@ void WorldMode::HandleCollisions() {
 		weapItr = mWeaponBoxes.begin();
 		while (weapItr != mWeaponBoxes.end()) {
 			if ((*weapItr)->isActive() && (*weapItr)->IsCollided((*driverItr)->GetPos(), (*driverItr)->GetBoundsRadius())) {              
-				//playSound("sfx/collide_weapon_driver.wav", 1.0);
+				//playSound("assets/sfx/collide_weapon_driver.wav", 1.0);
 
 				int weapon = (rand())%3;
 

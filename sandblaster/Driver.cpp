@@ -146,7 +146,7 @@ void Driver::FireCurrentWeapon() {
    if (mTimeSinceWeaponFire >= ProjectileWeaponDelays[mCurrentWeapon] && mWeaponCounts[mCurrentWeapon] > 0) {
       mWorldMode->AddProjectileWeapon(mCurrentWeapon, mPhi, mTheta, mPos + mBoundsRadius*mDir, mVel, mDir);
       //TODO change the sounds and volumes for sound effects
-      playSound("sfx/fire_primary.wav", 0.3);
+      playSound("assets/sfx/fire_primary.wav", 0.3);
       mTimeSinceWeaponFire = 0;
 
 	   --mWeaponCounts[mCurrentWeapon];
@@ -155,12 +155,12 @@ void Driver::FireCurrentWeapon() {
 
 void Driver::DecrementHealth(int amount) {
    mHealth = (mHealth - amount < 0) ? 0 : mHealth - amount;
-   playSound("sfx/health_down.wav", 0.3); 
+   playSound("assets/sfx/health_down.wav", 0.3); 
 }
 
 void Driver::IncrementHealth(int amount) {
    mHealth = (mHealth + amount > mMaxHealth) ? mMaxHealth : mHealth + amount;
-   playSound("sfx/health_up.wav", 0.3); 
+   playSound("assets/sfx/health_up.wav", 0.3); 
 }
 
 void Driver::NextWeapon() {
@@ -176,7 +176,7 @@ void Driver::NextWeapon() {
 		mCurrentWeapon = W_FIREBALL;
 		break;
 	}
-   playSound("sfx/weapon_switch_up.wav", AUDIO_LOCAL); 
+   playSound("assets/sfx/weapon_switch_up.wav", AUDIO_LOCAL); 
 }
 
 
@@ -193,7 +193,7 @@ void Driver::PreviousWeapon() {
 		mCurrentWeapon = W_ICESHOT;
 		break;
 	}
-	playSound("sfx/weapon_switch_down.wav", AUDIO_LOCAL); 
+	playSound("assets/sfx/weapon_switch_down.wav", AUDIO_LOCAL); 
 }
 
 void Driver::FreezeEffectBegin()

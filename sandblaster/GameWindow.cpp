@@ -16,10 +16,10 @@ GameWindow::GameWindow(const string& title, const int width, const int height, c
 bool GameWindow::Initialize() {
 	InitializeSDL();
 	InitializeGL();
-	InitializeShaderContext();
 
-	// Set up audio
-	setupaudio();
+	InitializeShaderContext(); // In Shader.cpp
+
+	setupaudio(); // In Audio.cpp
 
 	mGameModeManager.Initialize(this);
 
@@ -140,6 +140,9 @@ void GameWindow::InitializeSDL() {
 	SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS,  1);     // Anti-aliasing - 1 enables, 0 disables
 	SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES,  2);     // # of samples around pixel used for anti-aliasing
 
+	// Set the window title
+	SDL_WM_SetCaption(mWindowTitle.c_str(), NULL);
+
 	// Initialize the window
 	mScreen = SDL_SetVideoMode(
 		mInitWidth,
@@ -151,21 +154,23 @@ void GameWindow::InitializeSDL() {
 		fprintf(stderr, "Unable to set video mode: %s\n", SDL_GetError());
 		exit(-2);
 	}
-	
-	// Set the window title
-	SDL_WM_SetCaption(mWindowTitle.c_str(), NULL);
 }
 
 void GameWindow::InitializeGL() {
 	glEnable(GL_NORMALIZE);
 	glShadeModel(GL_SMOOTH);
-	glClearColor(0.93f, 0.79f, 0.69f, 0); // Desert sand
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	glViewport(0, 0, mScreen->w, mScreen->h);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	gluPerspective(45, mScreen->w / (float)mScreen->h, 0.1f, 100);
+
+	// Clear the screen to desert sand color
+	glClearColor(0.93f, 0.79f, 0.69f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT);
+
+	SDL_GL_SwapBuffers();
 }
 
 void GameWindow::SetOrthographicProjection() {

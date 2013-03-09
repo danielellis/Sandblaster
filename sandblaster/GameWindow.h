@@ -2,7 +2,7 @@
 #define GAME_WINDOW_H
 
 #include <windows.h>
-#include <GL/Glee.h>
+#include <GL/GLee.h>
 #include <SDL/SDL_OpenGL.h>
 #include <SDL/SDL.h>
 #include <string>

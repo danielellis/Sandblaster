@@ -16,7 +16,6 @@ GameWindow::GameWindow(const string& title, const int width, const int height, c
 bool GameWindow::Initialize() {
 	InitializeSDL();
 	InitializeGL();
-
 	InitializeShaderContext(); // In Shader.cpp
 
 	setupaudio(); // In Audio.cpp
@@ -157,6 +156,11 @@ void GameWindow::InitializeSDL() {
 }
 
 void GameWindow::InitializeGL() {
+	// Clear to black
+	glClearColor(0, 0, 0, 1);
+	glClear(GL_COLOR_BUFFER_BIT);
+	SDL_GL_SwapBuffers();
+
 	glEnable(GL_NORMALIZE);
 	glShadeModel(GL_SMOOTH);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -165,12 +169,6 @@ void GameWindow::InitializeGL() {
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	gluPerspective(45, mScreen->w / (float)mScreen->h, 0.1f, 100);
-
-	// Clear the screen to desert sand color
-	glClearColor(0.93f, 0.79f, 0.69f, 1.0f);
-	glClear(GL_COLOR_BUFFER_BIT);
-
-	SDL_GL_SwapBuffers();
 }
 
 void GameWindow::SetOrthographicProjection() {

@@ -1,7 +1,6 @@
 #ifndef LIGHTS_H
 #define LIGHTS_H
 
-// Must include stdlib.h before glut.h in VS7 and VS8
 #include <stdlib.h>
 #include <SDL/SDL_opengl.h>
 

@@ -13,9 +13,9 @@
 #ifndef INPUTMANAGER_H
 #define INPUTMANAGER_H
 
-//#include "InputEvent.h"
-
 #include <string>
+
+#include "InputEvent.h"
 
 #define NUM_KEY_CODES   300
 #define NUM_MOUSE_CODES 10
@@ -30,23 +30,20 @@
 #define IM_MOUSE_MOVE_UP          8
 #define IM_MOUSE_MOVE_DOWN        9
 
-class InputEvent;
-
 class InputManager {
 	InputEvent *mKeyInputEvents[NUM_KEY_CODES];
-   InputEvent *mMouseInputEvents[NUM_MOUSE_CODES];
-
+	InputEvent *mMouseInputEvents[NUM_MOUSE_CODES];
 
 	//InputManager();
 	//static InputManager *mInputManager;
 public:
-   InputManager();
+	InputManager();
 
-   InputEvent *GetKeyEvent(int);
+	InputEvent *GetKeyEvent(int);
 	InputEvent *GetMouseEvent(int);
-   void MouseMove(int, int, int);
-   int GetMouseX();
-   int GetMouseY();
+	void MouseMove(int, int, int);
+	int GetMouseX();
+	int GetMouseY();
 	//static InputManager *getInputManager() {return mInputManager;}
 	//static void Initialize();
 
@@ -55,7 +52,7 @@ public:
 	//void HandleInput();
 
 	void AddKeyEvent(InputEvent *, int);
-   void AddMouseEvent(InputEvent *, int);
+	void AddMouseEvent(InputEvent *, int);
 
 	void RemoveKeyEvent(InputEvent *);
 	void RemoveMouseEvent(InputEvent *);
@@ -66,7 +63,6 @@ public:
 	void ClearAllInputEvents();
 
 	void ResetAllInputEvents();
-
 };
 
 #endif

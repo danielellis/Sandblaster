@@ -4,7 +4,7 @@
 #include "Audio.h"
 #include "Shader.h"
 
-GameWindow::GameWindow(string title, int width, int height, int fps)
+GameWindow::GameWindow(const string& title, const int width, const int height, const int fps)
 	: mScreen(NULL)
 	, mWindowTitle(title)
 	, mInitWidth(width)
@@ -14,40 +14,7 @@ GameWindow::GameWindow(string title, int width, int height, int fps)
 { }
 
 bool GameWindow::Initialize() {
-	// initialize sdl
-	if (SDL_Init(SDL_INIT_AUDIO | SDL_INIT_VIDEO | SDL_INIT_TIMER | SDL_INIT_NOPARACHUTE) < 0) {
-		fprintf(stderr, "Unable to init SDL: %s\n", SDL_GetError());
-		exit(-1);
-	}
-
-	// get video info
-	const SDL_VideoInfo* info = SDL_GetVideoInfo();
-	if(info == NULL) {
-		/* This should probably never happen. */
-		fprintf(stderr, "Video query failed: %s\n",
-			SDL_GetError());
-		exit(-3);
-	}
-
-	// specify gl attributes
-	SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 8);
-	SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 8);
-	SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 8);
-	SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16);
-	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
-
-	// initialize the window
-	mScreen = SDL_SetVideoMode(mInitWidth, mInitHeight, 
-		info->vfmt->BitsPerPixel, SDL_OPENGL /*| SDL_FULLSCREEN*/);
-	if (mScreen == NULL) {
-		fprintf(stderr, "Unable to set video mode: %s\n", SDL_GetError());
-		exit(-2);
-	}
-	SDL_WM_SetCaption(mWindowTitle.c_str(), 0);
-
-	//SDL_ShowCursor(false);
-	//SDL_WM_GrabInput(SDL_GRAB_ON);
-
+	InitializeSDL();
 	InitializeGL();
 	InitializeShaderContext();
 
@@ -146,13 +113,54 @@ void GameWindow::HandleResize(const SDL_ResizeEvent &event) {
 	gluPerspective(45, width / (float)height, 0.1f, 100.0f);
 }
 
+void GameWindow::InitializeSDL() {
+	const SDL_VideoInfo *info;
+
+	// Init SDL
+	if (SDL_Init(SDL_INIT_AUDIO | SDL_INIT_VIDEO | SDL_INIT_TIMER | SDL_INIT_NOPARACHUTE) < 0) {
+		fprintf(stderr, "Unable to init SDL: %s\n", SDL_GetError());
+		exit(-1);
+	}
+
+	// Get video info
+	if((info = SDL_GetVideoInfo()) == NULL) {
+		fprintf(stderr, "Video query failed: %s\n", SDL_GetError());
+		exit(-3);
+	}
+
+	// Specify GL Attributes (must do before SDL_SetVideoMode)
+	SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 8);                // Number of bits for the red channel of the color buffer
+	SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 8);              // Number of bits for the green channel of the color buffer
+	SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 8);               // Number of bits for the blue channel of the color buffer
+	
+	SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16);             // Number of bits for the depth buffer
+	
+	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);            // Double buffering - 1 enables, 0 disables
+	
+	SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS,  1);     // Anti-aliasing - 1 enables, 0 disables
+	SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES,  2);     // # of samples around pixel used for anti-aliasing
+
+	// Initialize the window
+	mScreen = SDL_SetVideoMode(
+		mInitWidth,
+		mInitHeight, 
+		info->vfmt->BitsPerPixel,
+		SDL_OPENGL | SDL_GL_DOUBLEBUFFER /*| SDL_FULLSCREEN*/
+	);
+	if (mScreen == NULL) {
+		fprintf(stderr, "Unable to set video mode: %s\n", SDL_GetError());
+		exit(-2);
+	}
+	
+	// Set the window title
+	SDL_WM_SetCaption(mWindowTitle.c_str(), NULL);
+}
+
 void GameWindow::InitializeGL() {
 	glEnable(GL_NORMALIZE);
 	glShadeModel(GL_SMOOTH);
-	glClearColor(1.0, 1.0, 1.0, 0.0);
+	glClearColor(0.93f, 0.79f, 0.69f, 0); // Desert sand
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-	//glEnable(GL_TEXTURE_2D);
 
 	glViewport(0, 0, mScreen->w, mScreen->h);
 	glMatrixMode(GL_PROJECTION);

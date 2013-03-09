@@ -11,7 +11,10 @@ GameWindow::GameWindow(const string& title, const int width, const int height, c
 	, mInitHeight(height)
 	, mFrameDelay(1000/fps)
 	, mDone(false)
-{ }
+{
+	mGameModeManager = new GameModeManager();
+	mInputManager = new InputManager();
+}
 
 bool GameWindow::Initialize() {
 	InitializeSDL();
@@ -20,7 +23,7 @@ bool GameWindow::Initialize() {
 
 	setupaudio(); // In Audio.cpp
 
-	mGameModeManager.Initialize(this);
+	mGameModeManager->Initialize(this);
 
 	//playSound("music/grinch.wav", AUDIO_LOCAL);
 
@@ -40,8 +43,8 @@ void GameWindow::Run() {
 		if ((currTime = SDL_GetTicks()) - baseTime > mFrameDelay) {
 			deltaSeconds = (currTime - baseTime) * 0.001f;
 
-			mGameModeManager.UpdateCurrentMode(deltaSeconds);
-			mGameModeManager.RenderCurrentMode();
+			mGameModeManager->UpdateCurrentMode(deltaSeconds);
+			mGameModeManager->RenderCurrentMode();
 
 			baseTime = currTime;
 		}
@@ -69,25 +72,25 @@ void GameWindow::HandleEvents() {
 			mDone = true;
 		}
 		else if (event.type == SDL_KEYDOWN) {
-			if (ie = mInputManager.GetKeyEvent(event.key.keysym.sym))
+			if (ie = mInputManager->GetKeyEvent(event.key.keysym.sym))
 				ie->Press();
 		}
 		else if (event.type == SDL_KEYUP) {
-			if (ie = mInputManager.GetKeyEvent(event.key.keysym.sym))
+			if (ie = mInputManager->GetKeyEvent(event.key.keysym.sym))
 				ie->Release();
 			//mGameModeManager.HandleKeyUp(event.key.keysym);
 		}
 		else if (event.type == SDL_MOUSEMOTION) {
-			mInputManager.MouseMove(IM_MOUSE_MOVE_LEFT, IM_MOUSE_MOVE_RIGHT, event.motion.xrel);
-			mInputManager.MouseMove(IM_MOUSE_MOVE_UP, IM_MOUSE_MOVE_DOWN, event.motion.yrel);
+			mInputManager->MouseMove(IM_MOUSE_MOVE_LEFT, IM_MOUSE_MOVE_RIGHT, event.motion.xrel);
+			mInputManager->MouseMove(IM_MOUSE_MOVE_UP, IM_MOUSE_MOVE_DOWN, event.motion.yrel);
 			//mGameModeManager.HandleMouseMotion(event.motion);
 		}
 		else if (event.type == SDL_MOUSEBUTTONDOWN) {
-			if (ie = mInputManager.GetMouseEvent(event.button.button))
+			if (ie = mInputManager->GetMouseEvent(event.button.button))
 				ie->Press();
 		}
 		else if (event.type == SDL_MOUSEBUTTONUP) {
-			if (ie = mInputManager.GetMouseEvent(event.button.button))
+			if (ie = mInputManager->GetMouseEvent(event.button.button))
 				ie->Release();
 		}
 		else if (event.type == SDL_VIDEORESIZE) {

@@ -8,7 +8,6 @@
 #include "InputManager.h"
 #include "GameWindow.h"
 
-
 CharacterSelectMode::~CharacterSelectMode() {
 	mTextureLoader.FreeTexture(&mBackgroundTexture);
 
@@ -19,14 +18,12 @@ CharacterSelectMode::~CharacterSelectMode() {
 	}
 }
 
-
 void CharacterSelectMode::SetNeighborModes(const std::vector<GameMode *> &modes) {
 	assert(modes.size() == 2);
 
 	mWorldMode = dynamic_cast<WorldMode *>(modes[0]);
 	mMainMenuMode = modes[1];
 }
-
 
 bool CharacterSelectMode::LoadResources() {
 	mTextureLoader.SetMipMapping(TRUE);
@@ -88,7 +85,6 @@ bool CharacterSelectMode::LoadResources() {
 	return true;
 }
 
-
 void CharacterSelectMode::Start() {
 	mButtonPressed = -1;
 
@@ -112,14 +108,12 @@ void CharacterSelectMode::Start() {
 
 }
 
-
 void CharacterSelectMode::Stop() {
 	glDisable(GL_BLEND);
 	glDisable(GL_TEXTURE_2D);
 
 	mGameWindow->ResetPerspectiveProjection();
 }
-
 
 void CharacterSelectMode::Update(float timeElapsed) {
 	if (mClick.IsPressed()) {

@@ -31,11 +31,6 @@
 #define IM_MOUSE_MOVE_DOWN        9
 
 class InputManager {
-	InputEvent *mKeyInputEvents[NUM_KEY_CODES];
-	InputEvent *mMouseInputEvents[NUM_MOUSE_CODES];
-
-	//InputManager();
-	//static InputManager *mInputManager;
 public:
 	InputManager();
 
@@ -44,8 +39,6 @@ public:
 	void MouseMove(int, int, int);
 	int GetMouseX();
 	int GetMouseY();
-	//static InputManager *getInputManager() {return mInputManager;}
-	//static void Initialize();
 
 	//std::string getKeyName(in);
 
@@ -63,6 +56,10 @@ public:
 	void ClearAllInputEvents();
 
 	void ResetAllInputEvents();
+
+protected:
+	InputEvent *mKeyInputEvents[NUM_KEY_CODES];
+	InputEvent *mMouseInputEvents[NUM_MOUSE_CODES];
 };
 
 #endif

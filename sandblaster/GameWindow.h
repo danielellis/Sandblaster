@@ -23,7 +23,7 @@ public:
 	void QuitGame() {mDone = true;}
 	int GetWidth() {return mScreen->w;}
 	int GetHeight() {return mScreen->h;}
-	InputManager *GetInputManager() {return &mInputManager;}
+	InputManager * GetInputManager() {return mInputManager;}
 
 	void SetOrthographicProjection();
 	void ResetPerspectiveProjection();
@@ -43,8 +43,8 @@ protected:
 	int mInitWidth, mInitHeight;
 	bool mDone;
 
-	GameModeManager mGameModeManager;
-	InputManager mInputManager;
+	GameModeManager *mGameModeManager;
+	InputManager *mInputManager;
 };
 
 #endif

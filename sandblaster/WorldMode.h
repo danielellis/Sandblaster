@@ -21,15 +21,28 @@
 
 class WorldMode : public GameMode {
 public:
-   WorldMode(GameWindow *window): GameMode(window), 
-    mStrafeLeft(), mStrafeRight(), mStrafeForward(), mStrafeBackward(), 
-    mStrafeUp(), mStrafeDown(),
-    mMouseLeft(IE_INITIAL), mMouseRight(IE_INITIAL), mPause(IE_INITIAL),
-    mFireCurrentWeapon(), mNextWeapon(IE_INITIAL), 
-    mPrevWeapon(IE_INITIAL), mIncHealth(IE_INITIAL), mDecHealth(IE_INITIAL),
-    mDebugEyeMode(IE_INITIAL), mDebugTerrain(IE_INITIAL), mNextMode(NULL), mFractalTerrain(&mFrustum) {}
-   
-   ~WorldMode();
+    WorldMode(GameWindow *window)
+        : GameMode(window)
+        , mStrafeLeft()
+        , mStrafeRight()
+        , mStrafeForward()
+        , mStrafeBackward()
+        , mStrafeUp()
+        , mStrafeDown()
+        , mMouseLeft(IE_INITIAL)
+        , mMouseRight(IE_INITIAL)
+        , mPause(IE_INITIAL)
+        , mFireCurrentWeapon()
+        , mNextWeapon(IE_INITIAL)
+        , mPrevWeapon(IE_INITIAL)
+        , mIncHealth(IE_INITIAL)
+        , mDecHealth(IE_INITIAL)
+        , mDebugEyeMode(IE_INITIAL)
+        , mDebugTerrain(IE_INITIAL)
+        , mNextMode(NULL)
+        , mFractalTerrain(&mFrustum)
+    { }
+    ~WorldMode();
 
    void SetNeighborModes(const std::vector<GameMode *> &);
    bool LoadResources();

@@ -1,11 +1,12 @@
 #ifndef GAME_WINDOW_H
 #define GAME_WINDOW_H
 
+#include <string>
+
 #include <windows.h>
 #include <GL/GLee.h>
 #include <SDL/SDL_OpenGL.h>
 #include <SDL/SDL.h>
-#include <string>
 
 #include "GameModeManager.h"
 #include "InputManager.h"

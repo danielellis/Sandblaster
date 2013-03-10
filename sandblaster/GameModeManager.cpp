@@ -1,98 +1,98 @@
-#include <windows.h>
-#include <GL/glee.h>
-#include "WorldMode.h"
-#include "MainMenuMode.h"
-#include "PauseMenuMode.h"
-#include "CharacterSelectMode.h"
-#include "GameModeManager.h"
-#include "GameWindow.h"
 #include <vector>
 
-using namespace std;
+#include "GameModeManager.h"
 
-GameModeManager::GameModeManager() {
-   // construct all modes and add them to the modes list
-}
+#include "CharacterSelectMode.h"
+#include "GameWindow.h"
+#include "GameOverMode.h"
+#include "MainMenuMode.h"
+#include "PauseMenuMode.h"
+#include "WorldMode.h"
 
+GameModeManager::GameModeManager(GameWindow *window)
+    : gameWindow(window)
+{ }
 
-GameModeManager::~GameModeManager() {
-   delete mWorldMode;
-   delete mMainMenuMode;
-   delete mPauseMenuMode;
-   delete mCharacterSelectMode;
-   delete mGameOverMode;
-}
+void GameModeManager::Initialize() {
+    // modes is used to pass neighboring states to each individual state
+    std::vector<GameMode *> modes;
 
-void GameModeManager::Initialize(GameWindow *window) {
-   //modes is used to pass neighboring states to each individual state
-   vector<GameMode *> modes;
+    // Construct all modes and add them to the modes list
+    worldMode           = new WorldMode(gameWindow);
+    mainMenuMode        = new MainMenuMode(gameWindow);
+    pauseMenuMode       = new PauseMenuMode(gameWindow);
+    characterSelectMode = new CharacterSelectMode(gameWindow);
+    gameOverMode        = new GameOverMode(gameWindow);
 
-   mWorldMode = new WorldMode(window);
-   mMainMenuMode = new MainMenuMode(window);
-   mPauseMenuMode = new PauseMenuMode(window);
-   mCharacterSelectMode = new CharacterSelectMode(window);
-   mGameOverMode = new GameOverMode(window);
+    // TODO push the resource loading back. We don't need all the world mode
+    // resources before we load the main menu, for example.
+    mainMenuMode->LoadResources();
+    worldMode->LoadResources();
+    pauseMenuMode->LoadResources();
+    characterSelectMode->LoadResources();
+    gameOverMode->LoadResources();
 
-   mGameWindow = window;
+    modes.clear();
+   
+    modes.push_back(characterSelectMode);
+    mainMenuMode->SetNeighborModes(modes);
 
-   mMainMenuMode->LoadResources();
-   mWorldMode->LoadResources();
-   mPauseMenuMode->LoadResources();
-   mCharacterSelectMode->LoadResources();
-   mGameOverMode->LoadResources();
-   modes.clear();
+    modes.clear();
 
-   modes.push_back(mCharacterSelectMode);
-   mMainMenuMode->SetNeighborModes(modes);
-   modes.clear();
+    modes.push_back(pauseMenuMode);
+    modes.push_back(gameOverMode);
+    worldMode->SetNeighborModes(modes);
+   
+    modes.clear();
 
-   modes.push_back(mPauseMenuMode);
-   modes.push_back(mGameOverMode);
-   mWorldMode->SetNeighborModes(modes);
-   modes.clear();
+    modes.push_back(worldMode);
+    modes.push_back(mainMenuMode);
+    pauseMenuMode->SetNeighborModes(modes);
+   
+    modes.clear();
 
-   modes.push_back(mWorldMode);
-   modes.push_back(mMainMenuMode);
-   mPauseMenuMode->SetNeighborModes(modes);
-   modes.clear();
+    modes.push_back(worldMode);
+    modes.push_back(mainMenuMode);
+    characterSelectMode->SetNeighborModes(modes);
+   
+    modes.clear();
 
-   modes.push_back(mWorldMode);
-   modes.push_back(mMainMenuMode);
-   mCharacterSelectMode->SetNeighborModes(modes);
-   modes.clear();
+    modes.push_back(mainMenuMode);
+    gameOverMode->SetNeighborModes(modes);
+   
+    modes.clear();
 
-   modes.push_back(mMainMenuMode);
-   mGameOverMode->SetNeighborModes(modes);
-   modes.clear();
-
-   mCurrentMode = mMainMenuMode;
-   mCurrentMode->Start();
+    // Load the first game mode: The Main Menu
+    currentMode = mainMenuMode;
+    currentMode->Start();
 }
 
 void GameModeManager::Shutdown() {
-//delete modes
+    // Delete modes
+    delete worldMode;
+    delete mainMenuMode;
+    delete pauseMenuMode;
+    delete characterSelectMode;
+    delete gameOverMode;
 }
 
 void GameModeManager::SetMode(GameMode *mode) {
-   InputManager *im;
+    InputManager *im;
 
-   im = mGameWindow->GetInputManager();
-   mCurrentMode->Stop();
-   im->ClearAllInputEvents();
+    im = gameWindow->GetInputManager();
+    currentMode->Stop();
+    im->ClearAllInputEvents();
 
-   mCurrentMode = mode;
-   mCurrentMode->Start();
+    currentMode = mode;
+    currentMode->Start();
 }
-
-//void GameModeManager::Quit() {}
 
 void GameModeManager::UpdateCurrentMode(float deltaSeconds) {
-   GameMode *nextMode;
+    GameMode *nextMode;
 
-   nextMode = mCurrentMode->CheckForModeChange();
-   if (nextMode) {
-      SetMode(nextMode);
-   }
-   mCurrentMode->Update(deltaSeconds);
+    nextMode = currentMode->CheckForModeChange();
+    if (nextMode) {
+        SetMode(nextMode);
+    }
+    currentMode->Update(deltaSeconds);
 }
-

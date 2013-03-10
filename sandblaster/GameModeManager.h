@@ -7,24 +7,24 @@ class GameWindow;
 
 class GameModeManager {
 public:
-   GameModeManager();
-   virtual ~GameModeManager();
+   GameModeManager(GameWindow *window);
 
-   void Initialize(GameWindow *window);
-   void Shutdown();
+   void             Initialize();
+   void             Shutdown();
 
-   void SetMode(GameMode *);
-   //void Quit();
+   void             SetMode(GameMode *mode);
 
-   void UpdateCurrentMode(float elapsedTime);
-   void RenderCurrentMode() {mCurrentMode->Render();}
+   void             UpdateCurrentMode(float elapsedTime);
+   void             RenderCurrentMode() {currentMode->Render();}
 
 protected:
-   GameWindow *mGameWindow;
-   GameMode *mCurrentMode;
-
-   GameMode *mWorldMode, *mMainMenuMode, *mPauseMenuMode, 
-    *mCharacterSelectMode, *mGameOverMode;
+   GameWindow       *gameWindow;
+   GameMode         *currentMode,
+                    *worldMode,
+                    *mainMenuMode,
+                    *pauseMenuMode,
+                    *characterSelectMode,
+                    *gameOverMode;
 };
 
 #endif

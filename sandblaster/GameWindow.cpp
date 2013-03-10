@@ -1,7 +1,8 @@
 #include "GameWindow.h"
-#include "InputManager.h"
-#include "InputEvent.h"
+
 #include "Audio.h"
+#include "InputEvent.h"
+#include "InputManager.h"
 #include "Shader.h"
 
 GameWindow::GameWindow(const string& title, const int width, const int height, const int fps)
@@ -13,7 +14,7 @@ GameWindow::GameWindow(const string& title, const int width, const int height, c
 	, done(false)
     , fullScreen(false)
 {
-	gameModeManager = new GameModeManager();
+	gameModeManager = new GameModeManager(this);
 	inputManager = new InputManager();
 }
 
@@ -24,7 +25,7 @@ bool GameWindow::Initialize() {
 
 	setupaudio(); // In Audio.cpp
 
-	gameModeManager->Initialize(this);
+	gameModeManager->Initialize();
 
 	//playSound("music/grinch.wav", AUDIO_LOCAL);
 
@@ -53,7 +54,7 @@ void GameWindow::Run() {
 }
 
 bool GameWindow::ShutDown() {
-	//mGameModeManager.Shutdown();
+	gameModeManager->Shutdown();
 
 	// Close audio engine
 	closeaudio();

@@ -7,7 +7,7 @@ int main(int argc, char **argv) {
     GameWindow game("Sandblaster", 1024, 768);
 
 	if (!game.Initialize()) {
-		cerr << "Could not initialize game." << endl; //print some related error msg
+		cerr << "Could not initialize game." << endl;
 		exit(1);
 	}
 
@@ -16,6 +16,7 @@ int main(int argc, char **argv) {
 	}
 	catch (exception e) {
 		cerr << "Error running game: " << e.what();
+		exit(1);
 	}
 
 	if (!game.ShutDown()) {

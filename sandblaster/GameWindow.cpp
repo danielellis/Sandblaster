@@ -5,15 +5,16 @@
 #include "Shader.h"
 
 GameWindow::GameWindow(const string& title, const int width, const int height, const int fps)
-	: mScreen(NULL)
-	, mWindowTitle(title)
-	, mInitWidth(width)
-	, mInitHeight(height)
-	, mFrameDelay(1000/fps)
-	, mDone(false)
+	: screen(NULL)
+	, windowTitle(title)
+	, initWidth(width)
+	, initHeight(height)
+	, frameDelay(1000/fps)
+	, done(false)
+    , fullScreen(false)
 {
-	mGameModeManager = new GameModeManager();
-	mInputManager = new InputManager();
+	gameModeManager = new GameModeManager();
+	inputManager = new InputManager();
 }
 
 bool GameWindow::Initialize() {
@@ -23,7 +24,7 @@ bool GameWindow::Initialize() {
 
 	setupaudio(); // In Audio.cpp
 
-	mGameModeManager->Initialize(this);
+	gameModeManager->Initialize(this);
 
 	//playSound("music/grinch.wav", AUDIO_LOCAL);
 
@@ -36,15 +37,15 @@ void GameWindow::Run() {
 
 	baseTime = SDL_GetTicks();
 
-	while (!mDone) {
+	while (!done) {
 
 		HandleEvents();
 
-		if ((currTime = SDL_GetTicks()) - baseTime > mFrameDelay) {
+		if ((currTime = SDL_GetTicks()) - baseTime > frameDelay) {
 			deltaSeconds = (currTime - baseTime) * 0.001f;
 
-			mGameModeManager->UpdateCurrentMode(deltaSeconds);
-			mGameModeManager->RenderCurrentMode();
+			gameModeManager->UpdateCurrentMode(deltaSeconds);
+			gameModeManager->RenderCurrentMode();
 
 			baseTime = currTime;
 		}
@@ -69,28 +70,28 @@ void GameWindow::HandleEvents() {
 	while (SDL_PollEvent(&event)) {
 		if (event.type == SDL_QUIT) {
 			//mGameModeManager.Quit();
-			mDone = true;
+			done = true;
 		}
 		else if (event.type == SDL_KEYDOWN) {
-			if (ie = mInputManager->GetKeyEvent(event.key.keysym.sym))
+			if (ie = inputManager->GetKeyEvent(event.key.keysym.sym))
 				ie->Press();
 		}
 		else if (event.type == SDL_KEYUP) {
-			if (ie = mInputManager->GetKeyEvent(event.key.keysym.sym))
+			if (ie = inputManager->GetKeyEvent(event.key.keysym.sym))
 				ie->Release();
 			//mGameModeManager.HandleKeyUp(event.key.keysym);
 		}
 		else if (event.type == SDL_MOUSEMOTION) {
-			mInputManager->MouseMove(IM_MOUSE_MOVE_LEFT, IM_MOUSE_MOVE_RIGHT, event.motion.xrel);
-			mInputManager->MouseMove(IM_MOUSE_MOVE_UP, IM_MOUSE_MOVE_DOWN, event.motion.yrel);
+			inputManager->MouseMove(IM_MOUSE_MOVE_LEFT, IM_MOUSE_MOVE_RIGHT, event.motion.xrel);
+			inputManager->MouseMove(IM_MOUSE_MOVE_UP, IM_MOUSE_MOVE_DOWN, event.motion.yrel);
 			//mGameModeManager.HandleMouseMotion(event.motion);
 		}
 		else if (event.type == SDL_MOUSEBUTTONDOWN) {
-			if (ie = mInputManager->GetMouseEvent(event.button.button))
+			if (ie = inputManager->GetMouseEvent(event.button.button))
 				ie->Press();
 		}
 		else if (event.type == SDL_MOUSEBUTTONUP) {
-			if (ie = mInputManager->GetMouseEvent(event.button.button))
+			if (ie = inputManager->GetMouseEvent(event.button.button))
 				ie->Release();
 		}
 		else if (event.type == SDL_VIDEORESIZE) {
@@ -117,6 +118,11 @@ void GameWindow::HandleResize(const SDL_ResizeEvent &event) {
 
 void GameWindow::InitializeSDL() {
 	const SDL_VideoInfo *info;
+    Uint32 videoModeFlags = SDL_OPENGL | SDL_GL_DOUBLEBUFFER;
+
+    if (fullScreen) {
+        videoModeFlags |= SDL_FULLSCREEN;
+    }
 
 	// Init SDL
 	if (SDL_Init(SDL_INIT_AUDIO | SDL_INIT_VIDEO | SDL_INIT_TIMER | SDL_INIT_NOPARACHUTE) < 0) {
@@ -129,30 +135,18 @@ void GameWindow::InitializeSDL() {
 		fprintf(stderr, "Video query failed: %s\n", SDL_GetError());
 		exit(-3);
 	}
-
-	// Specify GL Attributes (must do before SDL_SetVideoMode)
-	SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 8);                // Number of bits for the red channel of the color buffer
-	SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 8);              // Number of bits for the green channel of the color buffer
-	SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 8);               // Number of bits for the blue channel of the color buffer
-	
-	SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16);             // Number of bits for the depth buffer
-	
-	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);            // Double buffering - 1 enables, 0 disables
-	
-	SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS,  1);     // Anti-aliasing - 1 enables, 0 disables
-	SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES,  2);     // # of samples around pixel used for anti-aliasing
-
+    
 	// Set the window title
-	SDL_WM_SetCaption(mWindowTitle.c_str(), NULL);
+	SDL_WM_SetCaption(windowTitle.c_str(), NULL);
 
 	// Initialize the window
-	mScreen = SDL_SetVideoMode(
-		mInitWidth,
-		mInitHeight, 
+	screen = SDL_SetVideoMode(
+		initWidth,
+		initHeight, 
 		info->vfmt->BitsPerPixel,
-		SDL_OPENGL | SDL_GL_DOUBLEBUFFER /*| SDL_FULLSCREEN*/
+		videoModeFlags
 	);
-	if (mScreen == NULL) {
+	if (screen == NULL) {
 		fprintf(stderr, "Unable to set video mode: %s\n", SDL_GetError());
 		exit(-2);
 	}
@@ -160,36 +154,53 @@ void GameWindow::InitializeSDL() {
 
 void GameWindow::InitializeGL() {
 	// Clear to black
-	glClearColor(0, 0, 0, 1);
-	glClear(GL_COLOR_BUFFER_BIT);
-	SDL_GL_SwapBuffers();
+	glClearColor(0, 0, 0, 0);
 
+    // Set the viewport to the entire window
+    glViewport(0, 0, screen->w, screen->h);
+
+    // Scale normals for lighting. See:
+    // http://www.opengl.org/archives/resources/features/KilgardTechniques/oglpitfall/
 	glEnable(GL_NORMALIZE);
-	glShadeModel(GL_SMOOTH);
+
+    // Best blend function for transparency
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-	glViewport(0, 0, mScreen->w, mScreen->h);
-	glMatrixMode(GL_PROJECTION);
+    // Set up perspective projection matrix
+    glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
-	gluPerspective(45, mScreen->w / (float)mScreen->h, 0.1f, 100);
+    gluPerspective(45, screen->w / (float)screen->h, 0.1f, 100);
 }
 
 void GameWindow::SetOrthographicProjection() {
+    // Switch to the projection matrix
 	glMatrixMode(GL_PROJECTION);
+
+    // Push current matrix to the stack, create a new orthographic projection
+    // matrix that we will pop off after we are done rendering 2D stuff
 	glPushMatrix();
-	glLoadIdentity();
-	// set a 2D orthographic projection
-	gluOrtho2D(0, mScreen->w, 0, mScreen->h);
-	// invert the y axis, down is positive
+
+	// Set a 2D orthographic projection
+    glLoadIdentity();
+	glOrtho(0, screen->w, 0, screen->h, -1, 1);
+
+	// Invert the y axis so that down is now positive (like 2D screen coords)
 	glScalef(1, -1, 1);
-	// move the origin from the bottom left corner
-	// to the upper left corner
-	glTranslatef(0.0, (float)-mScreen->h, 0.0);
+
+	// Move the origin from the bottom left corner to the upper left corner
+	glTranslatef(0.0, static_cast<float>(screen->h * -1), 0.0);
+
+    // Switch back to the model view matrix
 	glMatrixMode(GL_MODELVIEW);
 }
 
 void GameWindow::ResetPerspectiveProjection() {
-	glMatrixMode(GL_PROJECTION);
+    // Switch to projection matrix
+    glMatrixMode(GL_PROJECTION);
+
+    // Pop off the matrix created in SetOrthographicProjection
 	glPopMatrix();
+
+    // Switch back to model view matrix
 	glMatrixMode(GL_MODELVIEW);
 }

@@ -16,35 +16,42 @@ class GameWindow {
 public:
 	GameWindow(const string& title, const int width, const int height, const int fps = 30);
 
-	bool Initialize();
-	void Run();
-	bool ShutDown();
+	// Lifecycle methods
+	bool            Initialize();
+	void            Run();
+	bool            ShutDown();
 
-	void QuitGame() {mDone = true;}
-	int GetWidth() {return mScreen->w;}
-	int GetHeight() {return mScreen->h;}
-	InputManager * GetInputManager() {return mInputManager;}
+    int             GetHeight() { return screen->h; }
+	int             GetWidth() { return screen->w; }
+	InputManager *  GetInputManager() { return inputManager; }
+    void            QuitGame() { done = true; }
 
-	void SetOrthographicProjection();
-	void ResetPerspectiveProjection();
+	void            SetOrthographicProjection();
+	void            ResetPerspectiveProjection();
 
 protected:
-	void HandleEvents();
-	void HandleResize(const SDL_ResizeEvent &event);
-	void InitializeSDL();
-	void InitializeGL();
+    // Initialization helpers
+	void            InitializeSDL();
+	void            InitializeGL();
 
-	//bool mFullScreen;
-	//SDL_Surface *mIcon;
+    // Event handling
+	void            HandleEvents();
+	void            HandleResize(const SDL_ResizeEvent &event);
+	
+    //--------------------------------------------------------------------------
 
-	SDL_Surface *mScreen;
-	long mFrameDelay;           //in milliseconds
-	string mWindowTitle;
-	int mInitWidth, mInitHeight;
-	bool mDone;
+    bool            done,
+                    fullScreen;
+    int             frameDelay, // In milliseconds
+                    initWidth,
+                    initHeight;
+	string          windowTitle;
 
-	GameModeManager *mGameModeManager;
-	InputManager *mInputManager;
+    SDL_Surface     *screen;
+	GameModeManager *gameModeManager;
+	InputManager    *inputManager;
+
+	//SDL_Surface   *icon;
 };
 
 #endif

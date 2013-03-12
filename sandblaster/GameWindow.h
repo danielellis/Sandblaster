@@ -8,14 +8,16 @@
 #include <SDL/SDL_OpenGL.h>
 #include <SDL/SDL.h>
 
-#include "GameModeManager.h"
-#include "InputManager.h"
-
 using std::string;
+
+class GameModeManager;
+class InputManager;
+class AudioManager;
 
 class GameWindow {
 public:
 	GameWindow(const string& title, const int width, const int height, const int fps = 30);
+    ~GameWindow();
 
 	// Lifecycle methods
 	bool            Initialize();
@@ -25,6 +27,7 @@ public:
     int             GetHeight() { return screen->h; }
 	int             GetWidth() { return screen->w; }
 	InputManager *  GetInputManager() { return inputManager; }
+    AudioManager *  GetAudioManager() { return audioManager; }
     void            QuitGame() { done = true; }
 
 	void            SetOrthographicProjection();
@@ -51,6 +54,7 @@ protected:
     SDL_Surface     *screen;
 	GameModeManager *gameModeManager;
 	InputManager    *inputManager;
+    AudioManager    *audioManager;
 
 	//SDL_Surface   *icon;
 };

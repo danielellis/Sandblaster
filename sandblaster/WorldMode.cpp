@@ -1,3 +1,5 @@
+#include "WorldMode.h"
+
 #include <windows.h>
 #include <GL/glee.h>
 #include <SDL/SDL.h>
@@ -7,11 +9,12 @@
 #include <vector>
 #include <cassert>
 
+#include "AudioManager.h"
 #include "Entity.h"
-#include "WorldMode.h"
+#include "GameWindow.h"
+#include "InputManager.h"
 #include "Materials.h"
 #include "GameWindow.h"
-#include "Audio.h"
 #include "FractalTerrain.h"
 #include "SBLib.h"
 #include "Fireball.h"
@@ -754,7 +757,6 @@ void WorldMode::AddProjectileWeapon(ProjectileType w_type, float phi, float thet
 	Toxicshot *pm_t;
 	Fireball *pm_f;
 
-
 	switch (w_type)
 	{
 	case W_ICESHOT:
@@ -799,7 +801,7 @@ void WorldMode::HandleCollisions() {
 			if ((*driverItr)->IsCollided(*driverItr2, collisionNormal)) {
 				relVel = (*driverItr)->GetVel() - (*driverItr2)->GetVel();
 
-				playSound("assets/sfx/collide_driver_driver.wav", 0.5);
+                mGameWindow->GetAudioManager()->Play("assets/sfx/collide_driver_driver.wav", 0.5);
 
 				impulse = -1.5f*relVel.DotProduct(collisionNormal)/(1/(*driverItr)->GetMass() + 1/(*driverItr2)->GetMass());
 				(*driverItr)->SetVel((*driverItr)->GetVel() + (impulse/(*driverItr)->GetMass())*collisionNormal);
@@ -827,7 +829,7 @@ void WorldMode::HandleCollisions() {
 					(*driverItr)->DecrementHealth(3*(*pwItr)->GetDamage());
 				}
 
-				playSound("assets/sfx/collide_weapon_driver.wav", 1.0);
+				mGameWindow->GetAudioManager()->Play("assets/sfx/collide_weapon_driver.wav", 1.0);
 
 				delete *pwItr;
 				pwItr = mProjectileWeapons.erase(pwItr);
@@ -845,7 +847,7 @@ void WorldMode::HandleCollisions() {
 			if ((*terrainItr)->IsCollided(*pwItr)) {
 				(*pwItr)->MadeImpact();
 
-				playSound("assets/sfx/collide_weapon_terrain.wav", 0.5); 
+				mGameWindow->GetAudioManager()->Play("assets/sfx/collide_weapon_terrain.wav", 0.5); 
 
 				delete *pwItr;
 				pwItr = mProjectileWeapons.erase(pwItr);
@@ -966,7 +968,7 @@ void WorldMode::HandleCollisions() {
 				normalVel = vel.DotProduct(collisionNormal) * collisionNormal;
 				(*driverItr)->SetVel(vel - 2*normalVel);
 
-				playSound("assets/sfx/collide_driver_terrain.wav", 1.0);
+				mGameWindow->GetAudioManager()->Play("assets/sfx/collide_driver_terrain.wav", 1.0);
 			}
 		}
 	}
@@ -978,7 +980,7 @@ void WorldMode::HandleCollisions() {
 			if ((*hbItr)->isActive() && (*hbItr)->IsCollided((*driverItr)->GetPos(), (*driverItr)->GetBoundsRadius())) {
 				(*driverItr)->IncrementHealth(25);
 
-				//playSound("assets/sfx/collide_weapon_driver.wav", 1.0);
+				//mGameWindow->GetAudioManager()->Play("assets/sfx/collide_weapon_driver.wav", 1.0);
 
 				//delete *hbItr;
 				//hbItr = mHealthBoxes.erase(hbItr);
@@ -997,7 +999,7 @@ void WorldMode::HandleCollisions() {
 		weapItr = mWeaponBoxes.begin();
 		while (weapItr != mWeaponBoxes.end()) {
 			if ((*weapItr)->isActive() && (*weapItr)->IsCollided((*driverItr)->GetPos(), (*driverItr)->GetBoundsRadius())) {              
-				//playSound("assets/sfx/collide_weapon_driver.wav", 1.0);
+				//mGameWindow->GetAudioManager()->Play("assets/sfx/collide_weapon_driver.wav", 1.0);
 
 				int weapon = (rand())%3;
 

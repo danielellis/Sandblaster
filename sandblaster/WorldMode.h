@@ -2,6 +2,7 @@
 #define WORLD_MODE_H
 
 #include "GameMode.h"
+#include "GameWindow.h"
 #include "InputEvent.h"
 #include "FractalTerrain.h"
 #include "TextureLoader.h"
@@ -44,79 +45,79 @@ public:
     { }
     ~WorldMode();
 
-   void SetNeighborModes(const std::vector<GameMode *> &);
-   bool LoadResources();
-   GameMode *CheckForModeChange() {return mNextMode;}
+    void SetNeighborModes(const std::vector<GameMode *> &);
+    bool LoadResources();
+    GameMode *CheckForModeChange() {return mNextMode;}
 
-   void Start();
-   void Stop();
-   void Reset();
+    void Start();
+    void Stop();
+    void Reset();
 
-   void Update(float timeElapsed);
-   void Render();
+    void Update(float timeElapsed);
+    void Render();
 
-   void AddProjectileWeapon(ProjectileType type, float phi, float theta, Vector3 &pos, Vector3 &vel, Vector3 &dir);
+    void AddProjectileWeapon(ProjectileType type, float phi, float theta, Vector3 &pos, Vector3 &vel, Vector3 &dir);
 
-   void SetPlayerNdx(int playerNdx) {mPlayerNdx = playerNdx;}
+    void SetPlayerNdx(int playerNdx) {mPlayerNdx = playerNdx;}
 
 protected:
-   enum health_enum {LIFE_GOOD = 0, LIFE_HALF = 1, LIFE_CRIT = 2};
-	enum lens_flare_enum {LF_GLOW = 0, LF_HALO1 = 1, LF_HALO2 = 2, LF_HALO3 = 3}; 
-   
-   void LoadLensFlareAssets();
-   void DrawLensFlare();
+    enum health_enum {LIFE_GOOD = 0, LIFE_HALF = 1, LIFE_CRIT = 2};
+    enum lens_flare_enum {LF_GLOW = 0, LF_HALO1 = 1, LF_HALO2 = 2, LF_HALO3 = 3}; 
 
-   void LoadHUDAssets();
-   void DrawHUD();
+    void LoadLensFlareAssets();
+    void DrawLensFlare();
 
-   void HandleCollisions();
+    void LoadHUDAssets();
+    void DrawHUD();
 
-   int mPlayerNdx;
-   std::vector<Driver *> mDrivers;
-   Driver *mPlayer;
-   std::vector<Driver *> mAIDrivers;
-   std::vector<AI> mAIs;
-   std::vector<ProjectileWeapon *> mProjectileWeapons;
-   std::vector<FractalTerrain *> mFractalTerrains;
-   std::list<ToxicParticleSystem *> mToxicParticleSystems;
+    void HandleCollisions();
 
-   Skydome mSkydome;
-   std::vector<SmallHealthPowerUp *> mHealthBoxes;
-   std::vector<WeaponPowerUp *> mWeaponBoxes;
-   SmallHealthPowerUp h1, h2, h3, h4;
-   WeaponPowerUp w1, w2, w3, w4, w5, w6;
-   Vector3 v1, v2, v3, v4;
-   Vector3 v1b, v2b, v3b, v4b, v5b, v6b;
+    int mPlayerNdx;
+    std::vector<Driver *> mDrivers;
+    Driver *mPlayer;
+    std::vector<Driver *> mAIDrivers;
+    std::vector<AI> mAIs;
+    std::vector<ProjectileWeapon *> mProjectileWeapons;
+    std::vector<FractalTerrain *> mFractalTerrains;
+    std::list<ToxicParticleSystem *> mToxicParticleSystems;
 
-   Frustum mFrustum;
-   DebugEye mDebugEye;
-   bool mDebugEyeOn;
+    Skydome mSkydome;
+    std::vector<SmallHealthPowerUp *> mHealthBoxes;
+    std::vector<WeaponPowerUp *> mWeaponBoxes;
+    SmallHealthPowerUp h1, h2, h3, h4;
+    WeaponPowerUp w1, w2, w3, w4, w5, w6;
+    Vector3 v1, v2, v3, v4;
+    Vector3 v1b, v2b, v3b, v4b, v5b, v6b;
 
-   FractalTerrain mFractalTerrain;
+    Frustum mFrustum;
+    DebugEye mDebugEye;
+    bool mDebugEyeOn;
 
-   InputEvent mStrafeLeft, mStrafeRight, mStrafeForward, mStrafeBackward, mStrafeUp, mStrafeDown,
-      mMouseLeft, mMouseRight, mMouseUp, mMouseDown, mPause, mNextWeapon, mPrevWeapon, 
-    mIncHealth, mDecHealth, mFireCurrentWeapon, mDebugEyeMode, mDebugTerrain;
+    FractalTerrain mFractalTerrain;
 
-   GameMode *mPauseMenuMode, *mNextMode;
-   GameOverMode *mGameOverMode;
+    InputEvent mStrafeLeft, mStrafeRight, mStrafeForward, mStrafeBackward, mStrafeUp, mStrafeDown,
+        mMouseLeft, mMouseRight, mMouseUp, mMouseDown, mPause, mNextWeapon, mPrevWeapon, 
+        mIncHealth, mDecHealth, mFireCurrentWeapon, mDebugEyeMode, mDebugTerrain;
 
-   TextureLoader mTextureLoader;
-   glTexture mWeaponTextures[NUM_WEAPONS];
-   glTexture mLifebarTextures[3];
-	glTexture mLensFlareTextures[4];
-   glTexture mLifebarCaseTexture;
-   glTexture templeTex;
-   glTexture mNumberTextures[10];
+    GameMode *mPauseMenuMode, *mNextMode;
+    GameOverMode *mGameOverMode;
 
-   ObjMesh *objmesh;
-   ObjFace *surfaces[1000];
-   ObjFace *walls[1000];
-   int num_walls;
-   int num_surfaces;
+    TextureLoader mTextureLoader;
+    glTexture mWeaponTextures[NUM_WEAPONS];
+    glTexture mLifebarTextures[3];
+    glTexture mLensFlareTextures[4];
+    glTexture mLifebarCaseTexture;
+    glTexture templeTex;
+    glTexture mNumberTextures[10];
 
-   // PauseMode *mPauseMode;
-   // GameOverMode *mGameOverMode;
+    ObjMesh *objmesh;
+    ObjFace *surfaces[1000];
+    ObjFace *walls[1000];
+    int num_walls;
+    int num_surfaces;
+
+    // PauseMode *mPauseMode;
+    // GameOverMode *mGameOverMode;
 };
 
 #endif

@@ -1,5 +1,6 @@
 #include "FreezeParticleSystem.h"
-#include "Driver.h"
+
+class Driver;
 
 void FreezeParticleSystem::Initialize(Driver *driver) {
     mDriver = driver;

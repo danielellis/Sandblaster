@@ -1,10 +1,13 @@
 #include "Driver.h"
-#include "WorldMode.h"
-#include "SBLib.h"
-#include "Audio.h"
-#include <SDL/SDL_OpenGL.h>
+
 #include <iostream>
+
+#include <SDL/SDL_OpenGL.h>
+
+#include "AudioManager.h"
 #include "BMPLoader.h"
+#include "GameWindow.h"
+#include "WorldMode.h"
 
 using namespace std;
 
@@ -146,7 +149,7 @@ void Driver::FireCurrentWeapon() {
    if (mTimeSinceWeaponFire >= ProjectileWeaponDelays[mCurrentWeapon] && mWeaponCounts[mCurrentWeapon] > 0) {
       mWorldMode->AddProjectileWeapon(mCurrentWeapon, mPhi, mTheta, mPos + mBoundsRadius*mDir, mVel, mDir);
       //TODO change the sounds and volumes for sound effects
-      playSound("assets/sfx/fire_primary.wav", 0.3);
+      mWorldMode->GetGameWindow()->GetAudioManager()->Play("assets/sfx/fire_primary.wav", 0.3);
       mTimeSinceWeaponFire = 0;
 
 	   --mWeaponCounts[mCurrentWeapon];
@@ -155,12 +158,12 @@ void Driver::FireCurrentWeapon() {
 
 void Driver::DecrementHealth(int amount) {
    mHealth = (mHealth - amount < 0) ? 0 : mHealth - amount;
-   playSound("assets/sfx/health_down.wav", 0.3); 
+   mWorldMode->GetGameWindow()->GetAudioManager()->Play("assets/sfx/health_down.wav", 0.3); 
 }
 
 void Driver::IncrementHealth(int amount) {
    mHealth = (mHealth + amount > mMaxHealth) ? mMaxHealth : mHealth + amount;
-   playSound("assets/sfx/health_up.wav", 0.3); 
+   mWorldMode->GetGameWindow()->GetAudioManager()->Play("assets/sfx/health_up.wav", 0.3); 
 }
 
 void Driver::NextWeapon() {
@@ -176,7 +179,7 @@ void Driver::NextWeapon() {
 		mCurrentWeapon = W_FIREBALL;
 		break;
 	}
-   playSound("assets/sfx/weapon_switch_up.wav", AUDIO_LOCAL); 
+   mWorldMode->GetGameWindow()->GetAudioManager()->Play("assets/sfx/weapon_switch_up.wav", AudioManager::AUDIO_LOCAL); 
 }
 
 
@@ -193,7 +196,7 @@ void Driver::PreviousWeapon() {
 		mCurrentWeapon = W_ICESHOT;
 		break;
 	}
-	playSound("assets/sfx/weapon_switch_down.wav", AUDIO_LOCAL); 
+	mWorldMode->GetGameWindow()->GetAudioManager()->Play("assets/sfx/weapon_switch_down.wav", AudioManager::AUDIO_LOCAL); 
 }
 
 void Driver::FreezeEffectBegin()

@@ -5,6 +5,7 @@
 #include "CharacterSelectMode.h"
 #include "GameWindow.h"
 #include "GameOverMode.h"
+#include "InputManager.h"
 #include "MainMenuMode.h"
 #include "PauseMenuMode.h"
 #include "WorldMode.h"

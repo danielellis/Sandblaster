@@ -1,7 +1,9 @@
 #include "AI.h"
+
+#include <cmath>
+
 #include "Vector3.h"
 #include "Driver.h"
-#include <cmath>
 
 
 void AI::MakeDecision(Driver *targetDriver) {

@@ -111,7 +111,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include=".\AI.cpp" />
-    <ClCompile Include=".\Audio.cpp" />
     <ClCompile Include=".\BMPLoader.cpp" />
     <ClCompile Include=".\CharacterSelectMode.cpp" />
     <ClCompile Include=".\DebugEye.cpp" />
@@ -154,11 +153,12 @@
     <ClCompile Include=".\Vector3.cpp" />
     <ClCompile Include=".\WeaponPowerUp.cpp" />
     <ClCompile Include=".\WorldMode.cpp" />
+    <ClCompile Include="AudioManager.cpp" />
     <ClCompile Include="Vector3D.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include=".\AI.h" />
-    <ClInclude Include=".\Audio.h" />
+    <ClInclude Include="AudioManager.h" />
     <ClInclude Include=".\BMPLoader.h" />
     <ClInclude Include=".\CharacterSelectMode.h" />
     <ClInclude Include=".\DebugEye.h" />

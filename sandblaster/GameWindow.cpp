@@ -1,6 +1,7 @@
 #include "GameWindow.h"
 
-#include "Audio.h"
+#include "AudioManager.h"
+#include "GameModeManager.h"
 #include "InputEvent.h"
 #include "InputManager.h"
 #include "Shader.h"
@@ -16,6 +17,13 @@ GameWindow::GameWindow(const string& title, const int width, const int height, c
 {
 	gameModeManager = new GameModeManager(this);
 	inputManager = new InputManager();
+    audioManager = new AudioManager();
+}
+
+GameWindow::~GameWindow() {
+    delete gameModeManager;
+    delete inputManager;
+    delete audioManager;
 }
 
 bool GameWindow::Initialize() {
@@ -23,11 +31,11 @@ bool GameWindow::Initialize() {
 	InitializeGL();
 	InitializeShaderContext(); // In Shader.cpp
 
-	setupaudio(); // In Audio.cpp
+    audioManager->Initialize(); // In Audio.cpp
 
 	gameModeManager->Initialize();
 
-	//playSound("music/grinch.wav", AUDIO_LOCAL);
+	//audioManager->Play("music/grinch.wav", AUDIO_LOCAL);
 
 	return true;
 }
@@ -57,7 +65,7 @@ bool GameWindow::ShutDown() {
 	gameModeManager->Shutdown();
 
 	// Close audio engine
-	closeaudio();
+    audioManager->Shutdown();
 
 	SDL_Quit();
 

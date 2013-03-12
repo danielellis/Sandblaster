@@ -10,6 +10,8 @@ public:
    GameMode(GameWindow *window) : mGameWindow(window) {}
    virtual ~GameMode() {}
 
+   GameWindow * GetGameWindow() { return mGameWindow; }
+
    virtual void SetNeighborModes(const std::vector<GameMode *> &modes) = 0;
    virtual bool LoadResources() = 0;
    virtual GameMode *CheckForModeChange() = 0;

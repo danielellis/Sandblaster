@@ -4,6 +4,8 @@
 #include <SDL/SDL.h>
 #include <SDL/SDL_OpenGL.h>
 
+#include "InputManager.h"
+
 MainMenuMode::MainMenuMode(GameWindow *window) : GameMode(window)
     , mStart(IE_INITIAL)
     , mQuit(IE_INITIAL)

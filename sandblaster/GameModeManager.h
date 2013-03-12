@@ -15,7 +15,7 @@ public:
    void             SetMode(GameMode *mode);
 
    void             UpdateCurrentMode(float elapsedTime);
-   void             RenderCurrentMode() {currentMode->Render();}
+   void             RenderCurrentMode() { currentMode->Render(); }
 
 protected:
    GameWindow       *gameWindow;

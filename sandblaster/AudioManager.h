@@ -3,6 +3,13 @@
 
 #include <SDL/SDL.h>
 
+typedef struct {
+    Uint8 *data;
+    Uint32 dpos;
+    Uint32 dlen;
+    int volume;
+} Sample;
+
 // Audio engine class. All audio is run through this class. This class contains
 // all functions necessary to control sound effects and music.
 class AudioManager {
@@ -17,7 +24,7 @@ public:
     void Play(char *filename, double volume_percentage);
 
     // Function used by the SDL audio callback function to generate samples
-    void GenerateSamples(Uint8* stream, int len);
+    static void GenerateSamples(void *unused, Uint8* stream, int len);
 
     // Defines the volume percentage of sounds that are local (HUD, weapons, etc)
     static const float AUDIO_LOCAL;

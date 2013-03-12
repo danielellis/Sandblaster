@@ -1,11 +1,7 @@
 #include "AudioManager.h"
 
-struct {
-    Uint8 *data;
-    Uint32 dpos;
-    Uint32 dlen;
-    int volume;
-} sounds[AudioManager::CHANNELS];
+// TODO can this be encapsulated in the class somehow?
+Sample sounds[AudioManager::CHANNELS];
 
 const float AudioManager::AUDIO_LOCAL = 1.0f;
 
@@ -18,7 +14,7 @@ bool AudioManager::Initialize() {
     format.format = AUDIO_S16;
     format.channels = 2;
     format.samples = 512;   // Good for games, according to SDL docs
-    format.callback = AudioCallback;
+    format.callback = GenerateSamples;
     format.userdata = NULL;
 
     // Open SDL audio with the settings stored in format
@@ -84,7 +80,7 @@ void AudioManager::Play(char *filename, double volume_percentage) {
     SDL_UnlockAudio();
 }
 
-void AudioManager::GenerateSamples(Uint8 *stream, int len) {
+void AudioManager::GenerateSamples(void *unused, Uint8 *stream, int len) {
     int i;
     Uint32 amount;
 
@@ -119,9 +115,4 @@ double AudioManager::CalculatePercentByDistance(double distance) {
     else {
         return (1.0f - (distance * 0.1f));
     }
-}
-
-void AudioCallback(void* _audioManager, Uint8* stream, int len) {
-    AudioManager *audioManager = (AudioManager *)_audioManager;
-    audioManager->GenerateSamples(stream, len);
 }

@@ -22,7 +22,7 @@ public:
 	// Lifecycle methods
 	bool            Initialize();
 	void            Run();
-	bool            ShutDown();
+	bool            Shutdown();
 
     int             GetHeight() { return screen->h; }
 	int             GetWidth() { return screen->w; }

@@ -19,7 +19,7 @@ int main(int argc, char **argv) {
 		exit(1);
 	}
 
-	if (!game.ShutDown()) {
+	if (!game.Shutdown()) {
 		cerr << "Could not shutdown game properly." << endl;
 		exit(1);
 	}

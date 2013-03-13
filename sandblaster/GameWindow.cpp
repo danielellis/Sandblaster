@@ -31,8 +31,7 @@ bool GameWindow::Initialize() {
 	InitializeGL();
 	InitializeShaderContext(); // In Shader.cpp
 
-    audioManager->Initialize(); // In Audio.cpp
-
+    audioManager->Initialize();
 	gameModeManager->Initialize();
 
 	//audioManager->Play("music/grinch.wav", AUDIO_LOCAL);
@@ -61,7 +60,7 @@ void GameWindow::Run() {
 	}
 }
 
-bool GameWindow::ShutDown() {
+bool GameWindow::Shutdown() {
 	gameModeManager->Shutdown();
 
 	// Close audio engine

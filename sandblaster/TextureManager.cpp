@@ -20,13 +20,9 @@ void TextureManager::Initialize() {
 
     isInitialized = true;
 
-    printf("%u\n", LoadFromFile("assets/textures/menu/background.tga"));
-    printf("%u\n", LoadFromFile("assets/textures/menu/pause_lightmap.jpg"));
-    printf("%u\n", LoadFromFile("assets/textures/weapon/fire1.bmp"));
-
-    printf("%u\n", LoadFromFile2("assets/textures/menu/background.tga"));
-    printf("%u\n", LoadFromFile2("assets/textures/menu/pause_lightmap.jpg"));
-    printf("%u\n", LoadFromFile2("assets/textures/weapon/fire1.bmp"));
+    //printf("%u\n", LoadFromFile("assets/textures/menu/background.tga"));
+    //printf("%u\n", LoadFromFile("assets/textures/menu/pause_lightmap.jpg"));
+    //printf("%u\n", LoadFromFile("assets/textures/weapon/fire1.bmp"));
 }
 
 void TextureManager::Shutdown() {
@@ -108,8 +104,4 @@ GLuint TextureManager::LoadFromFile(const char *filename) {
 	printf("Texture creation successful.\n");
 
 	return textureID; // Return the GLuint to the texture so you can use it!
-}
-
-GLuint TextureManager::LoadFromFile2(ILstring filename) {
-    return ilutGLLoadImage(filename);
 }

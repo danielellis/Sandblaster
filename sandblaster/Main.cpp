@@ -1,17 +1,9 @@
 #include <iostream>
 #include "GameWindow.h"
-#include "TextureManager.h"
 
-using std::cerr;
-using std::endl;
-using std::exception;
+using namespace std;
 
 int main(int argc, char **argv) {
-    // TODO remove me
-    TextureManager *textureManager = new TextureManager();
-    textureManager->Initialize();
-    // TODO remove me
-
     GameWindow game("Sandblaster", 1024, 768);
 
 	if (!game.Initialize()) {
@@ -31,11 +23,6 @@ int main(int argc, char **argv) {
 		cerr << "Could not shutdown game properly." << endl;
 		exit(1);
 	}
-
-    // TODO remove me
-    textureManager->Shutdown();
-    delete textureManager;
-    // TODO remove me
 
 	return 0;
 }

@@ -66,7 +66,7 @@
       <DisableSpecificWarnings>4996</DisableSpecificWarnings>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>cg.lib;cgGL.lib;GLee.lib;GLU32.lib;DevIL.lib;ILU.lib;ILUT.lib;lib3ds-120s.lib;OpenGL32.lib;sdl.lib;sdlmain.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>cg.lib;cgGL.lib;GLee.lib;GLU32.lib;lib3ds-120s.lib;OpenGL32.lib;sdl.lib;sdlmain.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>LIBC.LIB;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
@@ -154,7 +154,6 @@
     <ClCompile Include=".\WeaponPowerUp.cpp" />
     <ClCompile Include=".\WorldMode.cpp" />
     <ClCompile Include="AudioManager.cpp" />
-    <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="Vector3D.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -203,7 +202,6 @@
     <ClInclude Include=".\Vector3.h" />
     <ClInclude Include=".\WeaponPowerUp.h" />
     <ClInclude Include=".\WorldMode.h" />
-    <ClInclude Include="TextureManager.h" />
     <ClInclude Include="Vector3D.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
